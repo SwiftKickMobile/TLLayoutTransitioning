@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "container:TLLayoutTransitioning.xcodeproj">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "Examples">
+      <Group
+         location = "group:Examples/External"
+         name = "External">
+         <FileRef
+            location = "group:TLIndexPathTools/TLIndexPathTools.xcodeproj">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:Examples/Resize/Resize.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>
