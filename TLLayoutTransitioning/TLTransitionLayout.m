@@ -60,7 +60,9 @@
     if (self.updateLayoutAttributes) {
         NSMutableArray *updatedPoses = [NSMutableArray arrayWithCapacity:poses.count];
         for (UICollectionViewLayoutAttributes *pose in poses) {
-            UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose);
+            UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:pose.indexPath];
+            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:pose.indexPath];
+            UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose, fromPose, toPose, self.transitionProgress);
             [updatedPoses addObject:updatedPose ? updatedPose : pose];
         }
     }
@@ -71,7 +73,9 @@
 {
     UICollectionViewLayoutAttributes *pose = [super layoutAttributesForItemAtIndexPath:indexPath];
     if (self.updateLayoutAttributes) {
-        UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose);
+        UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
+        UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+        UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose, fromPose, toPose, self.transitionProgress);
         if (updatedPose) {
             pose = updatedPose;
         }

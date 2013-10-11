@@ -85,7 +85,7 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutKeyIndexPathPlacement) {
  Optional callback to modify the interpolated layout attributes. Can be used to customize the
  animation or to substitute a custom `UICollectionViewLayoutAttributes` subclass.
  */
-@property (strong, nonatomic) UICollectionViewLayoutAttributes *(^updateLayoutAttributes)(UICollectionViewLayoutAttributes *layoutAttributes);
+@property (strong, nonatomic) UICollectionViewLayoutAttributes *(^updateLayoutAttributes)(UICollectionViewLayoutAttributes *layoutAttributes, UICollectionViewLayoutAttributes *fromAttributes, UICollectionViewLayoutAttributes *toAttributes, CGFloat progress);
 
 /**
  Optional callback when progress changes. Can be used to modify things outside of the
