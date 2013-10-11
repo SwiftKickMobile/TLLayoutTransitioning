@@ -1,16 +1,31 @@
 //
 //  TLTransitionLayout.m
-//  Collection
 //
-//  Created by Tim Moose on 10/9/13.
-//  Copyright (c) 2013 wtm@tractablelabs.com. All rights reserved.
+//  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
+//  Permission is hereby granted, free of charge, to any person obtaining a copy
+//  of this software and associated documentation files (the "Software"), to deal
+//  in the Software without restriction, including without limitation the rights
+//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//  copies of the Software, and to permit persons to whom the Software is
+//  furnished to do so, subject to the following conditions:
+//
+//  The above copyright notice and this permission notice shall be included in
+//  all copies or substantial portions of the Software.
+//
+//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+//  THE SOFTWARE.
 
 #import "TLTransitionLayout.h"
 
 @interface TLTransitionLayout ()
+@property (nonatomic) BOOL toContentOffsetInitialized;
 @property (nonatomic) CGPoint fromContentOffset;
-@property (strong, nonatomic) NSDictionary *poseAtIndexPath;
 @end
 
 @implementation TLTransitionLayout
@@ -19,8 +34,6 @@
 {
     if (self = [super initWithCurrentLayout:currentLayout nextLayout:newLayout]) {
         self.fromContentOffset = currentLayout.collectionView.contentOffset;
-        self.toContentOffset = currentLayout.collectionView.contentOffset;
-        [self calculateLayout];
     }
     return self;
 }
@@ -28,65 +41,27 @@
 - (void) setTransitionProgress:(CGFloat)transitionProgress
 {
     super.transitionProgress = transitionProgress;
-    CGFloat t = self.transitionProgress;
-    CGFloat f = 1 - t;
-    CGPoint offset = CGPointMake(f * self.fromContentOffset.x + t * self.toContentOffset.x, f * self.fromContentOffset.y + t * self.toContentOffset.y);
-    self.collectionView.contentOffset = offset;
-    if (self.progressChanged) {
-        self.progressChanged(transitionProgress);
+    if (self.toContentOffsetInitialized) {
+        CGFloat t = self.transitionProgress;
+        CGFloat f = 1 - t;
+        CGPoint offset = CGPointMake(f * self.fromContentOffset.x + t * self.toContentOffset.x, f * self.fromContentOffset.y + t * self.toContentOffset.y);
+        self.collectionView.contentOffset = offset;
+        if (self.progressChanged) {
+            self.progressChanged(transitionProgress);
+        }
     }
 }
 
 #pragma mark - Layout logic
 
-- (void)calculateLayout
-{
-    CGFloat t = self.transitionProgress;
-    CGFloat f = 1 - t;
-    
-    NSMutableDictionary *poses = [NSMutableDictionary dictionary];
-    for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
-        for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
-            
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
-            
-            UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *pose = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-            
-            CGFloat originX = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
-            CGFloat originY = f * fromPose.frame.origin.y + t * toPose.frame.origin.y;
-            CGFloat sizeWidth = f * fromPose.frame.size.width + t * toPose.frame.size.width;
-            CGFloat sizeHeight = f * fromPose.frame.size.height + t * toPose.frame.size.height;
-            pose.frame = CGRectMake(originX, originY, sizeWidth, sizeHeight);
-            
-            pose.alpha = f * fromPose.alpha + t * toPose.alpha;
-            
-            if (self.updateLayoutAttributes) {
-                UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose);
-                if (updatedPose) {
-                    pose = updatedPose;
-                }
-            }
-            
-            [poses setObject:pose forKey:[self keyForIndexPath:pose.indexPath]];
-        }
-    }
-    self.poseAtIndexPath = poses;
-}
-
-
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSMutableArray *poses = [NSMutableArray array];
-    for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
-        for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
-            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
-            UICollectionViewLayoutAttributes *pose = [self.poseAtIndexPath objectForKey:indexPath];
-            CGRect intersection = CGRectIntersection(rect, pose.frame);
-            if (!CGRectIsEmpty(intersection)) {
-                [poses addObject:pose];
-            }
+    NSArray *poses = [super layoutAttributesForElementsInRect:rect];
+    if (self.updateLayoutAttributes) {
+        NSMutableArray *updatedPoses = [NSMutableArray arrayWithCapacity:poses.count];
+        for (UICollectionViewLayoutAttributes *pose in poses) {
+            UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose);
+            [updatedPoses addObject:updatedPose ? updatedPose : pose];
         }
     }
     return poses;
@@ -94,25 +69,14 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.poseAtIndexPath objectForKey:indexPath];
-}
-
-- (void)invalidateLayout
-{
-    [self calculateLayout];
-    [super invalidateLayout];
-}
-
-/*
- Must generate a key for index path because `[NSIndexPath isEqual] is not reliable
- under iOS7 (I think because `UITableView` sometimes uses `NSIndexPath` and other times `UIMutableIndexPath`
- */
-- (NSIndexPath *)keyForIndexPath:(NSIndexPath *)indexPath
-{
-    if ([indexPath class] == [NSIndexPath class]) {
-        return indexPath;
+    UICollectionViewLayoutAttributes *pose = [super layoutAttributesForItemAtIndexPath:indexPath];
+    if (self.updateLayoutAttributes) {
+        UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose);
+        if (updatedPose) {
+            pose = updatedPose;
+        }
     }
-    return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
+    return pose;
 }
 
 #pragma mark - Key index path
@@ -137,8 +101,10 @@
 
 - (void)setToContentOffset:(CGPoint)toContentOffset
 {
+    self.toContentOffsetInitialized = YES;
     if (!CGPointEqualToPoint(_toContentOffset, toContentOffset)) {
         _toContentOffset = toContentOffset;
+        NSLog(@"toContentOffset=%@", NSStringFromCGPoint(toContentOffset));
         [self invalidateLayout];
     }
 }
@@ -147,15 +113,9 @@
 {
     if (self.keyIndexPath) {
         
-//        UICollectionViewLayoutAttributes *fromPose = [self.nextLayout layoutAttributesForItemAtIndexPath:self.keyIndexPath];
         UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:self.keyIndexPath];
         
         switch (self.keyIndexPathPlacement) {
-            case TLTransitionLayoutKeyIndexPathPlacementNone:
-            {
-            
-            }
-                break;
             case TLTransitionLayoutKeyIndexPathPlacementCenter:
             {
             
@@ -194,7 +154,7 @@
 
 - (void)collectionViewDidCompleteTransitioning:(UICollectionView *)collectionView completed:(BOOL)completed finish:(BOOL)finish
 {
-    if (finish) {
+    if (finish && self.toContentOffsetInitialized) {
         collectionView.contentOffset = self.toContentOffset;
     }
 }

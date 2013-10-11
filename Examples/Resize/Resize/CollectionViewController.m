@@ -66,7 +66,6 @@
     if (self.useTransitionLayout) {
         TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:otherLayout duration:self.duration completion:nil];
         layout.keyIndexPath = indexPath;
-        layout.keyIndexPathPlacement = TLTransitionLayoutKeyIndexPathPlacementCenter;
     } else {
         [collectionView setCollectionViewLayout:otherLayout animated:YES];
     }
