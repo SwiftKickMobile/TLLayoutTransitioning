@@ -26,6 +26,7 @@
 @interface TLTransitionLayout ()
 @property (nonatomic) BOOL toContentOffsetInitialized;
 @property (nonatomic) CGPoint fromContentOffset;
+@property (strong, nonatomic) NSDictionary *poseAtIndexPath;
 @end
 
 @implementation TLTransitionLayout
@@ -34,6 +35,7 @@
 {
     if (self = [super initWithCurrentLayout:currentLayout nextLayout:newLayout]) {
         self.fromContentOffset = currentLayout.collectionView.contentOffset;
+        [self calculateLayout];
     }
     return self;
 }
@@ -54,16 +56,60 @@
 
 #pragma mark - Layout logic
 
+#pragma mark - Layout logic
+
+- (void)calculateLayout
+{
+    CGFloat t = self.transitionProgress;
+    CGFloat f = 1 - t;
+    
+    NSMutableDictionary *poses = [NSMutableDictionary dictionary];
+    for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
+        for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+            
+            UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *pose = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+            
+            CGFloat originX = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
+            CGFloat originY = f * fromPose.frame.origin.y + t * toPose.frame.origin.y;
+            CGFloat sizeWidth = f * fromPose.frame.size.width + t * toPose.frame.size.width;
+            CGFloat sizeHeight = f * fromPose.frame.size.height + t * toPose.frame.size.height;
+            pose.frame = CGRectMake(originX, originY, sizeWidth, sizeHeight);
+            
+            pose.alpha = f * fromPose.alpha + t * toPose.alpha;
+            
+            //TODO need to interpolate tranforms
+            
+            if (self.updateLayoutAttributes) {
+                UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
+                UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+                UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose, fromPose, toPose, self.transitionProgress);
+                if (updatedPose) {
+                    pose = updatedPose;
+                }
+            }
+            
+            [poses setObject:pose forKey:[self keyForIndexPath:pose.indexPath]];
+        }
+    }
+    self.poseAtIndexPath = poses;
+}
+
+
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
 {
-    NSArray *poses = [super layoutAttributesForElementsInRect:rect];
-    if (self.updateLayoutAttributes) {
-        NSMutableArray *updatedPoses = [NSMutableArray arrayWithCapacity:poses.count];
-        for (UICollectionViewLayoutAttributes *pose in poses) {
-            UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:pose.indexPath];
-            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:pose.indexPath];
-            UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose, fromPose, toPose, self.transitionProgress);
-            [updatedPoses addObject:updatedPose ? updatedPose : pose];
+    NSMutableArray *poses = [NSMutableArray array];
+    for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
+        for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+            UICollectionViewLayoutAttributes *pose = [self.poseAtIndexPath objectForKey:indexPath];
+            CGRect intersection = CGRectIntersection(rect, pose.frame);
+            if (!CGRectIsEmpty(intersection)) {
+                [poses addObject:pose];
+            }
         }
     }
     return poses;
@@ -71,16 +117,25 @@
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewLayoutAttributes *pose = [super layoutAttributesForItemAtIndexPath:indexPath];
-    if (self.updateLayoutAttributes) {
-        UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
-        UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
-        UICollectionViewLayoutAttributes *updatedPose = self.updateLayoutAttributes(pose, fromPose, toPose, self.transitionProgress);
-        if (updatedPose) {
-            pose = updatedPose;
-        }
+    return [self.poseAtIndexPath objectForKey:indexPath];
+}
+
+- (void)invalidateLayout
+{
+    [self calculateLayout];
+    [super invalidateLayout];
+}
+
+/*
+ Must generate a key for index path because `[NSIndexPath isEqual] is not reliable
+ under iOS7 (I think because `UITableView` sometimes uses `NSIndexPath` and other times `UIMutableIndexPath`
+ */
+- (NSIndexPath *)keyForIndexPath:(NSIndexPath *)indexPath
+{
+    if ([indexPath class] == [NSIndexPath class]) {
+        return indexPath;
     }
-    return pose;
+    return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
 }
 
 #pragma mark - Key index path
@@ -108,7 +163,6 @@
     self.toContentOffsetInitialized = YES;
     if (!CGPointEqualToPoint(_toContentOffset, toContentOffset)) {
         _toContentOffset = toContentOffset;
-        NSLog(@"toContentOffset=%@", NSStringFromCGPoint(toContentOffset));
         [self invalidateLayout];
     }
 }
