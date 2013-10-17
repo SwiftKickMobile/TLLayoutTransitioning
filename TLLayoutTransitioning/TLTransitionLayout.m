@@ -35,7 +35,6 @@
 {
     if (self = [super initWithCurrentLayout:currentLayout nextLayout:newLayout]) {
         self.fromContentOffset = currentLayout.collectionView.contentOffset;
-        [self calculateLayout];
     }
     return self;
 }
@@ -58,8 +57,9 @@
 
 #pragma mark - Layout logic
 
-- (void)calculateLayout
+- (void)prepareLayout
 {
+    [super prepareLayout];
     CGFloat t = self.transitionProgress;
     CGFloat f = 1 - t;
     
@@ -118,12 +118,6 @@
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return [self.poseAtIndexPath objectForKey:indexPath];
-}
-
-- (void)invalidateLayout
-{
-    [self calculateLayout];
-    [super invalidateLayout];
 }
 
 /*
