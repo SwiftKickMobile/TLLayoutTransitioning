@@ -24,10 +24,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <objc/runtime.h>
 
-#import "UICollectionView+TLTransitionAnimator.h"
+#import "UICollectionView+TLTransitioning.h"
 #import "TLTransitionLayout.h"
 
-@implementation UICollectionView (TLTransitionAnimator)
+@implementation UICollectionView (TLTransitioning)
 
 #pragma mark - Simulated properties
 
@@ -105,6 +105,73 @@ static char kTLTransitionLayoutKey;
 {
     [link invalidate];
     [self finishInteractiveTransition];
+}
+
+#pragma mark - Calculating transition values
+
+CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, TLTransitioningEasing easing)
+{
+    switch (easing) {
+        case TLTransitioningEasingLinear:
+        {
+        CGFloat progress = (currentValue - initialValue) / (finalValue - initialValue);
+        progress = MIN(1.0, progress);
+        progress = MAX(0, progress);
+        return progress;
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (CGPoint)contentOffsetForLayout:(UICollectionViewLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
+{
+    CGPoint toCenter = CGPointZero;
+    if (indexPaths.count) {
+        for (NSIndexPath *indexPath in indexPaths) {
+            UICollectionViewLayoutAttributes *toPose = [layout layoutAttributesForItemAtIndexPath:indexPath];
+            toCenter.x += toPose.center.x;
+            toCenter.y += toPose.center.y;
+        }
+        toCenter.x /= indexPaths.count;
+        toCenter.y /= indexPaths.count;
+    }
+
+    switch (placement) {
+        case TLTransitionLayoutIndexPathPlacementCenter:
+        {
+        
+        CGSize contentSize = layout.collectionViewContentSize;
+        CGRect bounds = self.bounds;
+        bounds.origin.x = 0;
+        bounds.origin.y = 0;
+        UIEdgeInsets inset = self.contentInset;
+        
+        CGPoint insetOffset = CGPointMake(inset.left, inset.top);
+        CGPoint boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+        
+        CGPoint offset = CGPointMake(insetOffset.x + toCenter.x - boundsCenter.x, insetOffset.y + toCenter.y - boundsCenter.y);
+        
+        CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
+        CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
+        
+        offset.x = MAX(0, offset.x);
+        offset.y = MAX(0, offset.y);
+        
+        offset.x = MIN(maxOffsetX, offset.x);
+        offset.y = MIN(maxOffsetY, offset.y);
+        
+        return offset;
+        
+        }
+            break;
+        default:
+            break;
+    }
+    
+    return CGPointZero;
 }
 
 @end

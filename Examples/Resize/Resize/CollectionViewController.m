@@ -7,8 +7,8 @@
 //
 
 #import "CollectionViewController.h"
-#import <TLLayoutTransitioning/UICollectionView+TLTransitionAnimator.h>
 #import <TLLayoutTransitioning/TLTransitionLayout.h>
+#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 #import "UIColor+Hex.h"
 
 @interface CollectionViewController ()

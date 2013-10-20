@@ -22,64 +22,34 @@
 //  THE SOFTWARE.
 
 /**
- A subclass of `UICollectionViewTransitionLayout` that supports `contentOffset` change.
- The target offset can be specified directly by setting the `toContentOffset` property
- or indirectly by setting the `keyIndexPath`. The later method is useful for controlling
- the final position of a specific item, typically a selected item (currently, the key 
- item is positioned as close to the center as possible).
+ A subclass of `UICollectionViewTransitionLayout` that interpolates linearly between
+ layouts and optionally content offsets. The target offset can be specified directly
+ by setting the `toContentOffset` property. The `UICollectionView+TLTransitioning` category
+ provides API for calculating useful values for `toContentOffset`.
  
  When the transition is finalized, the collection view will set `contentOffset`
  back to it's original value. To negate this, one can set it back to the value
  of `toContentOffset` in the transition's completion block. This class conforms
- to the `TLTransitionAnimatorLayout` protocol, so when used with `TLTransitionAnimator`
- category, this negation happens automatically.
+ to the `TLTransitionAnimatorLayout` protocol, so when used with
+ `[UICollectionView+TLTransitioning transitionToCollectionViewLayout:duration:completion:]`,
+ this negation happens automatically.
  */
 
 #import <UIKit/UIKit.h>
-#import "UICollectionView+TLTransitionAnimator.h"
-
-typedef NS_ENUM(NSInteger, TLTransitionLayoutKeyIndexPathPlacement) {
-    /**
-     Sets the content offset such that the key item's center point is as close to
-     the center of the collection view's bounds as possible.
-     */
-    TLTransitionLayoutKeyIndexPathPlacementCenter,
-//TODO
-//
-//    /**
-//     Sets the content offset such that the the key item's center point
-//     moves as little as possible to be fully visible.
-//     */
-//    TLTransitionLayoutKeyIndexPathPlacementVisible,
-//
-//    /**
-//     Sets the content offset such that the the key item's center point
-//     moves as little as possible.
-//     */
-//    TLTransitionLayoutKeyIndexPathPlacementNone,
-};
+#import "UICollectionView+TLTransitioning.h"
 
 @interface TLTransitionLayout : UICollectionViewTransitionLayout <TLTransitionAnimatorLayout>
 
 /**
  When specified, the content offset will be transitioned from the current value
- to this value. Can be set explicitly or implicitly through `keyIndexPath`.
+ to this value.
  */
  @property (nonatomic) CGPoint toContentOffset;
- 
 
 /**
- If set, the `toContentProperty` will be calculated such that the key item is
- positioned according to the value of `keyIndexPathPlacement`. Typically, the
- `keyIndexPath` would be set to a selected item.
+ The initial content offset.
  */
-@property (strong, nonatomic) NSIndexPath *keyIndexPath;
-
-/**
- Specifies the positioning mode when using `keyIndexPath` to calculate the
- `toContentOffset`. Defaults to `TLTransitionLayoutKeyIndexPathPlacementCenter`.
- */
-@property (nonatomic) TLTransitionLayoutKeyIndexPathPlacement keyIndexPathPlacement;
+@property (nonatomic, readonly) CGPoint fromContentOffset;
 
 /**
  Optional callback to modify the interpolated layout attributes. Can be used to customize the

@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		869DA0EC1806621600EC81C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861AD37B180656D600A577A4 /* Foundation.framework */; };
-		869DA10E1806628600EC81C4 /* UICollectionView+TLTransitionAnimator.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 869DA0591806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.h */; };
+		869DA10E1806628600EC81C4 /* UICollectionView+TLTransitioning.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */; };
 		869DA10F1806629D00EC81C4 /* TLTransitionLayout.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 869DA0571806581F00EC81C4 /* TLTransitionLayout.h */; };
 		869DA112180664CB00EC81C4 /* TLTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0561806581F00EC81C4 /* TLTransitionLayout.m */; };
 		869DA113180664CB00EC81C4 /* TLTransitionLayout.h in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0571806581F00EC81C4 /* TLTransitionLayout.h */; };
-		869DA114180664CB00EC81C4 /* UICollectionView+TLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0581806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.m */; };
-		869DA115180664CB00EC81C4 /* UICollectionView+TLTransitionAnimator.h in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0591806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.h */; };
+		869DA114180664CB00EC81C4 /* UICollectionView+TLTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0581806581F00EC81C4 /* UICollectionView+TLTransitioning.m */; };
+		869DA115180664CB00EC81C4 /* UICollectionView+TLTransitioning.h in Sources */ = {isa = PBXBuildFile; fileRef = 869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +24,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				869DA10F1806629D00EC81C4 /* TLTransitionLayout.h in CopyFiles */,
-				869DA10E1806628600EC81C4 /* UICollectionView+TLTransitionAnimator.h in CopyFiles */,
+				869DA10E1806628600EC81C4 /* UICollectionView+TLTransitioning.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +35,8 @@
 		861AD37D180656D600A577A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		869DA0561806581F00EC81C4 /* TLTransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionLayout.m; sourceTree = "<group>"; };
 		869DA0571806581F00EC81C4 /* TLTransitionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionLayout.h; sourceTree = "<group>"; };
-		869DA0581806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+TLTransitionAnimator.m"; sourceTree = "<group>"; };
-		869DA0591806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+TLTransitionAnimator.h"; sourceTree = "<group>"; };
+		869DA0581806581F00EC81C4 /* UICollectionView+TLTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+TLTransitioning.m"; sourceTree = "<group>"; };
+		869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+TLTransitioning.h"; sourceTree = "<group>"; };
 		869DA0EB1806621600EC81C4 /* libTLLayoutTransitioning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTLLayoutTransitioning.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		869DA117180665EE00EC81C4 /* TLLayoutTransitioning-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TLLayoutTransitioning-Prefix.pch"; path = "TLLayoutTransitioning/TLLayoutTransitioning-Prefix.pch"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,8 +85,8 @@
 				869DA116180665D500EC81C4 /* Supporting Files */,
 				869DA0571806581F00EC81C4 /* TLTransitionLayout.h */,
 				869DA0561806581F00EC81C4 /* TLTransitionLayout.m */,
-				869DA0591806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.h */,
-				869DA0581806581F00EC81C4 /* UICollectionView+TLTransitionAnimator.m */,
+				869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */,
+				869DA0581806581F00EC81C4 /* UICollectionView+TLTransitioning.m */,
 			);
 			path = TLLayoutTransitioning;
 			sourceTree = "<group>";
@@ -155,8 +155,8 @@
 			files = (
 				869DA112180664CB00EC81C4 /* TLTransitionLayout.m in Sources */,
 				869DA113180664CB00EC81C4 /* TLTransitionLayout.h in Sources */,
-				869DA114180664CB00EC81C4 /* UICollectionView+TLTransitionAnimator.m in Sources */,
-				869DA115180664CB00EC81C4 /* UICollectionView+TLTransitionAnimator.h in Sources */,
+				869DA114180664CB00EC81C4 /* UICollectionView+TLTransitioning.m in Sources */,
+				869DA115180664CB00EC81C4 /* UICollectionView+TLTransitioning.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,6 +284,7 @@
 				869DA1091806621600EC81C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

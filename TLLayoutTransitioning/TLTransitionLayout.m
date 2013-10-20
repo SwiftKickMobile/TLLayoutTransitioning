@@ -25,8 +25,8 @@
 
 @interface TLTransitionLayout ()
 @property (nonatomic) BOOL toContentOffsetInitialized;
-@property (nonatomic) CGPoint fromContentOffset;
 @property (strong, nonatomic) NSDictionary *poseAtIndexPath;
+@property (nonatomic) CGFloat previousProgress;
 @end
 
 @implementation TLTransitionLayout
@@ -34,33 +34,39 @@
 - (id)initWithCurrentLayout:(UICollectionViewLayout *)currentLayout nextLayout:(UICollectionViewLayout *)newLayout
 {
     if (self = [super initWithCurrentLayout:currentLayout nextLayout:newLayout]) {
-        self.fromContentOffset = currentLayout.collectionView.contentOffset;
+        _fromContentOffset = currentLayout.collectionView.contentOffset;
     }
     return self;
 }
 
 - (void) setTransitionProgress:(CGFloat)transitionProgress
 {
-    super.transitionProgress = transitionProgress;
-    if (self.toContentOffsetInitialized) {
-        CGFloat t = self.transitionProgress;
-        CGFloat f = 1 - t;
-        CGPoint offset = CGPointMake(f * self.fromContentOffset.x + t * self.toContentOffset.x, f * self.fromContentOffset.y + t * self.toContentOffset.y);
-        self.collectionView.contentOffset = offset;
-        if (self.progressChanged) {
-            self.progressChanged(transitionProgress);
+    if (self.transitionProgress != transitionProgress) {
+        NSLog(@"progress=%f", transitionProgress);
+        self.previousProgress = self.transitionProgress;
+        super.transitionProgress = transitionProgress;
+        if (self.toContentOffsetInitialized) {
+            CGFloat t = self.transitionProgress;
+            CGFloat f = 1 - t;
+            CGPoint offset = CGPointMake(f * self.fromContentOffset.x + t * self.toContentOffset.x, f * self.fromContentOffset.y + t * self.toContentOffset.y);
+            self.collectionView.contentOffset = offset;
+            if (self.progressChanged) {
+                self.progressChanged(transitionProgress);
+            }
         }
     }
 }
 
 #pragma mark - Layout logic
 
-#pragma mark - Layout logic
-
 - (void)prepareLayout
 {
     [super prepareLayout];
-    CGFloat t = self.transitionProgress;
+
+    BOOL reverse = self.previousProgress > self.transitionProgress;
+    
+    CGFloat remaining = reverse ? self.previousProgress : 1 - self.previousProgress;
+    CGFloat t = remaining == 0 ? self.transitionProgress : fabs(self.transitionProgress - self.previousProgress) / remaining;
     CGFloat f = 1 - t;
     
     NSMutableDictionary *poses = [NSMutableDictionary dictionary];
@@ -68,9 +74,10 @@
         for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
             
             NSIndexPath *indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+            NSIndexPath *key = [self keyForIndexPath:indexPath];
             
-            UICollectionViewLayoutAttributes *fromPose = [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *fromPose = self.poseAtIndexPath ? [self.poseAtIndexPath objectForKey:key] : [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *toPose = reverse ? [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath] : [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
             UICollectionViewLayoutAttributes *pose = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
             
             CGFloat originX = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
@@ -92,7 +99,7 @@
                 }
             }
             
-            [poses setObject:pose forKey:[self keyForIndexPath:pose.indexPath]];
+            [poses setObject:pose forKey:key];
         }
     }
     self.poseAtIndexPath = poses;
@@ -132,73 +139,12 @@
     return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
 }
 
-#pragma mark - Key index path
-
-- (void)setKeyIndexPath:(NSIndexPath *)keyIndexPath
-{
-    if (_keyIndexPath != keyIndexPath) {
-        _keyIndexPath = keyIndexPath;
-        [self updateToContentOffset];
-        [self invalidateLayout];
-    }
-}
-
-- (void)setKeyIndexPathPlacement:(TLTransitionLayoutKeyIndexPathPlacement)keyIndexPathPlacement
-{
-    if (_keyIndexPathPlacement != keyIndexPathPlacement) {
-        _keyIndexPathPlacement = keyIndexPathPlacement;
-        [self updateToContentOffset];
-        [self invalidateLayout];
-    }
-}
-
 - (void)setToContentOffset:(CGPoint)toContentOffset
 {
     self.toContentOffsetInitialized = YES;
     if (!CGPointEqualToPoint(_toContentOffset, toContentOffset)) {
         _toContentOffset = toContentOffset;
         [self invalidateLayout];
-    }
-}
-
-- (void)updateToContentOffset
-{
-    if (self.keyIndexPath) {
-        
-        UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForItemAtIndexPath:self.keyIndexPath];
-        
-        switch (self.keyIndexPathPlacement) {
-            case TLTransitionLayoutKeyIndexPathPlacementCenter:
-            {
-            
-            CGSize contentSize = self.nextLayout.collectionViewContentSize;
-            CGRect bounds = self.collectionView.bounds;
-            bounds.origin.x = 0;
-            bounds.origin.y = 0;
-            UIEdgeInsets inset = self.collectionView.contentInset;
-            
-            CGPoint insetOffset = CGPointMake(inset.left, inset.top);
-            CGPoint boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-            CGPoint keyCenter = CGPointMake(CGRectGetMidX(toPose.frame), CGRectGetMidY(toPose.frame));
-            
-            CGPoint offset = CGPointMake(insetOffset.x + keyCenter.x - boundsCenter.x, insetOffset.y + keyCenter.y - boundsCenter.y);
-            
-            CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
-            CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
-            
-            offset.x = MAX(0, offset.x);
-            offset.y = MAX(0, offset.y);
-
-            offset.x = MIN(maxOffsetX, offset.x);
-            offset.y = MIN(maxOffsetY, offset.y);
-
-            self.toContentOffset = offset;
-            
-            }
-                break;
-            default:
-                break;
-        }
     }
 }
 

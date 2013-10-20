@@ -81,14 +81,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86677B4B1811A0F4000DE41F /* External */ = {
+			isa = PBXGroup;
+			children = (
+				869DA0681806594400EC81C4 /* TLIndexPathTools.xcodeproj */,
+				869DA06A1806594B00EC81C4 /* TLLayoutTransitioning.xcodeproj */,
+			);
+			name = External;
+			sourceTree = "<group>";
+		};
 		869DA015180657C800EC81C4 = {
 			isa = PBXGroup;
 			children = (
-				869DA06A1806594B00EC81C4 /* TLLayoutTransitioning.xcodeproj */,
-				869DA0681806594400EC81C4 /* TLIndexPathTools.xcodeproj */,
-				869DA027180657C800EC81C4 /* Resize */,
+				86677B4B1811A0F4000DE41F /* External */,
 				869DA020180657C800EC81C4 /* Frameworks */,
 				869DA01F180657C800EC81C4 /* Products */,
+				869DA027180657C800EC81C4 /* Resize */,
 			);
 			sourceTree = "<group>";
 		};
@@ -355,6 +363,7 @@
 		869DA051180657C800EC81C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -362,6 +371,7 @@
 				INFOPLIST_FILE = "Resize/Resize-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${TARGET_BUILD_DIR}/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -369,6 +379,7 @@
 		869DA052180657C800EC81C4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -376,6 +387,7 @@
 				INFOPLIST_FILE = "Resize/Resize-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "${TARGET_BUILD_DIR}/include";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

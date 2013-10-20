@@ -17,5 +17,8 @@
       <FileRef
          location = "group:Examples/Resize/Resize.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Examples/Pinch/Pinch.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
