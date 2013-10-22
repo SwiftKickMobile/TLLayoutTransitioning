@@ -126,12 +126,12 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     }
 }
 
-- (CGPoint)contentOffsetForLayout:(UICollectionViewLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
 {
     CGPoint toCenter = CGPointZero;
     if (indexPaths.count) {
         for (NSIndexPath *indexPath in indexPaths) {
-            UICollectionViewLayoutAttributes *toPose = [layout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
             toCenter.x += toPose.center.x;
             toCenter.y += toPose.center.y;
         }
@@ -143,7 +143,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
         case TLTransitionLayoutIndexPathPlacementCenter:
         {
         
-        CGSize contentSize = layout.collectionViewContentSize;
+        CGSize contentSize = layout.nextLayout.collectionViewContentSize;
         CGRect bounds = self.bounds;
         bounds.origin.x = 0;
         bounds.origin.y = 0;

@@ -91,11 +91,11 @@ typedef NS_ENUM(NSInteger, TLTransitioningEasing) {
 CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, TLTransitioningEasing easing);
 
 /**
- Calculate the content offset for the given layout that place the specified index 
- paths at a particular placement. A single index path can be specified when a cell
- is selected or pinched. Multiple index paths can be specified when pinching a group of
- cells, for example, like a stack of photos.
+ Calculate the final content offset for the given transition layout that place the
+ specified index paths at a particular location. Specify a single index path for pinching
+ or tapping a cell. Specify multiple index paths for pinching a group of cells,
+ for example, like a stack of photos.
  */
-- (CGPoint)contentOffsetForLayout:(UICollectionViewLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement;
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement;
 
 @end

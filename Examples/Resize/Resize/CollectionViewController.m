@@ -65,7 +65,7 @@
     UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
     if (self.useTransitionLayout) {
         TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration completion:nil];
-        CGPoint toOffset = [collectionView contentOffsetForLayout:toLayout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+        CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
         layout.toContentOffset = toOffset;
     } else {
         [collectionView setCollectionViewLayout:toLayout animated:YES];

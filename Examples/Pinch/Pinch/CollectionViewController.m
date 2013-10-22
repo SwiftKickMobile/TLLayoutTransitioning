@@ -80,7 +80,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
         for (UICollectionViewLayoutAttributes *pose in visiblePoses) {
             [visibleIndexPaths addObject:pose.indexPath];
         }
-        self.transitionLayout.toContentOffset = [self.collectionView contentOffsetForLayout:toLayout indexPaths:visibleIndexPaths placement:TLTransitionLayoutIndexPathPlacementCenter];
+        self.transitionLayout.toContentOffset = [self.collectionView toContentOffsetForLayout:self.transitionLayout indexPaths:visibleIndexPaths placement:TLTransitionLayoutIndexPathPlacementCenter];
         
     }
     
@@ -94,10 +94,10 @@ static const CGFloat kLargeLayoutScale = 2.5;
     else {
         
         if (self.transitionLayout.transitionProgress > 0.5) {
-            NSLog(@"finish");
+//            NSLog(@"finish");
             [self.collectionView finishInteractiveTransition];
         } else {
-            NSLog(@"cancel");
+//            NSLog(@"cancel");
             [self.collectionView cancelInteractiveTransition];
         }
         
@@ -122,7 +122,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
         self.transitionLayout = nil;
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
-    self.transitionLayout.toContentOffset = [self.collectionView contentOffsetForLayout:toLayout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+    self.transitionLayout.toContentOffset = [self.collectionView toContentOffsetForLayout:self.transitionLayout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
     [collectionView finishInteractiveTransition];
 }
 

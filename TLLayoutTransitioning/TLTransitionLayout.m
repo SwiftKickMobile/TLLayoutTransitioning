@@ -42,7 +42,7 @@
 - (void) setTransitionProgress:(CGFloat)transitionProgress
 {
     if (self.transitionProgress != transitionProgress) {
-        NSLog(@"progress=%f", transitionProgress);
+//        NSLog(@"progress=%f", transitionProgress);
         self.previousProgress = self.transitionProgress;
         super.transitionProgress = transitionProgress;
         if (self.toContentOffsetInitialized) {

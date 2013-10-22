@@ -35,7 +35,7 @@ The basic usage is as follows:
 	    }
     }];
     NSArray *indexPaths = ...;// some selection of index paths to place
-    self.transitionLayout.toContentOffset = [self.collectionView contentOffsetForLayout:nextLayout indexPaths:indexPaths placement:TLTransitionLayoutIndexPathPlacementCenter];
+    self.transitionLayout.toContentOffset = [self.collectionView toContentOffsetForLayout:self.transitionLayout indexPaths:indexPaths placement:TLTransitionLayoutIndexPathPlacementCenter];
 }
 
 - (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout
