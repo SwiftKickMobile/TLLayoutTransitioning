@@ -62,12 +62,13 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewLayout *otherLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
+    UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
     if (self.useTransitionLayout) {
-        TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:otherLayout duration:self.duration completion:nil];
-        layout.keyIndexPath = indexPath;
+        TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration completion:nil];
+        CGPoint toOffset = [collectionView contentOffsetForLayout:toLayout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+        layout.toContentOffset = toOffset;
     } else {
-        [collectionView setCollectionViewLayout:otherLayout animated:YES];
+        [collectionView setCollectionViewLayout:toLayout animated:YES];
     }
 }
 
