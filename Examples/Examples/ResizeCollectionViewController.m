@@ -48,7 +48,6 @@
           [UIColor colorWithHexRGB:0x127A97],
           [UIColor colorWithHexRGB:0x452B72],
           ];
-
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -63,13 +62,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
-    if (self.useTransitionLayout) {
-        TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration completion:nil];
-        CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
-        layout.toContentOffset = toOffset;
-    } else {
-        [collectionView setCollectionViewLayout:toLayout animated:YES];
-    }
+    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:BounceEaseOut completion:nil];
+    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+    layout.toContentOffset = toOffset;
 }
 
 - (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout

@@ -18,7 +18,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.collectionViewController.useTransitionLayout = self.transitionLayoutSwitch.isOn;
     self.durationSlider.minimumValue = 0.05;
     self.durationSlider.maximumValue = 2.0;
     self.durationSlider.value = 0.25;
@@ -30,13 +29,18 @@
     self.collectionViewController = (ResizeCollectionViewController *)segue.destinationViewController;
 }
 
-- (IBAction)transitionLayoutSwitchChanged:(UISwitch *)sender {
-    self.collectionViewController.useTransitionLayout = sender.isOn;
-    self.durationSlider.enabled = sender.isOn;
-}
-
 - (IBAction)durationChanged:(UISlider *)sender {
     self.collectionViewController.duration = sender.value;
+}
+
+- (void)toContentOffsetChanged:(UISegmentedControl *)sender
+{
+    //TODO
+}
+
+- (void)easingCurveChanged:(UISegmentedControl *)sender
+{
+    //TODO
 }
 
 @end

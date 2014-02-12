@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ResizeViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UISwitch *transitionLayoutSwitch;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *toContentOffset;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *easingCurve;
 @property (strong, nonatomic) IBOutlet UISlider *durationSlider;
-- (IBAction)transitionLayoutSwitchChanged:(UISwitch *)sender;
 - (IBAction)durationChanged:(UISlider *)sender;
+- (IBAction)toContentOffsetChanged:(UISegmentedControl *)sender;
+- (IBAction)easingCurveChanged:(UISegmentedControl *)sender;
 @end

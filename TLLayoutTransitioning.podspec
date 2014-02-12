@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '0.0.1' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
-  s.source_files = 'TLLayoutTransitioning/**/*.{h,m}'
+  s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'
   s.frameworks = 'UIKit', 'QuartzCore', 'Foundation'
   s.requires_arc = true
 end

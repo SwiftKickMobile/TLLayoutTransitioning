@@ -32,7 +32,9 @@
 #pragma mark - Simulated properties
 
 static char kTLAnimationDurationKey;
+static char kTLAnimationStartTimeKey;
 static char kTLTransitionLayoutKey;
+static char kTLEasingFunctionKey;
 
 - (NSNumber *)tl_animationDuration
 {
@@ -42,6 +44,16 @@ static char kTLTransitionLayoutKey;
 - (void)tl_setAnimationDuration:(NSNumber *)duration
 {
     objc_setAssociatedObject(self, &kTLAnimationDurationKey, duration, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (NSNumber *)tl_animationStartTime
+{
+    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationStartTimeKey);
+}
+
+- (void)tl_setAnimationStartTime:(NSNumber *)startTime
+{
+    objc_setAssociatedObject(self, &kTLAnimationStartTimeKey, startTime, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (UICollectionViewTransitionLayout *)tl_transitionLayout
@@ -54,15 +66,29 @@ static char kTLTransitionLayoutKey;
     objc_setAssociatedObject(self, &kTLTransitionLayoutKey, layout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (AHEasingFunction)tl_easingFunction
+{
+    NSValue *value = objc_getAssociatedObject(self, &kTLEasingFunctionKey);
+    return [value pointerValue];
+}
+
+- (void)tl_setEasingFunction:(AHEasingFunction)easingFunction
+{
+    NSValue *value = easingFunction ? [NSValue valueWithPointer:easingFunction] : nil;
+    objc_setAssociatedObject(self, &kTLEasingFunctionKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 #pragma mark - Transition logic
 
-- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration easing:(AHEasingFunction)easingFunction completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
 {
     if (duration <= 0) {
         [NSException raise:@"" format:@""];//TODO
     }
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     [self tl_setAnimationDuration:@(duration)];
+    [self tl_setAnimationStartTime:@(CACurrentMediaTime())];
+    [self tl_setEasingFunction:easingFunction];
     CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateProgress:)];
     [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     UICollectionViewTransitionLayout *transitionLayout = [self startInteractiveTransitionToCollectionViewLayout:layout completion:^(BOOL completed, BOOL finish) {
@@ -72,7 +98,9 @@ static char kTLTransitionLayoutKey;
             [layout collectionViewDidCompleteTransitioning:self completed:completed finish:finish];
         }
         [self tl_setAnimationDuration:nil];
+        [self tl_setAnimationStartTime:nil];
         [self tl_setTransitionLayout:nil];
+        [self tl_setEasingFunction:NULL];
         if (completion) {
             completion(completed, finish);
         }
@@ -82,17 +110,26 @@ static char kTLTransitionLayoutKey;
     return transitionLayout;
 }
 
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
+{
+    return [self transitionToCollectionViewLayout:layout duration:duration easing:nil completion:completion];
+}
+
 - (void)updateProgress:(CADisplayLink *)link
 {
     UICollectionViewLayout *layout = self.collectionViewLayout;
     if ([layout isKindOfClass:[UICollectionViewTransitionLayout class]]) {
+        CFTimeInterval startTime = [[self tl_animationStartTime] floatValue];
+        NSTimeInterval duration = [[self tl_animationDuration] floatValue];
+        CFTimeInterval time = duration > 0 ? (link.timestamp - startTime) / duration : 1;
+        time = MIN(1, time);
+        time = MAX(0, time);
         UICollectionViewTransitionLayout *l = (UICollectionViewTransitionLayout *)layout;
-        if (l.transitionProgress >= 1) {
+        if (time >= 1) {
             [self finishTransition:link];
         } else {
-            NSTimeInterval duration = [[self tl_animationDuration] floatValue];
-            CGFloat progress = l.transitionProgress + (link.duration * link.frameInterval) / duration;
-            progress = MIN(1, progress);
+            AHEasingFunction easingFunction = [self tl_easingFunction];
+            CGFloat progress = easingFunction ? easingFunction(time) : time;
             l.transitionProgress = progress;
             [l invalidateLayout];
         }
@@ -109,21 +146,12 @@ static char kTLTransitionLayoutKey;
 
 #pragma mark - Calculating transition values
 
-CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, TLTransitioningEasing easing)
+CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, AHEasingFunction easingFunction)
 {
-    switch (easing) {
-        case TLTransitioningEasingLinear:
-        {
-        CGFloat progress = (currentValue - initialValue) / (finalValue - initialValue);
-        progress = MIN(1.0, progress);
-        progress = MAX(0, progress);
-        return progress;
-        }
-            break;
-            
-        default:
-            break;
-    }
+    CGFloat p = (currentValue - initialValue) / (finalValue - initialValue);
+    p = MIN(1.0, p);
+    p = MAX(0, p);
+    return easingFunction ? easingFunction(p) : p;
 }
 
 - (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
@@ -138,7 +166,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
         toCenter.x /= indexPaths.count;
         toCenter.y /= indexPaths.count;
     }
-
+    
     switch (placement) {
         case TLTransitionLayoutIndexPathPlacementCenter:
         {

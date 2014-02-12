@@ -22,6 +22,7 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
+#import "easing.h"
 
 typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
     /**
@@ -42,13 +43,6 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
     //     moves as little as possible.
     //     */
     //    TLTransitionLayoutIndexPathPlacementNone,
-};
-
-/**
- Easing functions for calculating progress
- */
-typedef NS_ENUM(NSInteger, TLTransitioningEasing) {
-    TLTransitioningEasingLinear,
 };
 
 /**
@@ -81,14 +75,18 @@ typedef NS_ENUM(NSInteger, TLTransitioningEasing) {
  to mimick the behavior of `setCollectionViewLayout:animated:completion:`, but with
  improved behavior (see the Resize sample project).
  */
-- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion;
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration easing:(AHEasingFunction)easingFunction completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion;
+
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion __deprecated;
 
 #pragma mark - Calculating transition values
 
 /**
- Calculate the transition progress, given initial, current, and final values and an easing type.
+ Calculate the transition progress, given initial, current, and final values
+ and an easing function. Easing functions courtesy of Warren Moore's AHEasing library
+ https://github.com/warrenm/AHEasing
  */
-CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, TLTransitioningEasing easing);
+CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, AHEasingFunction easingFunction);
 
 /**
  Calculate the final content offset for the given transition layout that place the

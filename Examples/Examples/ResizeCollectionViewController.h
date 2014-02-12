@@ -10,6 +10,5 @@
 #import <TLIndexPathTools/TLCollectionViewController.h>
 
 @interface ResizeCollectionViewController : TLCollectionViewController
-@property (nonatomic) BOOL useTransitionLayout;
 @property (nonatomic) CGFloat duration;
 @end

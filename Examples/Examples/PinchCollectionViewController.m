@@ -87,7 +87,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
     else if (pinch.state == UIGestureRecognizerStateChanged && self.transitionLayout && pinch.numberOfTouches > 1) {
         
         CGFloat finalScale = self.transitionLayout.nextLayout == self.largeLayout ? kLargeLayoutScale : 1 / kLargeLayoutScale;
-        self.transitionLayout.transitionProgress = transitionProgress(self.initialScale, pinch.scale, finalScale, TLTransitioningEasingLinear);
+        self.transitionLayout.transitionProgress = transitionProgress(self.initialScale, pinch.scale, finalScale, nil);
         
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8674980018AB455D004E0C51 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 867497FE18AB455D004E0C51 /* easing.c */; };
 		869DA0EC1806621600EC81C4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 861AD37B180656D600A577A4 /* Foundation.framework */; };
 		869DA10E1806628600EC81C4 /* UICollectionView+TLTransitioning.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */; };
 		869DA10F1806629D00EC81C4 /* TLTransitionLayout.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 869DA0571806581F00EC81C4 /* TLTransitionLayout.h */; };
@@ -33,6 +34,8 @@
 /* Begin PBXFileReference section */
 		861AD37B180656D600A577A4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		861AD37D180656D600A577A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		867497FE18AB455D004E0C51 /* easing.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = easing.c; sourceTree = "<group>"; };
+		867497FF18AB455D004E0C51 /* easing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = easing.h; sourceTree = "<group>"; };
 		869DA0561806581F00EC81C4 /* TLTransitionLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTransitionLayout.m; sourceTree = "<group>"; };
 		869DA0571806581F00EC81C4 /* TLTransitionLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTransitionLayout.h; sourceTree = "<group>"; };
 		869DA0581806581F00EC81C4 /* UICollectionView+TLTransitioning.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+TLTransitioning.m"; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 		861AD381180656D600A577A4 /* TLLayoutTransitioning */ = {
 			isa = PBXGroup;
 			children = (
+				867497FE18AB455D004E0C51 /* easing.c */,
+				867497FF18AB455D004E0C51 /* easing.h */,
 				869DA116180665D500EC81C4 /* Supporting Files */,
 				869DA0571806581F00EC81C4 /* TLTransitionLayout.h */,
 				869DA0561806581F00EC81C4 /* TLTransitionLayout.m */,
@@ -157,6 +162,7 @@
 				869DA113180664CB00EC81C4 /* TLTransitionLayout.h in Sources */,
 				869DA114180664CB00EC81C4 /* UICollectionView+TLTransitioning.m in Sources */,
 				869DA115180664CB00EC81C4 /* UICollectionView+TLTransitioning.h in Sources */,
+				8674980018AB455D004E0C51 /* easing.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
