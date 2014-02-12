@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ResizeViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UISwitch *transitionLayoutSwitch;
 @property (strong, nonatomic) IBOutlet UISlider *durationSlider;
 - (IBAction)transitionLayoutSwitchChanged:(UISwitch *)sender;

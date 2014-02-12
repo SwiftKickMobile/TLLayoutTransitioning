@@ -6,18 +6,18 @@
 //  Copyright (c) 2013 wtm@tractablelabs.com. All rights reserved.
 //
 
-#import "CollectionViewController.h"
+#import "ResizeCollectionViewController.h"
 #import <TLLayoutTransitioning/TLTransitionLayout.h>
 #import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 #import "UIColor+Hex.h"
 
-@interface CollectionViewController ()
+@interface ResizeCollectionViewController ()
 @property (strong, nonatomic) UICollectionViewFlowLayout *smallLayout;
 @property (strong, nonatomic) UICollectionViewFlowLayout *largeLayout;
 @property (strong, nonatomic) NSArray *colors;
 @end
 
-@implementation CollectionViewController
+@implementation ResizeCollectionViewController
 
 - (void)viewDidLoad
 {

@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 wtm@tractablelabs.com. All rights reserved.
 //
 
-#import "ViewController.h"
-#import "CollectionViewController.h"
+#import "ResizeViewController.h"
+#import "ResizeCollectionViewController.h"
 
-@interface ViewController ()
-@property (strong, nonatomic) CollectionViewController *collectionViewController;
+@interface ResizeViewController ()
+@property (strong, nonatomic) ResizeCollectionViewController *collectionViewController;
 @end
 
-@implementation ViewController
+@implementation ResizeViewController
 
 - (void)viewDidLoad
 {
@@ -27,7 +27,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    self.collectionViewController = (CollectionViewController *)segue.destinationViewController;
+    self.collectionViewController = (ResizeCollectionViewController *)segue.destinationViewController;
 }
 
 - (IBAction)transitionLayoutSwitchChanged:(UISwitch *)sender {

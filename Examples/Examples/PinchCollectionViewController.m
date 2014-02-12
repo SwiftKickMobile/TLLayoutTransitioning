@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 wtm@tractablelabs.com. All rights reserved.
 //
 
-#import "CollectionViewController.h"
+#import "PinchCollectionViewController.h"
 #import <TLLayoutTransitioning/TLTransitionLayout.h>
 #import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 #import "UIColor+Hex.h"
 #import <QuartzCore/QuartzCore.h>
 
-@interface CollectionViewController ()
+@interface PinchCollectionViewController ()
 @property (strong, nonatomic) UICollectionViewFlowLayout *smallLayout;
 @property (strong, nonatomic) UICollectionViewFlowLayout *largeLayout;
 @property (strong, nonatomic) NSArray *colors;
@@ -23,7 +23,7 @@
 
 static const CGFloat kLargeLayoutScale = 2.5;
 
-@implementation CollectionViewController
+@implementation PinchCollectionViewController
 
 - (void)viewDidLoad
 {

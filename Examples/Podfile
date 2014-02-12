@@ -1,0 +1,5 @@
+platform :ios, "7.0"
+workspace 'Examples.xcworkspace'
+xcodeproj 'Examples.xcodeproj'
+pod 'TLIndexPathTools'
+pod 'TLLayoutTransitioning', :path => '..'

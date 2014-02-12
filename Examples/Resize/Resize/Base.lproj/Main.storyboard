@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="NfW-A1-CwM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="NfW-A1-CwM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Resize View Controller-->
         <scene sceneID="rn4-yc-ZCO">
             <objects>
-                <viewController id="NfW-A1-CwM" customClass="ViewController" sceneMemberID="viewController">
+                <viewController id="NfW-A1-CwM" customClass="ResizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xkB-eB-27S"/>
                         <viewControllerLayoutGuide type="bottom" id="dnW-cq-aDA"/>
@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="-75" y="128"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Resize Collection View Controller-->
         <scene sceneID="gd8-xg-yzf">
             <objects>
-                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="hmV-Vi-bii" customClass="CollectionViewController" sceneMemberID="viewController">
+                <collectionViewController autoresizesArchivedViewToFullSize="NO" id="hmV-Vi-bii" customClass="ResizeCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" id="mSS-JB-A4T">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

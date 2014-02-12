@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <TLIndexPathTools/TLCollectionViewController.h>
 
-@interface CollectionViewController : TLCollectionViewController
+@interface ResizeCollectionViewController : TLCollectionViewController
 @property (nonatomic) BOOL useTransitionLayout;
 @property (nonatomic) CGFloat duration;
 @end
