@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLLayoutTransitioning"
-  s.version      = "1.0.0"
+  s.version      = "0.0.1"
   s.summary      = "TODO"
   s.description  = <<-DESC
 					Components for transitioning between UICollectionView layouts.
@@ -15,9 +15,10 @@ Pod::Spec.new do |s|
 					
 					Check out the demos in the Examples workspace!
                     DESC
+  s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.0' }
+  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '0.0.1' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'
