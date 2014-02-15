@@ -37,7 +37,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
     self.largeLayout.scrollDirection = self.smallLayout.scrollDirection;
     self.largeLayout.minimumLineSpacing = self.smallLayout.minimumLineSpacing;
     self.largeLayout.minimumInteritemSpacing = self.smallLayout.minimumInteritemSpacing;
-    self.largeLayout.itemSize = CGSizeMake(self.smallLayout.itemSize.width * kLargeLayoutScale, self.smallLayout.itemSize.width * kLargeLayoutScale);
+    self.largeLayout.itemSize = CGSizeMake(336, 336);
     self.largeLayout.sectionInset = self.smallLayout.sectionInset;
     
     //set up data model
@@ -48,10 +48,12 @@ static const CGFloat kLargeLayoutScale = 2.5;
     self.indexPathController.items = items;
     
     self.colors = @[
-          [UIColor colorWithHexRGB:0xBF0C43],
-          [UIColor colorWithHexRGB:0x8EAC00],
-          [UIColor colorWithHexRGB:0x127A97],
-          ];
+                    [UIColor colorWithHexRGB:0xBF0C43],
+                    [UIColor colorWithHexRGB:0xF9BA15],
+                    [UIColor colorWithHexRGB:0x8EAC00],
+                    [UIColor colorWithHexRGB:0x127A97],
+                    [UIColor colorWithHexRGB:0x452B72],
+                    ];
     
     self.pinch = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
     [self.collectionView addGestureRecognizer:self.pinch];

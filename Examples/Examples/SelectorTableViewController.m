@@ -7,6 +7,7 @@
 //
 
 #import "SelectorTableViewController.h"
+#import <TLIndexPathTools/TLIndexPathItem.h>
 
 @implementation SelectorTableViewController
 
@@ -14,10 +15,17 @@
 {
     [super viewDidLoad];
 
-    self.indexPathController.items = @[
-                                       @"PinchExample",
-                                       @"ResizeExample",
-                                       ];
+    TLIndexPathItem *resizeItem = [[TLIndexPathItem alloc] initWithIdentifier:@"Resize"
+                                                                  sectionName:nil
+                                                               cellIdentifier:nil
+                                                                         data:@"Animated, non-interactive transitioning between layouts with duration, easing curves and content offset control. A better alternative to setCollectionViewLayout."];
+
+    TLIndexPathItem *pinchItem = [[TLIndexPathItem alloc] initWithIdentifier:@"Pinch"
+                                                                  sectionName:nil
+                                                               cellIdentifier:nil
+                                                                        data:@"Simple interactive pinch transition with content offset control."];
+    
+    self.indexPathController.items = @[resizeItem, pinchItem];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -29,8 +37,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-    NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
-    cell.textLabel.text = item;
+    TLIndexPathItem *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    UILabel *textLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *detailLabel = (UILabel *)[cell viewWithTag:2];
+    textLabel.text = item.identifier;
+    detailLabel.text = item.data;
     return cell;
 }
 

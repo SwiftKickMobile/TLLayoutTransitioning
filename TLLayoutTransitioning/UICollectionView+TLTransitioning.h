@@ -27,48 +27,55 @@
 typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
 
     /**
+     Sets the content offset such that the center point of the specified cell
+     or cells moves as little as possible. For example, use this option to miminimze
+     motion of a tapped cell.
      */
     TLTransitionLayoutIndexPathPlacementMinimal,
 
-    /**
-     Sets the content offset such that the the key item's center point
-     moves as little as possible to be fully visible.
-     */
-    TLTransitionLayoutIndexPathPlacementVisible,
+//TODO
+//    /**
+//     Sets the content offset such that the center point of the specified cell
+//     or cells moves as little as possible while being as visible as possible.
+//     For example, use this option to minimize motion of a specific cell that
+//     might not be currently visible but should become visible.
+//     */
+//    TLTransitionLayoutIndexPathPlacementVisible,
 
     /**
-     Sets the content offset such that the key item's center point is as close to
-     the center of the collection view's bounds as possible.
+     Sets the content offset such that the center point of the specified cell
+     or cells is as close to the center of the collection view's frame as possible.
+     For example, Use this option to center a tapped cell.
      */
     TLTransitionLayoutIndexPathPlacementCenter,
 
     /**
+     Sets the content offset such that the top center point of the specified cell
+     or cells is as close to the top center of the collection view's frame as
+     possible. For example, use this option to place a tapped cell at the top.
      */
     TLTransitionLayoutIndexPathPlacementTop,
-    
+
     /**
+     Sets the content offset such that the left center point of the specified cell
+     or cells is as close to the left center of the collection view's frame as
+     possible. For example, use this option to place a tapped cell on the left.
      */
     TLTransitionLayoutIndexPathPlacementLeft,
 
     /**
+     Sets the content offset such that the bottom center point of the specified cell
+     or cells is as close to the bottom center of the collection view's frame as
+     possible. For example, use this option to place a tapped cell at the bottom.
      */
     TLTransitionLayoutIndexPathPlacementBottom,
 
     /**
+     Sets the content offset such that the right center point of the specified cell
+     or cells is as close to the right center of the collection view's frame as
+     possible. For example, use this option to place a tapped cell on the right.
      */
     TLTransitionLayoutIndexPathPlacementRight,
-
-    //TODO
-    //
-    //    /**
-    //     */
-    //    TLTransitionLayoutIndexPathPlacementVisible,
-    //
-    //    /**
-    //     Sets the content offset such that the the key item's center point
-    //     moves as little as possible.
-    //     */
-    //    TLTransitionLayoutIndexPathPlacementNone,
 };
 
 /**

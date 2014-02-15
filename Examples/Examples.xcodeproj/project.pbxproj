@@ -20,6 +20,7 @@
 		867497F718AB3322004E0C51 /* ResizeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F618AB3322004E0C51 /* ResizeCollectionViewController.m */; };
 		867497FA18AB3347004E0C51 /* ResizeSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */; };
 		8674982E18AC81BA004E0C51 /* Examples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8674982D18AC81BA004E0C51 /* Examples.storyboard */; };
+		86CB5A9818AF3C07003039CC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 86CB5A9718AF3C07003039CC /* Podfile */; };
 		E9F3B1AD1A4E44279654D3B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B25B58634241C686E25A3D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		867497F818AB3347004E0C51 /* ResizeSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeSettingsTableViewController.h; sourceTree = "<group>"; };
 		867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeSettingsTableViewController.m; sourceTree = "<group>"; };
 		8674982D18AC81BA004E0C51 /* Examples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
+		86CB5A9718AF3C07003039CC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		867497A818AB2CB6004E0C51 = {
 			isa = PBXGroup;
 			children = (
+				86CB5A9718AF3C07003039CC /* Podfile */,
 				867497BA18AB2CB6004E0C51 /* Examples */,
 				867497B318AB2CB6004E0C51 /* Frameworks */,
 				867497B218AB2CB6004E0C51 /* Products */,
@@ -207,6 +210,7 @@
 			files = (
 				867497CD18AB2CB6004E0C51 /* Images.xcassets in Resources */,
 				8674982E18AC81BA004E0C51 /* Examples.storyboard in Resources */,
+				86CB5A9818AF3C07003039CC /* Podfile in Resources */,
 				867497BF18AB2CB6004E0C51 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

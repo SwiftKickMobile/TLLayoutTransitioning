@@ -156,21 +156,21 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
 
 - (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
 {
-    CGPoint fromCenter = CGPointZero;
-    CGPoint toCenter = CGPointZero;
+    CGPoint fromCenter, toCenter = CGPointZero;
+    CGRect toFrameUnion = CGRectNull;
     if (indexPaths.count) {
         for (NSIndexPath *indexPath in indexPaths) {
-            UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
             UICollectionViewLayoutAttributes *fromPose = [layout.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
-            toCenter.x += toPose.center.x;
-            toCenter.y += toPose.center.y;
-            fromCenter.x += fromPose.center.x;
-            fromCenter.y += fromPose.center.y;
+            UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+            fromCenter = addPoints(fromCenter, fromPose.center);
+            toCenter = addPoints(toCenter, toPose.center);
+            if (CGRectIsNull(toFrameUnion)) {
+                toFrameUnion = toPose.frame;
+            }
+            toFrameUnion = CGRectUnion(toFrameUnion, toPose.frame);
         }
-        toCenter.x /= indexPaths.count;
-        toCenter.y /= indexPaths.count;
-        fromCenter.x /= indexPaths.count;
-        fromCenter.y /= indexPaths.count;
+        fromCenter = dividePoint(fromCenter, indexPaths.count);
+        toCenter = dividePoint(toCenter, indexPaths.count);
     }
 
     CGRect bounds = self.bounds;
@@ -179,21 +179,35 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGPoint contentOffset = self.contentOffset;
 
-    CGPoint targetPoint;
+    CGPoint sourcePoint;
+    CGPoint destinationPoint;
     
     switch (placement) {
             
         case TLTransitionLayoutIndexPathPlacementMinimal:
-        {
-            targetPoint = CGPointMake(fromCenter.x - contentOffset.x, fromCenter.y - contentOffset.y);
+            sourcePoint = toCenter;
+            destinationPoint = CGPointMake(fromCenter.x - contentOffset.x, fromCenter.y - contentOffset.y);
             break;
-        }
-        
         case TLTransitionLayoutIndexPathPlacementCenter:
-        {
-            targetPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+            sourcePoint = toCenter;
+            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
             break;
-        }
+        case TLTransitionLayoutIndexPathPlacementTop:
+            sourcePoint = CGPointMake(CGRectGetMidX(toFrameUnion), CGRectGetMinY(toFrameUnion));
+            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+            break;
+        case TLTransitionLayoutIndexPathPlacementLeft:
+            sourcePoint = CGPointMake(CGRectGetMinX(toFrameUnion), CGRectGetMidY(toFrameUnion));
+            destinationPoint = CGPointMake(CGRectGetMinX(bounds), CGRectGetMidY(bounds));
+            break;
+        case TLTransitionLayoutIndexPathPlacementBottom:
+            sourcePoint = CGPointMake(CGRectGetMidX(toFrameUnion), CGRectGetMaxY(toFrameUnion));
+            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMaxY(bounds));
+            break;
+        case TLTransitionLayoutIndexPathPlacementRight:
+            sourcePoint = CGPointMake(CGRectGetMaxX(toFrameUnion), CGRectGetMidY(toFrameUnion));
+            destinationPoint = CGPointMake(CGRectGetMaxX(bounds), CGRectGetMidY(bounds));
+            break;
         default:
             break;
     }
@@ -203,7 +217,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGPoint insetOffset = CGPointMake(inset.left, inset.top);
     
-    CGPoint offset = CGPointMake(insetOffset.x + toCenter.x - targetPoint.x, insetOffset.y + toCenter.y - targetPoint.y);
+    CGPoint offset = CGPointMake(insetOffset.x + sourcePoint.x - destinationPoint.x, insetOffset.y + sourcePoint.y - destinationPoint.y);
     
     CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
     CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
@@ -215,6 +229,19 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     offset.y = MIN(maxOffsetY, offset.y);
     
     return offset;
+}
+
+CGPoint addPoints(CGPoint point, CGPoint otherPoint)
+{
+    return CGPointMake(point.x + otherPoint.x, point.y + otherPoint.y);
+}
+
+CGPoint dividePoint(CGPoint point, CGFloat divisor)
+{
+    if (divisor <= 0) {
+        divisor = 1;
+    }
+    return CGPointMake(point.x  / divisor, point.y / divisor);
 }
 
 @end
