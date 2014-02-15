@@ -31,7 +31,7 @@
     self.largeLayout.scrollDirection = self.smallLayout.scrollDirection;
     self.largeLayout.minimumLineSpacing = self.smallLayout.minimumLineSpacing;
     self.largeLayout.minimumInteritemSpacing = self.smallLayout.minimumInteritemSpacing;
-    self.largeLayout.itemSize = CGSizeMake(self.smallLayout.itemSize.width * 2, self.smallLayout.itemSize.width * 2);
+    self.largeLayout.itemSize = CGSizeMake(336, 336);
     self.largeLayout.sectionInset = self.smallLayout.sectionInset;
     
     //set up data model
@@ -62,8 +62,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
-    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:BounceEaseOut completion:nil];
-    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:self.easingFunction completion:nil];
+    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:self.toContentOffset];
     layout.toContentOffset = toOffset;
 }
 

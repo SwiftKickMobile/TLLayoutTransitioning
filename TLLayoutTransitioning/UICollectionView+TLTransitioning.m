@@ -156,50 +156,65 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
 
 - (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
 {
+    CGPoint fromCenter = CGPointZero;
     CGPoint toCenter = CGPointZero;
     if (indexPaths.count) {
         for (NSIndexPath *indexPath in indexPaths) {
             UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *fromPose = [layout.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
             toCenter.x += toPose.center.x;
             toCenter.y += toPose.center.y;
+            fromCenter.x += fromPose.center.x;
+            fromCenter.y += fromPose.center.y;
         }
         toCenter.x /= indexPaths.count;
         toCenter.y /= indexPaths.count;
+        fromCenter.x /= indexPaths.count;
+        fromCenter.y /= indexPaths.count;
     }
+
+    CGRect bounds = self.bounds;
+    bounds.origin.x = 0;
+    bounds.origin.y = 0;
+    
+    CGPoint contentOffset = self.contentOffset;
+
+    CGPoint targetPoint;
     
     switch (placement) {
+            
+        case TLTransitionLayoutIndexPathPlacementMinimal:
+        {
+            targetPoint = CGPointMake(fromCenter.x - contentOffset.x, fromCenter.y - contentOffset.y);
+            break;
+        }
+        
         case TLTransitionLayoutIndexPathPlacementCenter:
         {
-        
-        CGSize contentSize = layout.nextLayout.collectionViewContentSize;
-        CGRect bounds = self.bounds;
-        bounds.origin.x = 0;
-        bounds.origin.y = 0;
-        UIEdgeInsets inset = self.contentInset;
-        
-        CGPoint insetOffset = CGPointMake(inset.left, inset.top);
-        CGPoint boundsCenter = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
-        
-        CGPoint offset = CGPointMake(insetOffset.x + toCenter.x - boundsCenter.x, insetOffset.y + toCenter.y - boundsCenter.y);
-        
-        CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
-        CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
-        
-        offset.x = MAX(0, offset.x);
-        offset.y = MAX(0, offset.y);
-        
-        offset.x = MIN(maxOffsetX, offset.x);
-        offset.y = MIN(maxOffsetY, offset.y);
-        
-        return offset;
-        
-        }
+            targetPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
             break;
+        }
         default:
             break;
     }
+
+    CGSize contentSize = layout.nextLayout.collectionViewContentSize;
+    UIEdgeInsets inset = self.contentInset;
     
-    return CGPointZero;
+    CGPoint insetOffset = CGPointMake(inset.left, inset.top);
+    
+    CGPoint offset = CGPointMake(insetOffset.x + toCenter.x - targetPoint.x, insetOffset.y + toCenter.y - targetPoint.y);
+    
+    CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
+    CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
+    
+    offset.x = MAX(0, offset.x);
+    offset.y = MAX(0, offset.y);
+    
+    offset.x = MIN(maxOffsetX, offset.x);
+    offset.y = MIN(maxOffsetY, offset.y);
+    
+    return offset;
 }
 
 @end

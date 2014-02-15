@@ -20,6 +20,12 @@
                                        ];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self performSegueWithIdentifier:@"MainDetail" sender:self];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];

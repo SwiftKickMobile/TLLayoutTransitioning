@@ -13,13 +13,13 @@
 		867497BF18AB2CB6004E0C51 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 867497BD18AB2CB6004E0C51 /* InfoPlist.strings */; };
 		867497C118AB2CB6004E0C51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497C018AB2CB6004E0C51 /* main.m */; };
 		867497C518AB2CB6004E0C51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497C418AB2CB6004E0C51 /* AppDelegate.m */; };
-		867497C818AB2CB6004E0C51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 867497C618AB2CB6004E0C51 /* Main.storyboard */; };
 		867497CB18AB2CB6004E0C51 /* SelectorTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497CA18AB2CB6004E0C51 /* SelectorTableViewController.m */; };
 		867497CD18AB2CB6004E0C51 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 867497CC18AB2CB6004E0C51 /* Images.xcassets */; };
 		867497ED18AB30B9004E0C51 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497EC18AB30B9004E0C51 /* UIColor+Hex.m */; };
 		867497F118AB30E2004E0C51 /* PinchCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F018AB30E2004E0C51 /* PinchCollectionViewController.m */; };
 		867497F718AB3322004E0C51 /* ResizeCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F618AB3322004E0C51 /* ResizeCollectionViewController.m */; };
-		867497FA18AB3347004E0C51 /* ResizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F918AB3347004E0C51 /* ResizeViewController.m */; };
+		867497FA18AB3347004E0C51 /* ResizeSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */; };
+		8674982E18AC81BA004E0C51 /* Examples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8674982D18AC81BA004E0C51 /* Examples.storyboard */; };
 		E9F3B1AD1A4E44279654D3B4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31B25B58634241C686E25A3D /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +36,6 @@
 		867497C218AB2CB6004E0C51 /* Examples-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Examples-Prefix.pch"; sourceTree = "<group>"; };
 		867497C318AB2CB6004E0C51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		867497C418AB2CB6004E0C51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		867497C718AB2CB6004E0C51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		867497C918AB2CB6004E0C51 /* SelectorTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectorTableViewController.h; sourceTree = "<group>"; };
 		867497CA18AB2CB6004E0C51 /* SelectorTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectorTableViewController.m; sourceTree = "<group>"; };
 		867497CC18AB2CB6004E0C51 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -46,8 +45,9 @@
 		867497F018AB30E2004E0C51 /* PinchCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinchCollectionViewController.m; sourceTree = "<group>"; };
 		867497F518AB3322004E0C51 /* ResizeCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeCollectionViewController.h; sourceTree = "<group>"; };
 		867497F618AB3322004E0C51 /* ResizeCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeCollectionViewController.m; sourceTree = "<group>"; };
-		867497F818AB3347004E0C51 /* ResizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeViewController.h; sourceTree = "<group>"; };
-		867497F918AB3347004E0C51 /* ResizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeViewController.m; sourceTree = "<group>"; };
+		867497F818AB3347004E0C51 /* ResizeSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResizeSettingsTableViewController.h; sourceTree = "<group>"; };
+		867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeSettingsTableViewController.m; sourceTree = "<group>"; };
+		8674982D18AC81BA004E0C51 /* Examples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,11 +102,11 @@
 				867497C918AB2CB6004E0C51 /* SelectorTableViewController.h */,
 				867497CA18AB2CB6004E0C51 /* SelectorTableViewController.m */,
 				867497CC18AB2CB6004E0C51 /* Images.xcassets */,
-				867497C618AB2CB6004E0C51 /* Main.storyboard */,
 				867497E918AB2ED9004E0C51 /* Pinch */,
 				867497EA18AB2EE8004E0C51 /* Resize */,
 				867497BB18AB2CB6004E0C51 /* Supporting Files */,
 				867497EE18AB30C4004E0C51 /* Utils */,
+				8674982D18AC81BA004E0C51 /* Examples.storyboard */,
 			);
 			path = Examples;
 			sourceTree = "<group>";
@@ -136,8 +136,8 @@
 			children = (
 				867497F518AB3322004E0C51 /* ResizeCollectionViewController.h */,
 				867497F618AB3322004E0C51 /* ResizeCollectionViewController.m */,
-				867497F818AB3347004E0C51 /* ResizeViewController.h */,
-				867497F918AB3347004E0C51 /* ResizeViewController.m */,
+				867497F818AB3347004E0C51 /* ResizeSettingsTableViewController.h */,
+				867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */,
 			);
 			name = Resize;
 			sourceTree = "<group>";
@@ -206,8 +206,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				867497CD18AB2CB6004E0C51 /* Images.xcassets in Resources */,
+				8674982E18AC81BA004E0C51 /* Examples.storyboard in Resources */,
 				867497BF18AB2CB6004E0C51 /* InfoPlist.strings in Resources */,
-				867497C818AB2CB6004E0C51 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +255,7 @@
 				867497CB18AB2CB6004E0C51 /* SelectorTableViewController.m in Sources */,
 				867497ED18AB30B9004E0C51 /* UIColor+Hex.m in Sources */,
 				867497C518AB2CB6004E0C51 /* AppDelegate.m in Sources */,
-				867497FA18AB3347004E0C51 /* ResizeViewController.m in Sources */,
+				867497FA18AB3347004E0C51 /* ResizeSettingsTableViewController.m in Sources */,
 				867497F118AB30E2004E0C51 /* PinchCollectionViewController.m in Sources */,
 				867497C118AB2CB6004E0C51 /* main.m in Sources */,
 			);
@@ -270,14 +270,6 @@
 				867497BE18AB2CB6004E0C51 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		867497C618AB2CB6004E0C51 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				867497C718AB2CB6004E0C51 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -364,7 +356,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Examples/Examples-Prefix.pch";
 				INFOPLIST_FILE = "Examples/Examples-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -378,7 +372,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Examples/Examples-Prefix.pch";
 				INFOPLIST_FILE = "Examples/Examples-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

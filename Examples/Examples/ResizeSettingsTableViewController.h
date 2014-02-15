@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <TLIndexPathTools/TLTableViewController.h>
 
-@interface ResizeViewController : UIViewController
+@interface ResizeSettingsTableViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *toContentOffset;
-@property (strong, nonatomic) IBOutlet UISegmentedControl *easingCurve;
+@property (strong, nonatomic) IBOutlet UIPickerView *easingCurvePicker;
 @property (strong, nonatomic) IBOutlet UISlider *durationSlider;
+@property (strong, nonatomic) IBOutlet UILabel *durationLabel;
 - (IBAction)durationChanged:(UISlider *)sender;
 - (IBAction)toContentOffsetChanged:(UISegmentedControl *)sender;
-- (IBAction)easingCurveChanged:(UISegmentedControl *)sender;
 @end

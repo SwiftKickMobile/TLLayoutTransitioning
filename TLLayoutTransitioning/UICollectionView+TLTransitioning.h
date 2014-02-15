@@ -25,16 +25,42 @@
 #import "easing.h"
 
 typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
+
+    /**
+     */
+    TLTransitionLayoutIndexPathPlacementMinimal,
+
+    /**
+     Sets the content offset such that the the key item's center point
+     moves as little as possible to be fully visible.
+     */
+    TLTransitionLayoutIndexPathPlacementVisible,
+
     /**
      Sets the content offset such that the key item's center point is as close to
      the center of the collection view's bounds as possible.
      */
     TLTransitionLayoutIndexPathPlacementCenter,
+
+    /**
+     */
+    TLTransitionLayoutIndexPathPlacementTop,
+    
+    /**
+     */
+    TLTransitionLayoutIndexPathPlacementLeft,
+
+    /**
+     */
+    TLTransitionLayoutIndexPathPlacementBottom,
+
+    /**
+     */
+    TLTransitionLayoutIndexPathPlacementRight,
+
     //TODO
     //
     //    /**
-    //     Sets the content offset such that the the key item's center point
-    //     moves as little as possible to be fully visible.
     //     */
     //    TLTransitionLayoutIndexPathPlacementVisible,
     //

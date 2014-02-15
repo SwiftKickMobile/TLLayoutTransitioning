@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <TLIndexPathTools/TLCollectionViewController.h>
+#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
+#import "easing.h"
 
 @interface ResizeCollectionViewController : TLCollectionViewController
 @property (nonatomic) CGFloat duration;
+@property (nonatomic) AHEasingFunction easingFunction;
+@property (nonatomic) TLTransitionLayoutIndexPathPlacement toContentOffset;
 @end
