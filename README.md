@@ -5,7 +5,7 @@ Components for transitioning between UICollectionView layouts.
 
 ##Overview
 
-TLLayoutTransitioning provides a `UICollectionViewLayoutTransition` subclass `TLLayoutTransition` and a `UICollectionView+TLTransitioning` category that together solve a couple of problems with layout transitions:
+TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass and a `UICollectionView+TLTransitioning` category that combine to solve a couple of problems with layout transitions:
 
 1. `UICollectionViewLayoutTransition` does not handle content offset well, often leaving cells where you don't want them. `TLTransitionLayout` provides elegant control of content offset with Minimal, Center, Top, Left, Bottom or Right placement options relative to one or more index paths.
 
@@ -53,9 +53,11 @@ The `UICollectionView+TLTransitioning` category provides some of useful methods 
 
 `UICollectionView+TLTransitioning` also provides an alternative to `-[UICollectionView setCollectionViewLayout:animated:completion]` for non-interactive animation between layouts with support for animation duration, 30 built-in easing curves (courtesy of Warren Moore's [AHEasing library][1]), user defined easing curves (by defining custom `AHEasingFunctions`) and content offset control. The basic transition call is as follows:
 
-    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:2 easing:QuarticEaseInOut completion:nil];
-    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
-    layout.toContentOffset = toOffset;
+```Objective-C
+TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:2 easing:QuarticEaseInOut completion:nil];
+CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
+layout.toContentOffset = toOffset;
+```
 
 where the view controller is configured to provide an instance of `TLTransitionLayout` as described above. Check out the [Resize sample project][2] in the Examples workspace to see this in action. 
 
