@@ -3,31 +3,23 @@ TLLayoutTransitioning
 
 Components for transitioning between UICollectionView layouts.
 
-##Installation
-
-If you're not using CocoaPods, copy the following files into your project:
-
-    TLTransitionLayout.h
-    TLTransitionLayout.m
-	UICollectionView+TLTransitionAnimator.h    
-	UICollectionView+TLTransitionAnimator.m
-
 ##Overview
 
-TLLayoutTransitioning solves two problems with collection view layout transitions:
+TLLayoutTransitioning provides a `UICollectionViewLayoutTransition` subclass `TLLayoutTransition` and a `UICollectionView+TLTransitioning` category that together solve a couple of problems with layout transitions:
 
-1. The stock `UICollectionViewLayoutTransition` does not handle the content offset well, often leaving cells where you don't want them. `TLTransitionLayout` provides elegant control of the content offset relative to a specified cell or cells with Minimal, Center, Top, Left, Bottom and Right placement options.
+1. `UICollectionViewLayoutTransition` does not handle content offset well, often leaving cells where you don't want them. `TLTransitionLayout` provides elegant control of content offset with Minimal, Center, Top, Left, Bottom or Right placement options relative to one or more index paths.
 
-2. The `-[UICollectionView setCollectionViewLayout:animated:completion]` method of animating between layouts is flakey (cells jumping, etc.) and there are no animation options. TLLayoutTransitioning can animate between two layouts with duration, 30+ easing curves and content offset control. This is done by combining `UICollectionViewLayoutTransition` with an automated `CADisplayLink` progress driver.
+2. `-[UICollectionView setCollectionViewLayout:animated:completion]` has [serious known bugs][3] in iOS7 and does not provide any animation options. TLLayoutTransitioning provides a robust alternative to this API with support for animation duration, 30+ easing curves and content offset control. This is done by using `CADisplayLink` to drive an interactive `TLTransitionLayout` as a non-interactive animation.
 
 Check out the demos in the Examples workspace!
 
 ###TLTransitionLayout Class
 
-A subclass of `UICollectionViewTransitionLayout` that interpolates linearly between
-layouts and optionally content offsets. The target offset can be specified directly
+`TLTransitionLayout` is a subclass of `UICollectionViewTransitionLayout` that interpolates linearly between layouts and optionally between the current content offset and a specified final offset.
+
+The final offset is be specified
 by setting the `toContentOffset` property. The `UICollectionView+TLTransitioning` category
-provides an API for calculating useful `toContentOffsets` relative to a specified cell or cells: Minimal, Center, Top, Left, Bottom and Right.
+provides an API for calculating Minimal, Center, Top, Left, Bottom or Right offset placements relative to one or more index paths. 
 
 The basic usage is as follows:
 
@@ -53,24 +45,30 @@ The basic usage is as follows:
 
 ```
 
-Note that the collection view will reset the `contentOffset` after the transition is finalized, but this can be negated by setting it back to `toContentOffset` in the completion block.
+Note that the collection view will reset `contentOffset` after the transition is finalized, but as illustrated above, this can be negated by setting it back to `toContentOffset` in the completion block.
 
 ###UICollectionView+TLTransitioning Category
 
-A category on `UICollectionView` that provides a variety of utility methods and calculations
-for interactive transitioning.
+The `UICollectionView+TLTransitioning` category provides some of useful methods for calculating for interactive transitions. In particular, the `toContentOffsetForLayout:indexPaths:placement` API calculates final content offset values to achieve Minimal, Center, Top, Left, Bottom or Right placements for one or more index paths.
 
-One noteable feature is the ability to utilize interactive transitioning for animated, non-interactive transitions between layouts. This approach can be a better alternative to `-[UICollectionView setCollectionViewLayout:animated:completion:]` because it is robust and it supports duration, easing curves (courtesy of Warren Moore's [AHEasing library][1]) and all of the `contentOffset` options described above. Check out the [Resize sample project][2]. There are 30 build in easing curves and more can be added by defining custom `AHEasingFunctions`.
-
-The basic animated transition call is as follows:
+`UICollectionView+TLTransitioning` also provides an alternative to `-[UICollectionView setCollectionViewLayout:animated:completion]` for non-interactive animation between layouts with support for animation duration, 30 built-in easing curves (courtesy of Warren Moore's [AHEasing library][1]), user defined easing curves (by defining custom `AHEasingFunctions`) and content offset control. The basic transition call is as follows:
 
     TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:2 easing:QuarticEaseInOut completion:nil];
     CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:TLTransitionLayoutIndexPathPlacementCenter];
     layout.toContentOffset = toOffset;
 
-where the view controller is configured to provide an instance of `TLTransitionLayout` as described above.
+where the view controller is configured to provide an instance of `TLTransitionLayout` as described above. Check out the [Resize sample project][2] in the Examples workspace to see this in action. 
 
+##Installation
 
+If you're not using CocoaPods, copy the following files into your project:
+
+    TLTransitionLayout.h
+    TLTransitionLayout.m
+	UICollectionView+TLTransitionAnimator.h    
+	UICollectionView+TLTransitionAnimator.m
+	easing.h
+	easing.c
 
 ##Examples
 
@@ -78,7 +76,7 @@ Open the Examples workspace (not the project) to run the sample app. The followi
 
 ###Resize
 
-The Resize example combines `TLTransitionLayout` and `-[UICollectionView+TLTransitioning transitionToCollectionViewLayout:duration:easing:completion:]` as a better alternative to `-[UICollectionView setCollectionViewLayout:animated:completion]`. Experiment with different durations, easing curves and selected cell destinations on the settings panel.
+The Resize example combines `TLTransitionLayout` and `-[UICollectionView+TLTransitioning transitionToCollectionViewLayout:duration:easing:completion:]` as a better alternative to `-[UICollectionView setCollectionViewLayout:animated:completion]`. Experiment with different durations, easing curves and content offset options on the settings panel.
 
 ###Pinch
 
@@ -86,3 +84,4 @@ The Pinch example uses demonstrates a simple pinch-driven interactive transition
 
 [1]:https://github.com/warrenm/AHEasing
 [2]:https://github.com/wtmoose/TLLayoutTransitioning/blob/master/Examples/Examples/ResizeCollectionViewController.m
+[3]:http://stackoverflow.com/questions/13780138/dynamically-setting-layout-on-uicollectionview-causes-inexplicable-contentoffset
