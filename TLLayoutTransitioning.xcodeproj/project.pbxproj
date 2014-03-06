@@ -42,6 +42,9 @@
 		869DA0591806581F00EC81C4 /* UICollectionView+TLTransitioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+TLTransitioning.h"; sourceTree = "<group>"; };
 		869DA0EB1806621600EC81C4 /* libTLLayoutTransitioning.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTLLayoutTransitioning.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		869DA117180665EE00EC81C4 /* TLLayoutTransitioning-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TLLayoutTransitioning-Prefix.pch"; path = "TLLayoutTransitioning/TLLayoutTransitioning-Prefix.pch"; sourceTree = "<group>"; };
+		86C7A42A18C8C3A700759782 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		86C7A42B18C8C3A700759782 /* TLLayoutTransitioning.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TLLayoutTransitioning.podspec; sourceTree = "<group>"; };
+		86C7A42C18C8C3A700759782 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +62,9 @@
 		861AD36F180656D600A577A4 = {
 			isa = PBXGroup;
 			children = (
+				86C7A42A18C8C3A700759782 /* README.md */,
+				86C7A42B18C8C3A700759782 /* TLLayoutTransitioning.podspec */,
+				86C7A42C18C8C3A700759782 /* LICENSE */,
 				861AD381180656D600A577A4 /* TLLayoutTransitioning */,
 				861AD37A180656D600A577A4 /* Frameworks */,
 				861AD379180656D600A577A4 /* Products */,

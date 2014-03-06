@@ -53,7 +53,7 @@
 
 /**
  Optional callback to modify the interpolated layout attributes. Can be used to customize the
- animation or to substitute a custom `UICollectionViewLayoutAttributes` subclass.
+ animation. Return a non-nil value to replace the given `layoutAttributes` with a new instance.
  */
 @property (strong, nonatomic) UICollectionViewLayoutAttributes *(^updateLayoutAttributes)(UICollectionViewLayoutAttributes *layoutAttributes, UICollectionViewLayoutAttributes *fromAttributes, UICollectionViewLayoutAttributes *toAttributes, CGFloat progress);
 
