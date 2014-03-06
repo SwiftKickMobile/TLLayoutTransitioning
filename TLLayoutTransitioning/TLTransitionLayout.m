@@ -78,7 +78,8 @@
             
             UICollectionViewLayoutAttributes *fromPose = self.poseAtIndexPath ? [self.poseAtIndexPath objectForKey:key] : [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
             UICollectionViewLayoutAttributes *toPose = reverse ? [self.currentLayout layoutAttributesForItemAtIndexPath:indexPath] : [self.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *pose = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *pose = [[[self class] layoutAttributesClass]
+                                                      layoutAttributesForCellWithIndexPath:indexPath];
             
             CGFloat originX = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
             CGFloat originY = f * fromPose.frame.origin.y + t * toPose.frame.origin.y;
