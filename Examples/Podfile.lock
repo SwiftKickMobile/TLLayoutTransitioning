@@ -1,6 +1,6 @@
 PODS:
   - TLIndexPathTools (HEAD based on 0.2.1)
-  - TLLayoutTransitioning (0.0.1)
+  - TLLayoutTransitioning (0.0.2)
 
 DEPENDENCIES:
   - TLIndexPathTools (HEAD)
@@ -12,6 +12,6 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   TLIndexPathTools: 396e76177d4e8343d693fa5049aae1be58cefb95
-  TLLayoutTransitioning: defd4b42a296f2f4aeceea2a5587e686ec28884a
+  TLLayoutTransitioning: dcd6fcd0753e00603cbd71c6ae58a7e3f499c866
 
-COCOAPODS: 0.27.1
+COCOAPODS: 0.29.0
