@@ -91,16 +91,18 @@ static char kTLEasingFunctionKey;
     [self tl_setEasingFunction:easingFunction];
     CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateProgress:)];
     [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    __weak UICollectionView *weakSelf = self;
     UICollectionViewTransitionLayout *transitionLayout = [self startInteractiveTransitionToCollectionViewLayout:layout completion:^(BOOL completed, BOOL finish) {
+        __strong UICollectionView *strongSelf = weakSelf;
         UICollectionViewTransitionLayout *transitionLayout = [self tl_transitionLayout];
         if ([transitionLayout conformsToProtocol:@protocol(TLTransitionAnimatorLayout)]) {
             id<TLTransitionAnimatorLayout>layout = (id<TLTransitionAnimatorLayout>)transitionLayout;
-            [layout collectionViewDidCompleteTransitioning:self completed:completed finish:finish];
+            [layout collectionViewDidCompleteTransitioning:strongSelf completed:completed finish:finish];
         }
-        [self tl_setAnimationDuration:nil];
-        [self tl_setAnimationStartTime:nil];
-        [self tl_setTransitionLayout:nil];
-        [self tl_setEasingFunction:NULL];
+        [strongSelf tl_setAnimationDuration:nil];
+        [strongSelf tl_setAnimationStartTime:nil];
+        [strongSelf tl_setTransitionLayout:nil];
+        [strongSelf tl_setEasingFunction:NULL];
         if (completion) {
             completion(completed, finish);
         }
