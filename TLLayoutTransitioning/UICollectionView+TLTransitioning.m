@@ -158,6 +158,11 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
 
 - (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
 {
+    return [self toContentOffsetForLayout:layout indexPaths:indexPaths placement:placement toSize:self.bounds.size toContentInset:self.contentInset];
+}
+
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement toSize:(CGSize)toSize toContentInset:(UIEdgeInsets)toContentInset
+{
     CGPoint fromCenter, toCenter = CGPointZero;
     CGRect toFrameUnion = CGRectNull;
     if (indexPaths.count) {
@@ -174,13 +179,11 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
         fromCenter = dividePoint(fromCenter, indexPaths.count);
         toCenter = dividePoint(toCenter, indexPaths.count);
     }
-
-    CGRect bounds = self.bounds;
-    bounds.origin.x = 0;
-    bounds.origin.y = 0;
+    
+    CGRect bounds = (CGRect){{0, 0}, toSize};
     
     CGPoint contentOffset = self.contentOffset;
-
+    
     CGPoint sourcePoint;
     CGPoint destinationPoint;
     
@@ -213,16 +216,15 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
         default:
             break;
     }
-
-    CGSize contentSize = layout.nextLayout.collectionViewContentSize;
-    UIEdgeInsets inset = self.contentInset;
     
-    CGPoint insetOffset = CGPointMake(inset.left, inset.top);
+    CGSize contentSize = layout.nextLayout.collectionViewContentSize;
+    
+    CGPoint insetOffset = CGPointMake(toContentInset.left, toContentInset.top);
     
     CGPoint offset = CGPointMake(insetOffset.x + sourcePoint.x - destinationPoint.x, insetOffset.y + sourcePoint.y - destinationPoint.y);
     
-    CGFloat maxOffsetX = inset.left + inset.right + contentSize.width - bounds.size.width;
-    CGFloat maxOffsetY = inset.top + inset.right + contentSize.height - bounds.size.height;
+    CGFloat maxOffsetX = toContentInset.left + toContentInset.right + contentSize.width - bounds.size.width;
+    CGFloat maxOffsetY = toContentInset.top + toContentInset.right + contentSize.height - bounds.size.height;
     
     offset.x = MAX(0, offset.x);
     offset.y = MAX(0, offset.y);
@@ -231,6 +233,28 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     offset.y = MIN(maxOffsetY, offset.y);
     
     return offset;
+}
+
+- (CGRect)transitionFrameFromFrame:(CGRect)fromFrame toFrame:(CGRect)toFrame transitionProgress:(CGFloat)transitionProgress
+{
+    CGFloat t = transitionProgress;
+    CGFloat f = 1 - t;
+    CGRect frame;
+    frame.origin.x = t * toFrame.origin.x + f * fromFrame.origin.x;
+    frame.origin.y = t * toFrame.origin.y + f * fromFrame.origin.y;
+    frame.size.width = t * toFrame.size.width + f * fromFrame.size.width;
+    frame.size.height = t * toFrame.size.height + f * fromFrame.size.height;
+    return frame;
+}
+
+- (CGPoint)transitionPointFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint transitionProgress:(CGFloat)transitionProgress
+{
+    CGFloat t = transitionProgress;
+    CGFloat f = 1 - t;
+    CGPoint point;
+    point.x = t * toPoint.x + f * fromPoint.x;
+    point.y = t * toPoint.y + f * fromPoint.y;
+    return point;
 }
 
 CGPoint addPoints(CGPoint point, CGPoint otherPoint)

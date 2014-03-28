@@ -129,4 +129,21 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
  */
 - (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement;
 
+/**
+ Same as `toContentOffsetForLayout:indexPaths:placement`, but with additional arguments
+ `toSize` and `toContentInset` for transitions that change the collection view's
+ size and/or content inset.
+ */
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement toSize:(CGSize)toSize toContentInset:(UIEdgeInsets)toContentInset;
+
+/**
+ Interpolate between initial and final frames given the transition progress
+ */
+- (CGRect)transitionFrameFromFrame:(CGRect)fromFrame toFrame:(CGRect)toFrame transitionProgress:(CGFloat)transitionProgress;
+
+/**
+ Interpolate between initial and final points given the transition progress
+ */
+- (CGPoint)transitionPointFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint transitionProgress:(CGFloat)transitionProgress;
+
 @end
