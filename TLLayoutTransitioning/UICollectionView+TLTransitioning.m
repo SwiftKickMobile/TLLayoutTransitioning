@@ -182,6 +182,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGRect bounds = (CGRect){{0, 0}, toSize};
     
+    UIEdgeInsets contentInset = self.contentInset;
     CGPoint contentOffset = self.contentOffset;
     
     CGPoint sourcePoint;
@@ -190,8 +191,8 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     switch (placement) {
             
         case TLTransitionLayoutIndexPathPlacementMinimal:
-            sourcePoint = toCenter;
-            destinationPoint = CGPointMake(fromCenter.x - contentOffset.x, fromCenter.y - contentOffset.y);
+            sourcePoint = CGPointMake(toCenter.x, toCenter.y);
+            destinationPoint = CGPointMake(fromCenter.x - contentInset.left - contentOffset.x, fromCenter.y - contentInset.top - contentOffset.y);
             break;
         case TLTransitionLayoutIndexPathPlacementCenter:
             sourcePoint = toCenter;
@@ -219,15 +220,18 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGSize contentSize = layout.nextLayout.collectionViewContentSize;
     
-    CGPoint insetOffset = CGPointMake(toContentInset.left, toContentInset.top);
+    CGPoint toInsetOffset = CGPointMake(toContentInset.left, toContentInset.top);
     
-    CGPoint offset = CGPointMake(insetOffset.x + sourcePoint.x - destinationPoint.x, insetOffset.y + sourcePoint.y - destinationPoint.y);
+    CGPoint offset = CGPointMake(sourcePoint.x - destinationPoint.x - toInsetOffset.x, sourcePoint.y - destinationPoint.y - toInsetOffset.y);
+
+    CGFloat minOffsetX = -toContentInset.left;
+    CGFloat minOffsetY = -toContentInset.top;
+
+    CGFloat maxOffsetX = toContentInset.right + contentSize.width - bounds.size.width;
+    CGFloat maxOffsetY = toContentInset.right + contentSize.height - bounds.size.height;
     
-    CGFloat maxOffsetX = toContentInset.left + toContentInset.right + contentSize.width - bounds.size.width;
-    CGFloat maxOffsetY = toContentInset.top + toContentInset.right + contentSize.height - bounds.size.height;
-    
-    offset.x = MAX(0, offset.x);
-    offset.y = MAX(0, offset.y);
+    offset.x = MAX(minOffsetX, offset.x);
+    offset.y = MAX(minOffsetY, offset.y);
     
     offset.x = MIN(maxOffsetX, offset.x);
     offset.y = MIN(maxOffsetY, offset.y);
