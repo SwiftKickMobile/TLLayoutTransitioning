@@ -182,18 +182,42 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGRect bounds = (CGRect){{0, 0}, toSize};
     
-    UIEdgeInsets contentInset = self.contentInset;
     CGPoint contentOffset = self.contentOffset;
     
+    // location of the point we're adjusting for, in the coordinate system
+    // of the content
     CGPoint sourcePoint;
+    
+    // location where we want the source point to end up, in the coordinate
+    // system of the collection view
     CGPoint destinationPoint;
     
     switch (placement) {
             
         case TLTransitionLayoutIndexPathPlacementMinimal:
-            sourcePoint = CGPointMake(toCenter.x, toCenter.y);
-            destinationPoint = CGPointMake(fromCenter.x - contentInset.left - contentOffset.x, fromCenter.y - contentInset.top - contentOffset.y);
+            sourcePoint = toCenter;
+            destinationPoint = fromCenter;
+            destinationPoint.x -= contentOffset.x;
+            destinationPoint.y -= contentOffset.y;
             break;
+        case TLTransitionLayoutIndexPathPlacementVisible:
+        {
+            // calculate the minimal toContentOffset and the resulting
+            // frame in collection view space
+            CGPoint minimalToContentOffset = [self toContentOffsetForLayout:layout
+                                                                 indexPaths:indexPaths
+                                                                  placement:TLTransitionLayoutIndexPathPlacementMinimal
+                                                                     toSize:toSize
+                                                             toContentInset:toContentInset];
+            CGRect translatedToFrameUnion = toFrameUnion;
+            translatedToFrameUnion.origin.x -= minimalToContentOffset.x;
+            translatedToFrameUnion.origin.y -= minimalToContentOffset.y;
+            // now calculate the minimal offset that maximizes this frame's visibility
+            CGPoint maximalIntersectionOffset = minimalOffsetForMaximalIntersection(bounds, translatedToFrameUnion);
+            minimalToContentOffset.x -= maximalIntersectionOffset.x;
+            minimalToContentOffset.y -= maximalIntersectionOffset.y;
+            return minimalToContentOffset;
+        }
         case TLTransitionLayoutIndexPathPlacementCenter:
             sourcePoint = toCenter;
             destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
@@ -220,9 +244,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     
     CGSize contentSize = layout.nextLayout.collectionViewContentSize;
     
-    CGPoint toInsetOffset = CGPointMake(toContentInset.left, toContentInset.top);
-    
-    CGPoint offset = CGPointMake(sourcePoint.x - destinationPoint.x - toInsetOffset.x, sourcePoint.y - destinationPoint.y - toInsetOffset.y);
+    CGPoint offset = CGPointMake(sourcePoint.x - destinationPoint.x, sourcePoint.y - destinationPoint.y);
 
     CGFloat minOffsetX = -toContentInset.left;
     CGFloat minOffsetY = -toContentInset.top;
@@ -237,6 +259,11 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     offset.y = MIN(maxOffsetY, offset.y);
     
     return offset;
+}
+
+- (CGPoint)minimalOffsetForMaximalIntersection
+{
+    return CGPointZero;
 }
 
 - (CGRect)transitionFrameFromFrame:(CGRect)fromFrame toFrame:(CGRect)toFrame transitionProgress:(CGFloat)transitionProgress
@@ -272,6 +299,48 @@ CGPoint dividePoint(CGPoint point, CGFloat divisor)
         divisor = 1;
     }
     return CGPointMake(point.x  / divisor, point.y / divisor);
+}
+
+//CGPoint translateCotentPointToCollectionViewSpace(CGPoint contentPoint, CGPoint contentOffset)
+//{
+//    CGAffineTransform translation = translationToCollectionViewSpace(contentOffset);
+//    return CGPointApplyAffineTransform(contentPoint, translation);
+//}
+//
+//CGRect translateCotentRectToCollectionViewSpace(CGRect contentRect, CGPoint contentOffset)
+//{
+//    contentRect
+//    CGAffineTransform translation = translationToCollectionViewSpace(contentOffset);
+//    return CGRectApplyAffineTransform(contentRect, translation);
+//}
+
+CGAffineTransform translationToCollectionViewSpace(CGPoint contentOffset)
+{
+    return CGAffineTransformMakeTranslation(- contentOffset.x, - contentOffset.y);
+}
+
+CGPoint minimalOffsetForMaximalIntersection(CGRect parentFrame, CGRect childFrame)
+{
+    CGFloat topSpace = CGRectGetMinY(childFrame) - CGRectGetMinY(parentFrame);
+    CGFloat leftSpace = CGRectGetMinX(childFrame) - CGRectGetMinX(parentFrame);
+    CGFloat bottomSpace = CGRectGetMaxY(parentFrame) - CGRectGetMaxY(childFrame);
+    CGFloat rightSpace = CGRectGetMaxX(parentFrame) - CGRectGetMaxX(childFrame);
+    return CGPointMake(linearOffset(leftSpace, rightSpace), linearOffset(topSpace, bottomSpace));
+}
+
+CGFloat linearOffset(CGFloat spaceBeforeChild, CGFloat spaceAfterChild)
+{
+    // if both before and after space have the same sign, then there is no offset.
+    // If they're both negative, an offset will not improve anything. If they are
+    // both positive, no offset is needed.
+    if (spaceBeforeChild * spaceAfterChild >= 0) {
+        return 0;
+    }
+    if (spaceBeforeChild < 0) {
+        return MIN(spaceAfterChild, -spaceBeforeChild);
+    } else {
+        return MAX(spaceAfterChild, -spaceBeforeChild);
+    }
 }
 
 @end

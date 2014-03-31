@@ -33,14 +33,14 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
      */
     TLTransitionLayoutIndexPathPlacementMinimal,
 
-//TODO
-//    /**
-//     Sets the content offset such that the center point of the specified cell
-//     or cells moves as little as possible while being as visible as possible.
-//     For example, use this option to minimize motion of a specific cell that
-//     might not be currently visible but should become visible.
-//     */
-//    TLTransitionLayoutIndexPathPlacementVisible,
+    /**
+     Sets the content offset such that the specified cell or or cells end up
+     as visible as possible with a secondary goal of moving as little as possible.
+     For example, use this option to minimize motion of a specific cell that
+     might not be currently visible or be partially obscured,, but should become
+     fully visible.
+     */
+    TLTransitionLayoutIndexPathPlacementVisible,
 
     /**
      Sets the content offset such that the center point of the specified cell

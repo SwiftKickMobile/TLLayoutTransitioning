@@ -7,7 +7,7 @@ Components for transitioning between UICollectionView layouts.
 
 TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass and a `UICollectionView+TLTransitioning` category that combine to solve a couple of problems with layout transitions:
 
-1. `UICollectionViewLayoutTransition` does not handle content offset well, often leaving cells where you don't want them. `TLTransitionLayout` provides elegant control of content offset with Minimal, Center, Top, Left, Bottom or Right placement options relative to one or more index paths.
+1. `UICollectionViewLayoutTransition` does not handle content offset well, often leaving cells where you don't want them. `TLTransitionLayout` provides elegant control of content offset with Minimal, Visible, Center, Top, Left, Bottom or Right placement options relative to one or more index paths.
 
 2. `-[UICollectionView setCollectionViewLayout:animated:completion]` has [serious known bugs][3] in iOS7 and does not provide any animation options. TLLayoutTransitioning provides a robust alternative to this API with support for animation duration, 30+ easing curves and content offset control. This is done by using `CADisplayLink` to drive an interactive `TLTransitionLayout` as a non-interactive animation.
 
@@ -19,7 +19,7 @@ Check out the demos in the Examples workspace!
 
 The final offset is be specified
 by setting the `toContentOffset` property. The `UICollectionView+TLTransitioning` category
-provides an API for calculating Minimal, Center, Top, Left, Bottom or Right offset placements relative to one or more index paths. 
+provides an API for calculating Minimal, Visible, Center, Top, Left, Bottom or Right offset placements relative to one or more index paths. 
 
 The basic usage is as follows:
 
@@ -49,7 +49,7 @@ Note that the collection view will reset `contentOffset` after the transition is
 
 ###UICollectionView+TLTransitioning Category
 
-The `UICollectionView+TLTransitioning` category provides some of useful methods for calculating for interactive transitions. In particular, the `toContentOffsetForLayout:indexPaths:placement` API calculates final content offset values to achieve Minimal, Center, Top, Left, Bottom or Right placements for one or more index paths.
+The `UICollectionView+TLTransitioning` category provides some of useful methods for calculating for interactive transitions. In particular, the `toContentOffsetForLayout:indexPaths:placement` API calculates final content offset values to achieve Minimal, Visible, Center, Top, Left, Bottom or Right placements for one or more index paths.
 
 `UICollectionView+TLTransitioning` also provides an alternative to `-[UICollectionView setCollectionViewLayout:animated:completion]` for non-interactive animation between layouts with support for animation duration, 30 built-in easing curves (courtesy of Warren Moore's [AHEasing library][1]), user defined easing curves (by defining custom `AHEasingFunctions`) and content offset control. The basic transition call is as follows:
 

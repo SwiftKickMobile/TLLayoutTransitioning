@@ -48,7 +48,8 @@
         [self updateDuration];
         
         //target content offset
-        self.toContentOffset.selectedSegmentIndex = 1;
+        self.toContentOffset.apportionsSegmentWidthsByContent = YES;
+        self.toContentOffset.selectedSegmentIndex = 2;
         [self updateToContentOffset];
         
         //easing curve
@@ -82,24 +83,13 @@
 
 - (void)updateToContentOffset
 {
-    TLTransitionLayoutIndexPathPlacement placement;
-    switch (self.toContentOffset.selectedSegmentIndex) {
-        case 0:
-            placement = TLTransitionLayoutIndexPathPlacementMinimal;
-            break;
-        case 1:
-            placement = TLTransitionLayoutIndexPathPlacementCenter;
-            break;
-        case 2:
-            placement = TLTransitionLayoutIndexPathPlacementTop;
-            break;
-        case 3:
-            placement = TLTransitionLayoutIndexPathPlacementBottom;
-            break;
-        default:
-            break;
-    }
-    self.collectionViewController.toContentOffset = placement;
+    NSNumber *placement = [@[@(TLTransitionLayoutIndexPathPlacementMinimal),
+                                   @(TLTransitionLayoutIndexPathPlacementVisible),
+                                   @(TLTransitionLayoutIndexPathPlacementCenter),
+                                   @(TLTransitionLayoutIndexPathPlacementTop),
+                                   @(TLTransitionLayoutIndexPathPlacementBottom)]
+                                 objectAtIndex:self.toContentOffset.selectedSegmentIndex];
+    self.collectionViewController.toContentOffset = [placement integerValue];
 }
 
 #pragma mark - Easing curve
