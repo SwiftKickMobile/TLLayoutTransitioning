@@ -27,6 +27,8 @@
 #import "UICollectionView+TLTransitioning.h"
 #import "TLTransitionLayout.h"
 
+CGPoint kTLPlacementAnchorDefault = (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX};
+
 @implementation UICollectionView (TLTransitioning)
 
 #pragma mark - Simulated properties
@@ -156,31 +158,40 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     return easingFunction ? easingFunction(p) : p;
 }
 
-- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement
 {
-    return [self toContentOffsetForLayout:layout indexPaths:indexPaths placement:placement toSize:self.bounds.size toContentInset:self.contentInset];
+    return [self toContentOffsetForLayout:layout indexPaths:indexPaths
+                                placement:placement
+                          placementAnchor:kTLPlacementAnchorDefault
+                           placementInset:UIEdgeInsetsZero
+                                   toSize:self.bounds.size
+                           toContentInset:self.contentInset];
 }
 
-- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement toSize:(CGSize)toSize toContentInset:(UIEdgeInsets)toContentInset
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement
+                    placementAnchor:(CGPoint)placementAnchor
+                     placementInset:(UIEdgeInsets)placementInset
+                             toSize:(CGSize)toSize
+                     toContentInset:(UIEdgeInsets)toContentInset
 {
-    CGPoint fromCenter, toCenter = CGPointZero;
-    CGRect toFrameUnion = CGRectNull;
+    BOOL defaultPlacementAnchor = CGPointEqualToPoint(placementAnchor, kTLPlacementAnchorDefault);
+
+    CGRect fromFrame = CGRectNull;
+    CGRect toFrame = CGRectNull;
     if (indexPaths.count) {
         for (NSIndexPath *indexPath in indexPaths) {
             UICollectionViewLayoutAttributes *fromPose = [layout.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
             UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
-            fromCenter = addPoints(fromCenter, fromPose.center);
-            toCenter = addPoints(toCenter, toPose.center);
-            if (CGRectIsNull(toFrameUnion)) {
-                toFrameUnion = toPose.frame;
-            }
-            toFrameUnion = CGRectUnion(toFrameUnion, toPose.frame);
+            fromFrame = CGRectUnion(fromFrame, fromPose.frame);
+            toFrame = CGRectUnion(toFrame, toPose.frame);
         }
-        fromCenter = dividePoint(fromCenter, indexPaths.count);
-        toCenter = dividePoint(toCenter, indexPaths.count);
     }
     
-    CGRect bounds = (CGRect){{0, 0}, toSize};
+    CGRect placementFrame = UIEdgeInsetsInsetRect((CGRect){{0, 0}, toSize}, placementInset);
     
     CGPoint contentOffset = self.contentOffset;
     
@@ -191,12 +202,20 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     // location where we want the source point to end up, in the coordinate
     // system of the collection view
     CGPoint destinationPoint;
-    
+
+    if (defaultPlacementAnchor) {
+        sourcePoint = CGPointMake(CGRectGetMidX(toFrame), CGRectGetMidY(toFrame));
+    } else {
+        sourcePoint = pointForAnchorPoint(placementAnchor, toFrame);
+    }
+
     switch (placement) {
-            
         case TLTransitionLayoutIndexPathPlacementMinimal:
-            sourcePoint = toCenter;
-            destinationPoint = fromCenter;
+            if (defaultPlacementAnchor) {
+                destinationPoint = CGPointMake(CGRectGetMidX(fromFrame), CGRectGetMidY(fromFrame));
+            } else {
+                destinationPoint = pointForAnchorPoint(placementAnchor, fromFrame);
+            }
             destinationPoint.x -= contentOffset.x;
             destinationPoint.y -= contentOffset.y;
             break;
@@ -207,36 +226,45 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
             CGPoint minimalToContentOffset = [self toContentOffsetForLayout:layout
                                                                  indexPaths:indexPaths
                                                                   placement:TLTransitionLayoutIndexPathPlacementMinimal
+                                                            placementAnchor:placementAnchor
+                                                             placementInset:placementInset
                                                                      toSize:toSize
                                                              toContentInset:toContentInset];
-            CGRect translatedToFrameUnion = toFrameUnion;
+            CGRect translatedToFrameUnion = toFrame;
             translatedToFrameUnion.origin.x -= minimalToContentOffset.x;
             translatedToFrameUnion.origin.y -= minimalToContentOffset.y;
             // now calculate the minimal offset that maximizes this frame's visibility
-            CGPoint maximalIntersectionOffset = minimalOffsetForMaximalIntersection(bounds, translatedToFrameUnion);
+            CGPoint maximalIntersectionOffset = minimalOffsetForMaximalIntersection(placementFrame, translatedToFrameUnion);
             minimalToContentOffset.x -= maximalIntersectionOffset.x;
             minimalToContentOffset.y -= maximalIntersectionOffset.y;
             return minimalToContentOffset;
         }
         case TLTransitionLayoutIndexPathPlacementCenter:
-            sourcePoint = toCenter;
-            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+            destinationPoint = CGPointMake(CGRectGetMidX(placementFrame), CGRectGetMidY(placementFrame));
             break;
         case TLTransitionLayoutIndexPathPlacementTop:
-            sourcePoint = CGPointMake(CGRectGetMidX(toFrameUnion), CGRectGetMinY(toFrameUnion));
-            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMinY(bounds));
+            if (defaultPlacementAnchor) {
+                sourcePoint = CGPointMake(CGRectGetMidX(toFrame), CGRectGetMinY(toFrame));
+            }
+            destinationPoint = CGPointMake(CGRectGetMidX(placementFrame), CGRectGetMinY(placementFrame));
             break;
         case TLTransitionLayoutIndexPathPlacementLeft:
-            sourcePoint = CGPointMake(CGRectGetMinX(toFrameUnion), CGRectGetMidY(toFrameUnion));
-            destinationPoint = CGPointMake(CGRectGetMinX(bounds), CGRectGetMidY(bounds));
+            if (defaultPlacementAnchor) {
+                sourcePoint = CGPointMake(CGRectGetMinX(toFrame), CGRectGetMidY(toFrame));
+            }
+            destinationPoint = CGPointMake(CGRectGetMinX(placementFrame), CGRectGetMidY(placementFrame));
             break;
         case TLTransitionLayoutIndexPathPlacementBottom:
-            sourcePoint = CGPointMake(CGRectGetMidX(toFrameUnion), CGRectGetMaxY(toFrameUnion));
-            destinationPoint = CGPointMake(CGRectGetMidX(bounds), CGRectGetMaxY(bounds));
+            if (defaultPlacementAnchor) {
+                sourcePoint = CGPointMake(CGRectGetMidX(toFrame), CGRectGetMaxY(toFrame));
+            }
+            destinationPoint = CGPointMake(CGRectGetMidX(placementFrame), CGRectGetMaxY(placementFrame));
             break;
         case TLTransitionLayoutIndexPathPlacementRight:
-            sourcePoint = CGPointMake(CGRectGetMaxX(toFrameUnion), CGRectGetMidY(toFrameUnion));
-            destinationPoint = CGPointMake(CGRectGetMaxX(bounds), CGRectGetMidY(bounds));
+            if (defaultPlacementAnchor) {
+                sourcePoint = CGPointMake(CGRectGetMaxX(toFrame), CGRectGetMidY(toFrame));
+            }
+            destinationPoint = CGPointMake(CGRectGetMaxX(placementFrame), CGRectGetMidY(placementFrame));
             break;
         default:
             break;
@@ -245,12 +273,12 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     CGSize contentSize = layout.nextLayout.collectionViewContentSize;
     
     CGPoint offset = CGPointMake(sourcePoint.x - destinationPoint.x, sourcePoint.y - destinationPoint.y);
-
+    
     CGFloat minOffsetX = -toContentInset.left;
     CGFloat minOffsetY = -toContentInset.top;
-
-    CGFloat maxOffsetX = toContentInset.right + contentSize.width - bounds.size.width;
-    CGFloat maxOffsetY = toContentInset.right + contentSize.height - bounds.size.height;
+    
+    CGFloat maxOffsetX = toContentInset.right + contentSize.width - placementFrame.size.width;
+    CGFloat maxOffsetY = toContentInset.right + contentSize.height - placementFrame.size.height;
     
     offset.x = MAX(minOffsetX, offset.x);
     offset.y = MAX(minOffsetY, offset.y);
@@ -259,6 +287,20 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     offset.y = MIN(maxOffsetY, offset.y);
     
     return offset;
+}
+
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement
+                             toSize:(CGSize)toSize
+                     toContentInset:(UIEdgeInsets)toContentInset
+{
+    return [self toContentOffsetForLayout:layout indexPaths:indexPaths
+                                placement:placement
+                          placementAnchor:kTLPlacementAnchorDefault
+                           placementInset:UIEdgeInsetsZero
+                                   toSize:toSize
+                           toContentInset:toContentInset];
 }
 
 - (CGPoint)minimalOffsetForMaximalIntersection
@@ -301,22 +343,16 @@ CGPoint dividePoint(CGPoint point, CGFloat divisor)
     return CGPointMake(point.x  / divisor, point.y / divisor);
 }
 
-//CGPoint translateCotentPointToCollectionViewSpace(CGPoint contentPoint, CGPoint contentOffset)
-//{
-//    CGAffineTransform translation = translationToCollectionViewSpace(contentOffset);
-//    return CGPointApplyAffineTransform(contentPoint, translation);
-//}
-//
-//CGRect translateCotentRectToCollectionViewSpace(CGRect contentRect, CGPoint contentOffset)
-//{
-//    contentRect
-//    CGAffineTransform translation = translationToCollectionViewSpace(contentOffset);
-//    return CGRectApplyAffineTransform(contentRect, translation);
-//}
-
 CGAffineTransform translationToCollectionViewSpace(CGPoint contentOffset)
 {
     return CGAffineTransformMakeTranslation(- contentOffset.x, - contentOffset.y);
+}
+
+CGPoint pointForAnchorPoint(CGPoint anchorPoint, CGRect frame)
+{
+    CGFloat pointX = (1.f - anchorPoint.x) * CGRectGetMinX(frame) + anchorPoint.x * CGRectGetMaxX(frame);
+    CGFloat pointY = (1.f - anchorPoint.y) * CGRectGetMinY(frame) + anchorPoint.y * CGRectGetMaxY(frame);
+    return CGPointMake(pointX, pointY);
 }
 
 CGPoint minimalOffsetForMaximalIntersection(CGRect parentFrame, CGRect childFrame)

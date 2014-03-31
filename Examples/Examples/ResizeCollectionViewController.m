@@ -63,7 +63,13 @@
 {
     UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
     TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:self.easingFunction completion:nil];
-    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout indexPaths:@[indexPath] placement:self.toContentOffset];
+    CGPoint toOffset = [collectionView toContentOffsetForLayout:layout
+                                                     indexPaths:@[indexPath]
+                                                      placement:self.toContentOffset
+                                                placementAnchor:kTLPlacementAnchorDefault
+                                                 placementInset:UIEdgeInsetsZero
+                                                         toSize:self.collectionView.bounds.size
+                                                 toContentInset:self.collectionView.contentInset];
     layout.toContentOffset = toOffset;
 }
 

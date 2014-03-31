@@ -79,6 +79,11 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
 };
 
 /**
+ A constant representing the default placement anchor point
+ */
+extern CGPoint kTLPlacementAnchorDefault;
+
+/**
  A protocol that can be implemented by `UICollectionViewTransitionLayout` subclasses
  to recieve a message when transition completion handler is called (`TLTransitioning`
  holds onto the layout long enough to send this message). This can be used to perform
@@ -88,7 +93,8 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
  */
 
 @protocol TLTransitionAnimatorLayout <NSObject>
-- (void)collectionViewDidCompleteTransitioning:(UICollectionView *)collectionView completed:(BOOL)completed finish:(BOOL)finish;
+- (void)collectionViewDidCompleteTransitioning:(UICollectionView *)collectionView
+                                     completed:(BOOL)completed finish:(BOOL)finish;
 @end
 
 /**
@@ -108,9 +114,14 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
  to mimick the behavior of `setCollectionViewLayout:animated:completion:`, but with
  improved behavior (see the Resize sample project).
  */
-- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration easing:(AHEasingFunction)easingFunction completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion;
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout
+                                                              duration:(NSTimeInterval)duration
+                                                                easing:(AHEasingFunction)easingFunction
+                                                            completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion;
 
-- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion __deprecated;
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout
+                                                              duration:(NSTimeInterval)duration
+                                                            completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion __deprecated;
 
 #pragma mark - Calculating transition values
 
@@ -122,19 +133,63 @@ typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
 CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, AHEasingFunction easingFunction);
 
 /**
+ Same as `toContentOffsetForLayout:indexPaths:placement:placementAnchor:placementInset:toSize:toContentInset`
+ with fewer options.
+ */
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement;
+/**
  Calculate the final content offset for the given transition layout that place the
  specified index paths at a particular location. Specify a single index path for pinching
  or tapping a cell. Specify multiple index paths for pinching a group of cells,
- for example, like a stack of photos.
- */
-- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement;
+ for example, like a stack of photos. Numerous options are provided to fine-tune
+ the placement.
+ 
+ @param layout  the transition layout instance
+ @param indexPaths  the collection of index paths to consider for placement
+ @param placement  the type of placement, e.g. Center
+ @param placementAnchor  the relative placement anchor point. Specify kTLPlacementAnchorDefault
+                         for the default anchor, which varies by placement type.
+ @param placementInset  the inset on the collection view's frame for placement.
+                        Specify UIEdgeInsetsZero for no inset.
+ @param toSize  The expected "to" size of the collection view's frame. Use this
+                option when resizing the collection view during the transition.
+                Specify `collectionView.bounds.size` when not resizing.
+ @param toContentInset  The expected "to" content inset. Use this option when
+                        modifying the content inset during the transition. Specify
+                        `collectionView.contentInset` when not changing the inset.
 
-/**
- Same as `toContentOffsetForLayout:indexPaths:placement`, but with additional arguments
- `toSize` and `toContentInset` for transitions that change the collection view's
- size and/or content inset.
+ The `placement` argument determines how the content offset is calculated. Regardess
+ of the placement type, the caculations are based on the union of all frames in the
+ given collection of `indexPaths`, i.e. the placement frame. The `placementAnchor`
+ and `placementInset` arguments can be used to further control the placement behavior.
+ 
+ The `placementAnchor` argument specifies the relative point in the placement frame
+ for which the offset is calculated. For example, the Minimal placement type has a 
+ default placement anchor of {0.5, 0.5}, which means the movement of the center of
+ the placement frame is minimized. However, a placement anchor of {0.5, 0} will
+ minimize the movement of the top-center point.
+ 
+ The `placementInset` argument insets the placement frame. For example, the Visible
+ placement type will position a hidden cell along the edge of the collection view.
+ To provide a margin between the cell and the edge of the collection view, specify
+ a positive inset, such as {20, 20, 20, 20}.
  */
-- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout indexPaths:(NSArray *)indexPaths placement:(TLTransitionLayoutIndexPathPlacement)placement toSize:(CGSize)toSize toContentInset:(UIEdgeInsets)toContentInset;
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement
+                    placementAnchor:(CGPoint)placementAnchor
+                     placementInset:(UIEdgeInsets)placementInset
+                             toSize:(CGSize)toSize
+                     toContentInset:(UIEdgeInsets)toContentInset
+                                ;
+
+- (CGPoint)toContentOffsetForLayout:(UICollectionViewTransitionLayout *)layout
+                         indexPaths:(NSArray *)indexPaths
+                          placement:(TLTransitionLayoutIndexPathPlacement)placement
+                             toSize:(CGSize)toSize
+                     toContentInset:(UIEdgeInsets)toContentInset __deprecated;
 
 /**
  Interpolate between initial and final frames given the transition progress
