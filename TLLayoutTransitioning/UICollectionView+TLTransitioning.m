@@ -134,7 +134,12 @@ static char kTLEasingFunctionKey;
         } else {
             AHEasingFunction easingFunction = [self tl_easingFunction];
             CGFloat progress = easingFunction ? easingFunction(time) : time;
-            l.transitionProgress = progress;
+            if ([l isKindOfClass:[TLTransitionLayout class]]) {
+                TLTransitionLayout *transitionLayout = (TLTransitionLayout *)l;
+                [transitionLayout setTransitionProgress:progress time:time];
+            } else {
+                l.transitionProgress = progress;
+            }
             [l invalidateLayout];
         }
     } else {
@@ -308,9 +313,9 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     return CGPointZero;
 }
 
-- (CGRect)transitionFrameFromFrame:(CGRect)fromFrame toFrame:(CGRect)toFrame transitionProgress:(CGFloat)transitionProgress
+CGRect TLTransitionFrame(CGRect fromFrame, CGRect toFrame, CGFloat progress)
 {
-    CGFloat t = transitionProgress;
+    CGFloat t = progress;
     CGFloat f = 1 - t;
     CGRect frame;
     frame.origin.x = t * toFrame.origin.x + f * fromFrame.origin.x;
@@ -320,14 +325,40 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     return frame;
 }
 
-- (CGPoint)transitionPointFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint transitionProgress:(CGFloat)transitionProgress
+CGPoint TLTransitionPoint(CGPoint fromPoint, CGPoint toPoint, CGFloat progress)
 {
-    CGFloat t = transitionProgress;
+    CGFloat t = progress;
     CGFloat f = 1 - t;
     CGPoint point;
     point.x = t * toPoint.x + f * fromPoint.x;
     point.y = t * toPoint.y + f * fromPoint.y;
     return point;
+}
+
+CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress)
+{
+    CGFloat t = progress;
+    CGFloat f = 1 - t;
+    return t * toFloat + f * fromFloat;
+}
+
+CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTime)
+{
+    // sanitize input
+    time = MAX(0, MIN(1, time));
+    startTime = MAX(0, MIN(1, startTime));
+    endTime = MAX(0, MIN(1, endTime));
+    if (endTime <= startTime) {
+        return 1;
+    }
+    if (time <= startTime) {
+        return 0;
+    }
+    if (time >= endTime) {
+        return 1;
+    }
+    // calculate time in the converted timespace
+    return (time - startTime) / (endTime - startTime);
 }
 
 CGPoint addPoints(CGPoint point, CGPoint otherPoint)

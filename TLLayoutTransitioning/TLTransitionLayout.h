@@ -49,17 +49,40 @@
 /**
  The initial content offset.
  */
-@property (nonatomic, readonly) CGPoint fromContentOffset;
+@property (readonly, nonatomic) CGPoint fromContentOffset;
 
 /**
- Optional callback to modify the interpolated layout attributes. Can be used to customize the
- animation. Return a non-nil value to replace the given `layoutAttributes` with a new instance.
+ The current relative time in terms of the transition progress. The value varies
+ from 0 to 1 over the course of the transition. The value is equal to `transitionProgress`
+ unless progress is being updated through calls to `setTransitionProgress:time:`.
+ If `setTransitionProgress:time:` is being used, `transitionTime` progresses linearly,
+ regardless of the easing curve being used. This can be useful when some elements
+ of the transition need to progress along another easing curve, which can be accomplished
+ by passing `transitionTimee` to another easing function.
+ */
+@property (readonly, nonatomic) CGFloat transitionTime;
+
+/**
+ Optional callback to modify the interpolated layout attributes. Can be used to
+ customize the animation. Return a non-nil value to replace the given `layoutAttributes` 
+ with the returned instance.
  */
 @property (strong, nonatomic) UICollectionViewLayoutAttributes *(^updateLayoutAttributes)(UICollectionViewLayoutAttributes *layoutAttributes, UICollectionViewLayoutAttributes *fromAttributes, UICollectionViewLayoutAttributes *toAttributes, CGFloat progress);
 
 /**
+ Set the transition progress and time. This method can optionally be called instead
+ of `setTransitionProgress` when the transition is following a non-linear easing
+ curve and there is a need to know the linear time. This can be useful when some
+ elements of the transition need to progress along another easing curve, which can
+ be accomplished by passing the value of `transitionTimee` to another easing function.
+ The `transitionToCollectionViewLayout:duration:easing:completion transition in
+ `UICollectionView+Transitioning` utilizes this feature.
+ */
+- (void)setTransitionProgress:(CGFloat)transitionProgress time:(CGFloat)time;
+
+/**
  Optional callback when progress changes. Can be used to modify things outside of the
- scope of the layout
+ scope of the layout.
  */
 @property (strong, nonatomic) void(^progressChanged)(CGFloat progress);
 

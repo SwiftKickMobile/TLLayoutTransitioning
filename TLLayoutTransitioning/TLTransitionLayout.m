@@ -39,12 +39,16 @@
     return self;
 }
 
-- (void) setTransitionProgress:(CGFloat)transitionProgress
+- (void)setTransitionProgress:(CGFloat)transitionProgress time:(CGFloat)time
 {
     if (self.transitionProgress != transitionProgress) {
 //        NSLog(@"progress=%f", transitionProgress);
         self.previousProgress = self.transitionProgress;
         super.transitionProgress = transitionProgress;
+        // enforce time range of 0 to 1
+        // TODO since time is a user-supplied value, we might want to emit a
+        // warning if time goes out-of-bounds
+        _transitionTime = MAX(0, MIN(1, time));
         if (self.toContentOffsetInitialized) {
             CGFloat t = self.transitionProgress;
             CGFloat f = 1 - t;
@@ -55,6 +59,11 @@
             }
         }
     }
+}
+
+- (void) setTransitionProgress:(CGFloat)transitionProgress
+{
+    [self setTransitionProgress:transitionProgress time:transitionProgress];
 }
 
 #pragma mark - Layout logic

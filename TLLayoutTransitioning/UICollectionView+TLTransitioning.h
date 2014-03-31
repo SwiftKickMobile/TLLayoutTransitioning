@@ -194,11 +194,34 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
 /**
  Interpolate between initial and final frames given the transition progress
  */
-- (CGRect)transitionFrameFromFrame:(CGRect)fromFrame toFrame:(CGRect)toFrame transitionProgress:(CGFloat)transitionProgress;
+extern CGRect TLTransitionFrame(CGRect fromFrame, CGRect toFrame, CGFloat progress);
 
 /**
  Interpolate between initial and final points given the transition progress
  */
-- (CGPoint)transitionPointFromPoint:(CGPoint)fromPoint toPoint:(CGPoint)toPoint transitionProgress:(CGFloat)transitionProgress;
+extern CGPoint TLTransitionPoint(CGPoint fromPoint, CGPoint toPoint, CGFloat progress);
+
+/**
+ Interpolate between initial and final float vaoues given the transition progress
+ */
+extern CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress);
+
+/**
+ Converts the current time into a subordinate timespace, usefull for for simulating
+ things like delay and duration within the overall transition timespace. This converted
+ time can be supplied to easing functions for custom animation behavior of elements
+ within the overall duration. For example, to simulate a relative duration of 0.5
+ and delay of 0.5, the following calls to `TLConvertTime` would look like:
+ 
+     0.00 => 0.0 : TLConvertTime(0.00, 0.25, 0.75)
+     0.25 => 0.0 : TLConvertTime(0.25, 0.25, 0.75) // converted start
+     0.50 => 0.5 : TLConvertTime(0.50, 0.25, 0.75)
+     0.75 => 1.0 : TLConvertTime(0.75, 0.25, 0.75) // converted end
+     1.00 => 1.0 : TLConvertTime(1.00, 0.25, 0.75)
+ 
+ The converted time varies from 0 to 1 during the time that the overall time varies
+ from 0.25 to 0.75.
+ */
+extern CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTime);
 
 @end
