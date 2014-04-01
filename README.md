@@ -69,6 +69,9 @@ If you're not using CocoaPods, copy the following files into your project:
     TLTransitionLayout.m
 	UICollectionView+TLTransitionAnimator.h    
 	UICollectionView+TLTransitionAnimator.m
+	
+As well as the following files from [AHEasing][4]:
+
 	easing.h
 	easing.c
 
@@ -87,3 +90,4 @@ The Pinch example uses demonstrates a simple pinch-driven interactive transition
 [1]:https://github.com/warrenm/AHEasing
 [2]:https://github.com/wtmoose/TLLayoutTransitioning/blob/master/Examples/Examples/ResizeCollectionViewController.m
 [3]:http://stackoverflow.com/questions/13780138/dynamically-setting-layout-on-uicollectionview-causes-inexplicable-contentoffset
+[4]:https://github.com/warrenm/AHEasing

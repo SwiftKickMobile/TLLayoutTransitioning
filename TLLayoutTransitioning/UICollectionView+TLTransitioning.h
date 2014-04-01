@@ -224,4 +224,11 @@ extern CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat pro
  */
 extern CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTime);
 
+/**
+ Calculates the relative position of `point` in `rect`. For example, point {1, 2}
+ in {{0, 0}, {2, 2}} would return {0.5, 1}. Useful for converting touches for
+ the `placementAnchor` argument of `toContentOffsetForLayout`.
+ */
+extern CGPoint TLRelativePointInRect(CGPoint point, CGRect rect);
+
 @end

@@ -361,6 +361,17 @@ CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTime)
     return (time - startTime) / (endTime - startTime);
 }
 
+extern CGPoint TLRelativePointInRect(CGPoint point, CGRect rect)
+{
+    CGPoint origin = rect.origin;
+    CGPoint relativePoint = CGPointMake(point.x - origin.x, point.y - origin.y);
+    CGFloat width = CGRectGetWidth(rect);
+    CGFloat height = CGRectGetHeight(rect);
+    relativePoint.x = width == 0 ? 0 : relativePoint.x / width;
+    relativePoint.y = height == 0 ? 0 : relativePoint.y / height;
+    return relativePoint;
+}
+
 CGPoint addPoints(CGPoint point, CGPoint otherPoint)
 {
     return CGPointMake(point.x + otherPoint.x, point.y + otherPoint.y);
