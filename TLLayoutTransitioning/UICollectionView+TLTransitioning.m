@@ -29,43 +29,63 @@
 
 CGPoint kTLPlacementAnchorDefault = (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX};
 
+@interface TLCancelLayout : UICollectionViewLayout
+@property (nonatomic) CGPoint contentOffset;
+- (instancetype)initWithLayout:(UICollectionViewLayout *)layout;
+@end
+
 @implementation UICollectionView (TLTransitioning)
 
 #pragma mark - Simulated properties
 
-static char kTLAnimationDurationKey;
-static char kTLAnimationStartTimeKey;
-static char kTLTransitionLayoutKey;
+//static char kTLAnimationDurationKey;
+//static char kTLAnimationStartTimeKey;
+//static char kTLTransitionLayoutKey;
+static char kTLTransitionDataKey;
 static char kTLEasingFunctionKey;
 
-- (NSNumber *)tl_animationDuration
+//- (NSNumber *)tl_animationDuration
+//{
+//    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationDurationKey);
+//}
+//
+//- (void)tl_setAnimationDuration:(NSNumber *)duration
+//{
+//    objc_setAssociatedObject(self, &kTLAnimationDurationKey, duration,
+//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (NSNumber *)tl_animationStartTime
+//{
+//    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationStartTimeKey);
+//}
+//
+//- (void)tl_setAnimationStartTime:(NSNumber *)startTime
+//{
+//    objc_setAssociatedObject(self, &kTLAnimationStartTimeKey, startTime,
+//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+//- (UICollectionViewTransitionLayout *)tl_transitionLayout
+//{
+//    return (UICollectionViewTransitionLayout *)objc_getAssociatedObject(self, &kTLTransitionLayoutKey);
+//}
+//
+//- (void)tl_setTransitionLayout:(UICollectionViewTransitionLayout *)layout
+//{
+//    objc_setAssociatedObject(self, &kTLTransitionLayoutKey, layout,
+//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//
+
+- (NSMutableDictionary *)tl_transitionData
 {
-    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationDurationKey);
+    return objc_getAssociatedObject(self, &kTLTransitionDataKey);
 }
 
-- (void)tl_setAnimationDuration:(NSNumber *)duration
+- (void)tl_setTransitionData:(NSMutableDictionary *)data
 {
-    objc_setAssociatedObject(self, &kTLAnimationDurationKey, duration, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (NSNumber *)tl_animationStartTime
-{
-    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationStartTimeKey);
-}
-
-- (void)tl_setAnimationStartTime:(NSNumber *)startTime
-{
-    objc_setAssociatedObject(self, &kTLAnimationStartTimeKey, startTime, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (UICollectionViewTransitionLayout *)tl_transitionLayout
-{
-    return (UICollectionViewTransitionLayout *)objc_getAssociatedObject(self, &kTLTransitionLayoutKey);
-}
-
-- (void)tl_setTransitionLayout:(UICollectionViewTransitionLayout *)layout
-{
-    objc_setAssociatedObject(self, &kTLTransitionLayoutKey, layout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, &kTLTransitionDataKey, data, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (AHEasingFunction)tl_easingFunction
@@ -84,63 +104,91 @@ static char kTLEasingFunctionKey;
 
 - (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration easing:(AHEasingFunction)easingFunction completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
 {
+    // TODO Automatically cancel in-flight transition?
     if (duration <= 0) {
         [NSException raise:@"" format:@""];//TODO
     }
     [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
-    [self tl_setAnimationDuration:@(duration)];
-    [self tl_setAnimationStartTime:@(CACurrentMediaTime())];
+    NSMutableDictionary *data = [NSMutableDictionary dictionaryWithCapacity:10];
+    data[@"duration"] = @(duration);
+    data[@"startTime"] = @(CACurrentMediaTime());
     [self tl_setEasingFunction:easingFunction];
+    [self tl_setTransitionData:data];
     CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(updateProgress:)];
     [link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     __weak UICollectionView *weakSelf = self;
     UICollectionViewTransitionLayout *transitionLayout = [self startInteractiveTransitionToCollectionViewLayout:layout completion:^(BOOL completed, BOOL finish) {
         __strong UICollectionView *strongSelf = weakSelf;
-        UICollectionViewTransitionLayout *transitionLayout = [self tl_transitionLayout];
+        NSMutableDictionary *data = [strongSelf tl_transitionData];
+        UICollectionViewTransitionLayout *transitionLayout = data[@"transitionLayout"];
         if ([transitionLayout conformsToProtocol:@protocol(TLTransitionAnimatorLayout)]) {
             id<TLTransitionAnimatorLayout>layout = (id<TLTransitionAnimatorLayout>)transitionLayout;
             [layout collectionViewDidCompleteTransitioning:strongSelf completed:completed finish:finish];
         }
-        [strongSelf tl_setAnimationDuration:nil];
-        [strongSelf tl_setAnimationStartTime:nil];
-        [strongSelf tl_setTransitionLayout:nil];
-        [strongSelf tl_setEasingFunction:NULL];
+        [strongSelf tl_setTransitionData:nil];
+        [strongSelf tl_setEasingFunction:nil];
         if (completion) {
             completion(completed, finish);
         }
+        TLCancelLayout *cancelLayout = data[@"cancelLayout"];
+        if (cancelLayout) {
+            self.collectionViewLayout = cancelLayout;
+            self.contentOffset = cancelLayout.contentOffset;
+        }
+        void(^cancelCompletion)() = data[@"cancelCompletion"];
+        if (cancelCompletion) {
+            cancelCompletion();
+        }
         [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
-    [self tl_setTransitionLayout:transitionLayout];
+    data[@"transitionLayout"] = transitionLayout;
+    data[@"link"] = link;
     return transitionLayout;
 }
 
-- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout duration:(NSTimeInterval)duration completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
+- (BOOL)isInteractiveTransitionInProgress
 {
-    return [self transitionToCollectionViewLayout:layout duration:duration easing:nil completion:completion];
+    return [self tl_transitionData] != nil;
+}
+
+- (BOOL)isInteractiveTransitionFinalizing
+{
+    if ([self isInteractiveTransitionInProgress]) {
+        NSMutableDictionary *data = [self tl_transitionData];
+        return data[@"link"] == nil;
+    }
+    return NO;
+}
+
+- (UICollectionViewTransitionLayout *)transitionToCollectionViewLayout:(UICollectionViewLayout *)layout
+                                                              duration:(NSTimeInterval)duration
+                                                            completion:(UICollectionViewLayoutInteractiveTransitionCompletion)completion
+{
+    return [self transitionToCollectionViewLayout:layout duration:duration
+                                           easing:nil completion:completion];
 }
 
 - (void)updateProgress:(CADisplayLink *)link
 {
+    NSMutableDictionary *data = [self tl_transitionData];
     UICollectionViewLayout *layout = self.collectionViewLayout;
     if ([layout isKindOfClass:[UICollectionViewTransitionLayout class]]) {
-        CFTimeInterval startTime = [[self tl_animationStartTime] floatValue];
-        NSTimeInterval duration = [[self tl_animationDuration] floatValue];
+        CFTimeInterval startTime = [data[@"startTime"] floatValue];
+        NSTimeInterval duration = [data[@"duration"] floatValue];
         CFTimeInterval time = duration > 0 ? (link.timestamp - startTime) / duration : 1;
         time = MIN(1, time);
         time = MAX(0, time);
-        UICollectionViewTransitionLayout *l = (UICollectionViewTransitionLayout *)layout;
+        AHEasingFunction easingFunction = [self tl_easingFunction];
+        CGFloat progress = easingFunction ? easingFunction(time) : time;
+        id l = layout;
+        if ([l respondsToSelector:@selector(setTransitionProgress:time:)]) {
+            [l setTransitionProgress:progress time:time];
+        } else {
+            [l setTransitionProgress:progress];
+        }
+        [l invalidateLayout];
         if (time >= 1) {
             [self finishTransition:link];
-        } else {
-            AHEasingFunction easingFunction = [self tl_easingFunction];
-            CGFloat progress = easingFunction ? easingFunction(time) : time;
-            if ([l isKindOfClass:[TLTransitionLayout class]]) {
-                TLTransitionLayout *transitionLayout = (TLTransitionLayout *)l;
-                [transitionLayout setTransitionProgress:progress time:time];
-            } else {
-                l.transitionProgress = progress;
-            }
-            [l invalidateLayout];
         }
     } else {
         [self finishTransition:link];
@@ -150,12 +198,49 @@ static char kTLEasingFunctionKey;
 - (void)finishTransition:(CADisplayLink *)link
 {
     [link invalidate];
+    NSMutableDictionary *data = [self tl_transitionData];
+    // remove link from transition data as a signal that the transition is finalizing
+    [data removeObjectForKey:@"link"];
     [self finishInteractiveTransition];
+}
+
+- (void)cancelInteractiveTransitionInPlaceWithCompletion:(void (^)())completion
+{
+    NSMutableDictionary *data = [self tl_transitionData];
+    CADisplayLink *link = data[@"link"];
+    UICollectionViewLayout *layout = self.collectionViewLayout;
+    if (completion) {
+        data[@"cancelCompletion"] = completion;
+    }
+    if ([self isInteractiveTransitionInProgress] && ![self isInteractiveTransitionFinalizing]) {
+        id transitionLayout = layout;
+        if ([transitionLayout respondsToSelector:@selector(cancelInPlace)]) {
+            id t = transitionLayout;
+            // must call prepareLayout before cancelling because progress has been
+            // udpated at this point but prepareLayout has not been called
+            [t prepareLayout];
+            [t cancelInPlace];
+        }
+        TLCancelLayout *cancelLayout = [[TLCancelLayout alloc] initWithLayout:transitionLayout];
+        data[@"cancelLayout"] = cancelLayout;
+        if ([transitionLayout respondsToSelector:@selector(setTransitionProgress:time:)]) {
+            [transitionLayout setTransitionProgress:0.f time:0.f];
+        } else {
+            [transitionLayout setTransitionProgress:0.f];
+        }
+        self.contentOffset = cancelLayout.contentOffset;
+        [transitionLayout invalidateLayout];
+        [link invalidate];
+        // remove link from transition data as a signal that the transition is finalizing
+        [data removeObjectForKey:@"link"];
+        [self cancelInteractiveTransition];
+    }
 }
 
 #pragma mark - Calculating transition values
 
-CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat finalValue, AHEasingFunction easingFunction)
+CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue,
+                           CGFloat finalValue, AHEasingFunction easingFunction)
 {
     CGFloat p = (currentValue - initialValue) / (finalValue - initialValue);
     p = MIN(1.0, p);
@@ -189,8 +274,10 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
     CGRect toFrame = CGRectNull;
     if (indexPaths.count) {
         for (NSIndexPath *indexPath in indexPaths) {
-            UICollectionViewLayoutAttributes *fromPose = [layout.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
-            UICollectionViewLayoutAttributes *toPose = [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *fromPose =
+                    [layout.currentLayout layoutAttributesForItemAtIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *toPose =
+                    [layout.nextLayout layoutAttributesForItemAtIndexPath:indexPath];
             fromFrame = CGRectUnion(fromFrame, fromPose.frame);
             toFrame = CGRectUnion(toFrame, toPose.frame);
         }
@@ -239,7 +326,8 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
             translatedToFrameUnion.origin.x -= minimalToContentOffset.x;
             translatedToFrameUnion.origin.y -= minimalToContentOffset.y;
             // now calculate the minimal offset that maximizes this frame's visibility
-            CGPoint maximalIntersectionOffset = minimalOffsetForMaximalIntersection(placementFrame, translatedToFrameUnion);
+            CGPoint maximalIntersectionOffset =
+                    minimalOffsetForMaximalIntersection(placementFrame, translatedToFrameUnion);
             minimalToContentOffset.x -= maximalIntersectionOffset.x;
             minimalToContentOffset.y -= maximalIntersectionOffset.y;
             return minimalToContentOffset;
@@ -422,3 +510,73 @@ CGFloat linearOffset(CGFloat spaceBeforeChild, CGFloat spaceAfterChild)
 }
 
 @end
+
+#pragma mark - TLCancelLayout implementation
+
+@interface TLCancelLayout ()
+@property (copy, nonatomic) NSArray *poses;
+@property (copy, nonatomic) NSDictionary *posesByIndexPath;
+@property (nonatomic) CGSize contentSize;
+@end
+
+@implementation TLCancelLayout
+
+- (instancetype)initWithLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super init]) {
+        CGRect rect = (CGRect){{0, 0}, [layout collectionViewContentSize]};
+        _poses = [layout layoutAttributesForElementsInRect:rect];
+        _posesByIndexPath = [TLCancelLayout posesByIndexPathForPoses:_poses];
+        _contentSize = [layout collectionViewContentSize];
+        _contentOffset = layout.collectionView.contentOffset;
+    }
+    return self;
+}
+
++ (NSDictionary *)posesByIndexPathForPoses:(NSArray *)poses
+{
+    NSMutableDictionary *posesByIndexPath = [NSMutableDictionary dictionaryWithCapacity:[poses count]];
+    for (UICollectionViewLayoutAttributes *pose in poses) {
+        posesByIndexPath[pose.indexPath] = pose;
+    }
+    return posesByIndexPath;
+}
+
+- (CGSize)collectionViewContentSize
+{
+    return self.contentSize;
+}
+
+- (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
+{
+    NSMutableArray *poses = [NSMutableArray array];
+    for (UICollectionViewLayoutAttributes *pose in self.poses) {
+        if (CGRectIntersectsRect(rect, pose.frame)) {
+            [poses addObject:pose];
+        }
+    }
+    return poses;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.posesByIndexPath[indexPath];
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds
+{
+    return NO;
+}
+
+@end
+

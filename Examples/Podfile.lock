@@ -1,6 +1,8 @@
 PODS:
+  - AHEasing (1.2)
   - TLIndexPathTools (HEAD based on 0.2.1)
-  - TLLayoutTransitioning (0.0.2)
+  - TLLayoutTransitioning (0.0.2):
+    - AHEasing
 
 DEPENDENCIES:
   - TLIndexPathTools (HEAD)
@@ -11,7 +13,8 @@ EXTERNAL SOURCES:
     :path: ..
 
 SPEC CHECKSUMS:
+  AHEasing: 539ed2ec2d50bf14e0ad66789b4e5a5b048aff8b
   TLIndexPathTools: 396e76177d4e8343d693fa5049aae1be58cefb95
-  TLLayoutTransitioning: dcd6fcd0753e00603cbd71c6ae58a7e3f499c866
+  TLLayoutTransitioning: 90e59a4bf84c361a2bd4af88167264a61df9c220
 
 COCOAPODS: 0.29.0

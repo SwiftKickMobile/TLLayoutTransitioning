@@ -123,6 +123,10 @@ extern CGPoint kTLPlacementAnchorDefault;
                                                               duration:(NSTimeInterval)duration
                                                             completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion __deprecated;
 
+- (BOOL)isInteractiveTransitionInProgress;
+
+- (void)cancelInteractiveTransitionInPlaceWithCompletion:(void(^)())completion;
+
 #pragma mark - Calculating transition values
 
 /**

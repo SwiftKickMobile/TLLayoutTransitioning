@@ -15,6 +15,7 @@
 @property (strong, nonatomic) UICollectionViewFlowLayout *smallLayout;
 @property (strong, nonatomic) UICollectionViewFlowLayout *largeLayout;
 @property (strong, nonatomic) NSArray *colors;
+@property (strong, nonatomic) NSArray *transitionIndexPaths;
 @end
 
 @implementation ResizeCollectionViewController
@@ -62,20 +63,30 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
+    self.transitionIndexPaths = @[indexPath];
     TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:self.easingFunction completion:nil];
     CGPoint toOffset = [collectionView toContentOffsetForLayout:layout
-                                                     indexPaths:@[indexPath]
+                                                     indexPaths:self.transitionIndexPaths
                                                       placement:self.toContentOffset
                                                 placementAnchor:kTLPlacementAnchorDefault
                                                  placementInset:UIEdgeInsetsZero
                                                          toSize:self.collectionView.bounds.size
                                                  toContentInset:self.collectionView.contentInset];
     layout.toContentOffset = toOffset;
+//    __weak ResizeCollectionViewController *weakSelf = self;
+//    [layout setProgressChanged:^(CGFloat progress) {
+//        if (progress >= 0.1 && progress < 1) {
+//            [weakSelf.collectionView cancelInteractiveTransitionInPlaceWithCompletion:^{
+//                NSLog(@"cancel completion");
+//            }];
+//        }
+//    }];
 }
 
 - (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout
 {
-    return [[TLTransitionLayout alloc] initWithCurrentLayout:fromLayout nextLayout:toLayout];
+    TLTransitionLayout *layout = [[TLTransitionLayout alloc] initWithCurrentLayout:fromLayout nextLayout:toLayout];
+    return layout;
 }
 
 @end

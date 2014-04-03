@@ -63,6 +63,13 @@
 @property (readonly, nonatomic) CGFloat transitionTime;
 
 /**
+ 
+ */
+- (void)cancelInPlace;
+
+@property (readonly, nonatomic) BOOL cancelledInPlace;
+
+/**
  Optional callback to modify the interpolated layout attributes. Can be used to
  customize the animation. Return a non-nil value to replace the given `layoutAttributes` 
  with the returned instance.

@@ -23,8 +23,7 @@
     TLIndexPathItem *pinchItem = [[TLIndexPathItem alloc] initWithIdentifier:@"Pinch"
                                                                   sectionName:nil
                                                                cellIdentifier:nil
-                                                                        data:@"Simple interactive pinch transition with content offset control."];
-    
+                                                                        data:@"Simple interactive pinch transition with content offset control."];    
     self.indexPathController.items = @[resizeItem, pinchItem];
 }
 

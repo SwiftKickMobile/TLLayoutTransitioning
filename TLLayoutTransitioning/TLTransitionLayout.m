@@ -41,8 +41,8 @@
 
 - (void)setTransitionProgress:(CGFloat)transitionProgress time:(CGFloat)time
 {
+//    NSLog(@"setTransitionProgress=%f, time=%f", transitionProgress, time);
     if (self.transitionProgress != transitionProgress) {
-//        NSLog(@"progress=%f", transitionProgress);
         self.previousProgress = self.transitionProgress;
         super.transitionProgress = transitionProgress;
         // enforce time range of 0 to 1
@@ -71,6 +71,10 @@
 - (void)prepareLayout
 {
     [super prepareLayout];
+    
+    if (self.cancelledInPlace) {
+        return;
+    };
 
     BOOL reverse = self.previousProgress > self.transitionProgress;
     
@@ -156,6 +160,13 @@
         _toContentOffset = toContentOffset;
         [self invalidateLayout];
     }
+}
+
+#pragma mark - Cancelling in place
+
+- (void)cancelInPlace
+{
+    _cancelledInPlace = YES;
 }
 
 #pragma mark - TLTransitionAnimatorLayout
