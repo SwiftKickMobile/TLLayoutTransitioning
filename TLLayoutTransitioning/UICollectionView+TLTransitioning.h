@@ -27,6 +27,10 @@
 typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
 
     /**
+     */
+    TLTransitionLayoutIndexPathPlacementNone,
+
+    /**
      Sets the content offset such that the center point of the specified cell
      or cells moves as little as possible. For example, use this option to miminimze
      motion of a tapped cell.
