@@ -371,7 +371,9 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue,
     CGFloat minOffsetY = -toContentInset.top;
     
     CGFloat maxOffsetX = toContentInset.right + contentSize.width - placementFrame.size.width;
-    CGFloat maxOffsetY = toContentInset.right + contentSize.height - placementFrame.size.height;
+    CGFloat maxOffsetY = toContentInset.bottom + contentSize.height - placementFrame.size.height;
+    maxOffsetX = MAX(minOffsetX, maxOffsetX);
+    maxOffsetY = MAX(minOffsetY, maxOffsetY);
     
     offset.x = MAX(minOffsetX, offset.x);
     offset.y = MAX(minOffsetY, offset.y);
