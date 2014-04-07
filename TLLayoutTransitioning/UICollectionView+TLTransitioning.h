@@ -127,8 +127,18 @@ extern CGPoint kTLPlacementAnchorDefault;
                                                               duration:(NSTimeInterval)duration
                                                             completion:(UICollectionViewLayoutInteractiveTransitionCompletion) completion __deprecated;
 
+/**
+ Returns `YES` if an interactive transition started by a call to
+ `transitionToCollectionViewLayout` is currently in progress.
+ */
 - (BOOL)isInteractiveTransitionInProgress;
 
+/**
+ Cancels an in-flight transition started by a call to `transitionToCollectionViewLayout`.
+ Can be used to start a new transition before the current transition completes, for example,
+ if the screen rotates while a transition is in progress. NOTE that this method does not
+ currently work with layouts that have supplementary or decorative views.
+ */
 - (void)cancelInteractiveTransitionInPlaceWithCompletion:(void(^)())completion;
 
 #pragma mark - Calculating transition values
