@@ -57,14 +57,28 @@
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     label.text = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     cell.backgroundColor = self.colors[indexPath.item % [self.colors count]];
+    [self updateLabelScale:label cellSize:cell.bounds.size];
     return cell;
+}
+
+- (void)updateLabelScale:(UILabel *)label cellSize:(CGSize)cellSize
+{
+    // update the label's font size as a proportion of the cell's width and
+    // let Auto Layout adjust the label's frame based on the intrinsic content size
+    CGFloat pointSize = cellSize.width * 17 / 128.f;
+    label.font = [UIFont fontWithName:label.font.fontName size:pointSize];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
+    UICollectionViewLayout *toLayout = self.smallLayout == collectionView.collectionViewLayout
+            ? self.largeLayout
+            : self.smallLayout;
     self.transitionIndexPaths = @[indexPath];
-    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout duration:self.duration easing:self.easingFunction completion:nil];
+    TLTransitionLayout *layout = (TLTransitionLayout *)[collectionView transitionToCollectionViewLayout:toLayout
+                                                                                               duration:self.duration
+                                                                                                 easing:self.easingFunction
+                                                                                             completion:nil];
     CGPoint toOffset = [collectionView toContentOffsetForLayout:layout
                                                      indexPaths:self.transitionIndexPaths
                                                       placement:self.toContentOffset
@@ -73,14 +87,16 @@
                                                          toSize:self.collectionView.bounds.size
                                                  toContentInset:self.collectionView.contentInset];
     layout.toContentOffset = toOffset;
-//    __weak ResizeCollectionViewController *weakSelf = self;
-//    [layout setProgressChanged:^(CGFloat progress) {
-//        if (progress >= 0.1 && progress < 1) {
-//            [weakSelf.collectionView cancelInteractiveTransitionInPlaceWithCompletion:^{
-//                NSLog(@"cancel completion");
-//            }];
-//        }
-//    }];
+    __weak ResizeCollectionViewController *weakSelf = self;
+    [layout setUpdateLayoutAttributes:^UICollectionViewLayoutAttributes *(UICollectionViewLayoutAttributes *pose, UICollectionViewLayoutAttributes *fromPose, UICollectionViewLayoutAttributes *toPose, CGFloat progress) {
+        CGSize cellSize = pose.bounds.size;
+        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:pose.indexPath];
+        if (cell) {
+            UILabel *label = (UILabel *)[cell viewWithTag:1];
+            [weakSelf updateLabelScale:label cellSize:cellSize];
+        }
+        return nil;
+    }];
 }
 
 - (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout

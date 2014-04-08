@@ -18,7 +18,7 @@
     TLIndexPathItem *resizeItem = [[TLIndexPathItem alloc] initWithIdentifier:@"Resize"
                                                                   sectionName:nil
                                                                cellIdentifier:nil
-                                                                         data:@"Animated, non-interactive transitioning between layouts with duration, easing curves and content offset control. A better alternative to setCollectionViewLayout."];
+                                                                         data:@"Animated, non-interactive transitioning between layouts with duration, easing curves and content offset control. A better alternative to setCollectionViewLayout. Also demonstrates the use of the progressChanged callback to scale the font size."];
 
     TLIndexPathItem *pinchItem = [[TLIndexPathItem alloc] initWithIdentifier:@"Pinch"
                                                                   sectionName:nil
