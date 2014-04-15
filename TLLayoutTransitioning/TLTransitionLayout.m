@@ -26,6 +26,7 @@
 @interface TLTransitionLayout ()
 @property (nonatomic) BOOL toContentOffsetInitialized;
 @property (strong, nonatomic) NSDictionary *poseAtIndexPath;
+@property (strong, nonatomic) NSDictionary *poseForSupplementaryView;
 @property (nonatomic) CGFloat previousProgress;
 @end
 
@@ -83,6 +84,8 @@
     CGFloat f = 1 - t;
     
     NSMutableDictionary *poses = [NSMutableDictionary dictionary];
+    NSMutableDictionary *supplementaryPoses = [NSMutableDictionary dictionary];
+    
     for (NSInteger section = 0; section < [self.collectionView numberOfSections]; section++) {
         for (NSInteger item = 0; item < [self.collectionView numberOfItemsInSection:section]; item++) {
             
@@ -115,6 +118,35 @@
             
             [poses setObject:pose forKey:key];
         }
+        
+        //header & footer
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:0 inSection:section];
+        NSArray *kinds = @[UICollectionElementKindSectionHeader, UICollectionElementKindSectionFooter];
+        for (NSString* kind in kinds) {
+            UICollectionViewLayoutAttributes *fromPose = self.poseForSupplementaryView ? self.poseForSupplementaryView[kind][indexPath] : [self.currentLayout layoutAttributesForSupplementaryViewOfKind:kind atIndexPath:indexPath];
+            UICollectionViewLayoutAttributes *toPose = [self.nextLayout layoutAttributesForSupplementaryViewOfKind:kind atIndexPath:indexPath];
+            
+            if (fromPose && toPose) {
+                if (!supplementaryPoses[kind]) {
+                    supplementaryPoses[kind] = [NSMutableDictionary new];
+                }
+                
+                UICollectionViewLayoutAttributes *pose = [[[self class] layoutAttributesClass] layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
+                
+                CGFloat originX = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
+                CGFloat originY = f * fromPose.frame.origin.y + t * toPose.frame.origin.y;
+                CGFloat sizeWidth = f * fromPose.frame.size.width + t * toPose.frame.size.width;
+                CGFloat sizeHeight = f * fromPose.frame.size.height + t * toPose.frame.size.height;
+                pose.frame = CGRectMake(originX, originY, sizeWidth, sizeHeight);
+                
+                pose.alpha = f * fromPose.alpha + t * toPose.alpha;
+                
+                //TODO need to interpolate tranforms
+                
+                supplementaryPoses[kind][indexPath] = pose;
+            }
+            
+        }
     }
     self.poseAtIndexPath = poses;
 }
@@ -132,8 +164,22 @@
                 [poses addObject:pose];
             }
         }
+        for (NSString* kind in [self.poseForSupplementaryView allKeys]) {
+            for (NSIndexPath *path in [self.poseForSupplementaryView[kind] allKeys]) {
+                UICollectionViewLayoutAttributes *pose = self.poseForSupplementaryView[kind][path];
+                CGRect intersection = CGRectIntersection(rect, pose.frame);
+                if (!CGRectIsEmpty(intersection)) {
+                    [poses addObject:pose];
+                }
+            }
+        }
     }
     return poses;
+}
+
+-(UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    return self.poseForSupplementaryView[kind][indexPath];
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
