@@ -149,7 +149,33 @@
     
     pose.alpha = f * fromPose.alpha + t * toPose.alpha;
 
-    // TODO need to interpolate tranforms
+    CGAffineTransform transform = CGAffineTransformIdentity;
+    transform.a = f * fromPose.transform.a + t * toPose.transform.a;
+    transform.b = f * fromPose.transform.b + t * toPose.transform.b;
+    transform.c = f * fromPose.transform.c + t * toPose.transform.c;
+    transform.d = f * fromPose.transform.d + t * toPose.transform.d;
+    transform.tx = f * fromPose.transform.tx + t * toPose.transform.tx;
+    transform.ty = f * fromPose.transform.ty + t * toPose.transform.ty;
+    pose.transform = transform;
+    
+    CATransform3D transform3D = CATransform3DIdentity;
+    transform3D.m11 = f * fromPose.transform3D.m11 + t * toPose.transform3D.m11;
+    transform3D.m12 = f * fromPose.transform3D.m12 + t * toPose.transform3D.m12;
+    transform3D.m13 = f * fromPose.transform3D.m13 + t * toPose.transform3D.m13;
+    transform3D.m14 = f * fromPose.transform3D.m14 + t * toPose.transform3D.m14;
+    transform3D.m21 = f * fromPose.transform3D.m21 + t * toPose.transform3D.m21;
+    transform3D.m22 = f * fromPose.transform3D.m22 + t * toPose.transform3D.m22;
+    transform3D.m23 = f * fromPose.transform3D.m23 + t * toPose.transform3D.m23;
+    transform3D.m24 = f * fromPose.transform3D.m24 + t * toPose.transform3D.m24;
+    transform3D.m31 = f * fromPose.transform3D.m31 + t * toPose.transform3D.m31;
+    transform3D.m32 = f * fromPose.transform3D.m32 + t * toPose.transform3D.m32;
+    transform3D.m33 = f * fromPose.transform3D.m33 + t * toPose.transform3D.m33;
+    transform3D.m34 = f * fromPose.transform3D.m34 + t * toPose.transform3D.m34;
+    transform3D.m41 = f * fromPose.transform3D.m41 + t * toPose.transform3D.m41;
+    transform3D.m42 = f * fromPose.transform3D.m42 + t * toPose.transform3D.m42;
+    transform3D.m43 = f * fromPose.transform3D.m43 + t * toPose.transform3D.m43;
+    transform3D.m44 = f * fromPose.transform3D.m44 + t * toPose.transform3D.m44;
+    pose.transform3D = transform3D;
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect
