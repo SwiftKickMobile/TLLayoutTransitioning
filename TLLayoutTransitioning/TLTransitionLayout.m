@@ -232,7 +232,7 @@
 
 - (id)keyForIndexPath:(NSIndexPath *)indexPath kind:(NSString *)kind
 {
-    NSString *key = [NSString stringWithFormat:@"%d-%d-%@", (int)indexPath.section, (int)indexPath.item, kind];
+    NSString *key = [NSString stringWithFormat:@"%ld-%ld-%@", (long)indexPath.section, (long)indexPath.item, kind];
     return key;
 }
 
