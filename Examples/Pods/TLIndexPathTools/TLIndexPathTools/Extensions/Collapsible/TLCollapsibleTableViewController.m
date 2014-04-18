@@ -23,7 +23,7 @@
 
 #import "TLCollapsibleTableViewController.h"
 #import "TLCollapsibleHeaderView.h"
-#import "UITableViewController+ScrollOptimizer.h"
+#import "UITableView+ScrollOptimizer.h"
 
 @interface TLCollapsibleTableViewController ()
 
@@ -118,7 +118,7 @@
         [self.delegate controller:self didChangeSection:section collapsed:collapsed];
     }
     if (!collapsed && self.optimizeScrollOnExpand) {
-        [self optimizeScrollPositionForSection:section headerView:headerView dataModel:self.dataModel animated:YES];
+        [self.tableView optimizeScrollPositionForSection:section options:TLTableViewScrollOptionsIncludeHeaderViews animated:YES];
     }
     
     [self configureHeaderView:headerView forSection:section];

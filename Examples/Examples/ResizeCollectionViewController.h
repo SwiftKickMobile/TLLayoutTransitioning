@@ -11,8 +11,10 @@
 #import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 #import "easing.h"
 
-@interface ResizeCollectionViewController : TLCollectionViewController
+@interface ResizeCollectionViewController : TLCollectionViewController <UICollectionViewDelegateFlowLayout>
 @property (nonatomic) CGFloat duration;
 @property (nonatomic) AHEasingFunction easingFunction;
 @property (nonatomic) TLTransitionLayoutIndexPathPlacement toContentOffset;
+@property (nonatomic) BOOL showSectionHeaders;
+
 @end

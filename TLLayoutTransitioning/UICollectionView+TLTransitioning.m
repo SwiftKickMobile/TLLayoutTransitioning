@@ -38,45 +38,8 @@ CGPoint kTLPlacementAnchorDefault = (CGPoint){CGFLOAT_MAX, CGFLOAT_MAX};
 
 #pragma mark - Simulated properties
 
-//static char kTLAnimationDurationKey;
-//static char kTLAnimationStartTimeKey;
-//static char kTLTransitionLayoutKey;
 static char kTLTransitionDataKey;
 static char kTLEasingFunctionKey;
-
-//- (NSNumber *)tl_animationDuration
-//{
-//    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationDurationKey);
-//}
-//
-//- (void)tl_setAnimationDuration:(NSNumber *)duration
-//{
-//    objc_setAssociatedObject(self, &kTLAnimationDurationKey, duration,
-//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
-//- (NSNumber *)tl_animationStartTime
-//{
-//    return (NSNumber *)objc_getAssociatedObject(self, &kTLAnimationStartTimeKey);
-//}
-//
-//- (void)tl_setAnimationStartTime:(NSNumber *)startTime
-//{
-//    objc_setAssociatedObject(self, &kTLAnimationStartTimeKey, startTime,
-//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
-//- (UICollectionViewTransitionLayout *)tl_transitionLayout
-//{
-//    return (UICollectionViewTransitionLayout *)objc_getAssociatedObject(self, &kTLTransitionLayoutKey);
-//}
-//
-//- (void)tl_setTransitionLayout:(UICollectionViewTransitionLayout *)layout
-//{
-//    objc_setAssociatedObject(self, &kTLTransitionLayoutKey, layout,
-//                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-//}
-//
 
 - (NSMutableDictionary *)tl_transitionData
 {

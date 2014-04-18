@@ -136,11 +136,8 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         _ignoreFetchedResultsChanges = ignoreFetchedResultsChanges;
         //if fetch was ever performed, automatically re-perform fetch when
         //ignoring is disabled.
-        //TODO we might want to consider queueing up the incremental changes
-        //that get reported by the backing controller while ignoring is enabled
-        //and not having to perform a full fetch.
         if (NO == ignoreFetchedResultsChanges && self.isFetched) {
-            [self performFetch:nil];
+            self.dataModel = [self convertFetchedObjectsToDataModel];
         }
     }
 }

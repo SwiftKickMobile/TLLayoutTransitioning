@@ -178,7 +178,7 @@
         cell = [[UICollectionViewCell alloc] init];
     }
     UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
-    if (controller) {
+    if (controller && self.establishContainmentRelationshipWithViewControllerForCell) {
         [self addChildViewController:controller];
     }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];

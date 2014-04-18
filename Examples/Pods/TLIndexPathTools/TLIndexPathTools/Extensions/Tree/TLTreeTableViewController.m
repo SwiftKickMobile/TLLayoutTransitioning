@@ -24,6 +24,7 @@
 #import "TLTreeTableViewController.h"
 #import "UITableViewController+ScrollOptimizer.h"
 #import "TLIndexPathSectionInfo.h"
+#import "UITableView+ScrollOptimizer.h"
 
 @interface TLTreeTableViewController ()
 @property (nonatomic) BOOL changingNode;
@@ -43,6 +44,11 @@
 #pragma mark - Manipulating the tree
 
 - (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers
+{
+    [self setNewVersionOfItem:item collapsedChildNodeIdentifiers:collapsedChildNodeIdentifiers optimizeScroll:NO];
+}
+
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers optimizeScroll:(BOOL)optimizeScroll
 {
     NSIndexPath *indexPath = [self.dataModel indexPathForIdentifier:item.identifier];
     if (indexPath) {
@@ -73,6 +79,9 @@
         [mergedCollapsed addObjectsFromArray:collapsedChildNodeIdentifiers];
         self.dataModel = [[TLTreeDataModel alloc] initWithTreeItemSections:newTreeItemSections collapsedNodeIdentifiers:mergedCollapsed];
         self.indexPathController.ignoreDataModelChanges = currentignoreDataModelChanges;
+        if (optimizeScroll) {
+            [self optimizeScrollForNodeAtIndexPath:indexPath];
+        }
     }
 }
 
@@ -92,6 +101,23 @@
         }
     }
     return newTreeItems;
+}
+
+- (void)optimizeScrollForNodeAtIndexPath:(NSIndexPath *)indexPath
+{
+    id identifier = [self.dataModel identifierAtIndexPath:indexPath];
+    if ([self.dataModel.collapsedNodeIdentifiers containsObject:identifier]) {
+        return;
+    }
+    TLIndexPathTreeItem *item = (TLIndexPathTreeItem *)[self.dataModel itemAtIndexPath:indexPath];
+    NSMutableArray *indexPaths = [NSMutableArray arrayWithObject:indexPath];
+    for (TLIndexPathTreeItem *childItem in item.childItems) {
+        NSIndexPath *childIndexPath = [self.dataModel indexPathForItem:childItem];
+        [indexPaths addObject:childIndexPath];
+    }
+    if ([indexPaths count] > 1) {
+        [self.tableView optimizeScrollPositionForIndexPaths:indexPaths options:0 animated:YES];
+    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -141,14 +167,9 @@
             [self.delegate controller:self didChangeNode:item collapsed:collapsed];
         }
         
-        //TODO redesign scroll optimizer to work with tree controller
-        //    if (!collapsed) {
-        //        UIView *headerView = [tableView cellForRowAtIndexPath:indexPath];
-        //        [self optimizeScrollPositionForSection:indexPath.section
-        //                                    headerView:headerView
-        //                                     dataModel:self.dataModel
-        //                                      animated:YES];
-        //    }
+        if (!collapsed) {
+            [self optimizeScrollForNodeAtIndexPath:indexPath];
+        }
         
         self.changingNode = NO;
     }

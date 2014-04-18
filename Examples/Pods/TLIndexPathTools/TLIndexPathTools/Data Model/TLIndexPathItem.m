@@ -86,4 +86,11 @@
     return [object isEqual:other];
 }
 
+- (id)valueForUndefinedKey:(NSString *)key
+{
+    // return nil instead of the default behavior of throwing an exception so that
+    // items of this type can be mixed into data models that use an `identifierKeyPath`.
+    return nil;
+}
+
 @end

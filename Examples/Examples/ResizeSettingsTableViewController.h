@@ -10,10 +10,12 @@
 #import <TLIndexPathTools/TLTableViewController.h>
 
 @interface ResizeSettingsTableViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
-@property (strong, nonatomic) IBOutlet UISegmentedControl *toContentOffset;
-@property (strong, nonatomic) IBOutlet UIPickerView *easingCurvePicker;
-@property (strong, nonatomic) IBOutlet UISlider *durationSlider;
-@property (strong, nonatomic) IBOutlet UILabel *durationLabel;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *toContentOffset;
+@property (weak, nonatomic) IBOutlet UIPickerView *easingCurvePicker;
+@property (weak, nonatomic) IBOutlet UISlider *durationSlider;
+@property (weak, nonatomic) IBOutlet UILabel *durationLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *showSectionHeaders;
 - (IBAction)durationChanged:(UISlider *)sender;
 - (IBAction)toContentOffsetChanged:(UISegmentedControl *)sender;
+- (IBAction)showSectionHeadersChanged:(UISwitch *)sender;
 @end

@@ -31,7 +31,7 @@
     rows = MAX(rows, 1);
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:rows];
     for (NSInteger i = 0; i < rows; i++) {
-        NSString *identifier = [NSString stringWithFormat:@"%d", i];
+        NSString *identifier = [NSString stringWithFormat:@"%d", (int)i];
         if (i == rows-1) {
             TLIndexPathItem *item = [[TLIndexPathItem alloc] initWithIdentifier:identifier sectionName:nil cellIdentifier:noResultsCellId data:noResultsText];
             [items addObject:item];

@@ -11,6 +11,9 @@
 
 @interface UITableViewController (ScrollOptimizer)
 
-- (void)optimizeScrollPositionForSection:(NSInteger)section headerView:(UIView *)headerView dataModel:(TLIndexPathDataModel *)dataModel animated:(BOOL)animated;
+/**
+ Deprectated. Use the `UITableView+ScrollOptimizer` instead
+ */
+- (void)optimizeScrollPositionForSection:(NSInteger)section headerView:(UIView *)headerView dataModel:(TLIndexPathDataModel *)dataModel animated:(BOOL)animated DEPRECATED_ATTRIBUTE;
 
 @end

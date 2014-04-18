@@ -89,4 +89,16 @@
  */
 - (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell;
 
+/**
+ If set to NO, the view controller will not establish a containment relationship
+ with view controllers instantiated for cells. This option exists because cases have
+ been observed where the collection view can get in a bad state where cells fail
+ to be removed from view as they move offscreen during an interactive transition.
+ This seems to be a collection view bug and no workaround has been found. If you're
+ not experiencing this issue, stick with the default value of YES to retain all of
+ the normal view controller view containment behavior (view appearance calls,
+ screen rotation calls, etc.).
+ */
+@property (nonatomic) BOOL establishContainmentRelationshipWithViewControllerForCell;
+
 @end

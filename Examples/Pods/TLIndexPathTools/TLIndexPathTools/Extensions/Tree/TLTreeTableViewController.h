@@ -66,7 +66,8 @@
  tree with a matching identifier, no change is made. Use this method to lazy load child
  nodes asynchrnously when a node is expanded.
  */
-- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers;
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers optimizeScroll:(BOOL)optimizeScroll;
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers DEPRECATED_ATTRIBUTE;
 
 /**
  A type-safe shortcut for getting and setting the tree data model on the

@@ -41,6 +41,13 @@
 @interface TLTransitionLayout : UICollectionViewTransitionLayout <TLTransitionAnimatorLayout>
 
 /**
+ Initializer with additional `supplementaryKinds` argument used to inform the layout
+ what supplementary view kinds are registered with the collection view. This parameter
+ must be supplied in order to support supplementary views.
+ */
+- (id)initWithCurrentLayout:(UICollectionViewLayout *)currentLayout nextLayout:(UICollectionViewLayout *)newLayout supplementaryKinds:(NSArray *)supplementaryKinds;
+
+/**
  When specified, the content offset will be transitioned from the current value
  to this value.
  */
@@ -63,7 +70,6 @@
 @property (readonly, nonatomic) CGFloat transitionTime;
 
 /**
- 
  */
 - (void)cancelInPlace;
 

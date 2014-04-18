@@ -41,24 +41,27 @@
 - (void)initialize
 {
     if (self.isViewLoaded && self.collectionViewController) {
-        //duration
+        // duration
         self.durationSlider.minimumValue = 0.05;
         self.durationSlider.maximumValue = 2.0;
         self.durationSlider.value = .75;
         [self updateDuration];
         
-        //target content offset
+        // target content offset
         self.toContentOffset.apportionsSegmentWidthsByContent = YES;
         self.toContentOffset.selectedSegmentIndex = 2;
         [self updateToContentOffset];
         
-        //easing curve
+        // easing curve
         self.easingCurvePicker.dataSource = self;
         self.easingCurvePicker.delegate = self;
         self.easingCurveDataModel = [self newEasingCurveDataModel];
         [self.easingCurvePicker selectRow:5 inComponent:0 animated:NO];
         [self.easingCurvePicker selectRow:2 inComponent:1 animated:NO];
         [self updateEasingCurve];
+        
+        // section headers
+        self.collectionViewController.showSectionHeaders = self.showSectionHeaders.isOn;
     }
 }
 
@@ -153,6 +156,12 @@ TLIndexPathItem *curveItem(NSString *name, AHEasingFunction inFunc, AHEasingFunc
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     [self updateEasingCurve];
+}
+
+#pragma mark - Sections
+
+- (IBAction)showSectionHeadersChanged:(UISwitch *)sender {
+    self.collectionViewController.showSectionHeaders = sender.isOn;
 }
 
 @end

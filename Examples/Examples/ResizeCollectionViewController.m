@@ -9,12 +9,14 @@
 #import "ResizeCollectionViewController.h"
 #import <TLLayoutTransitioning/TLTransitionLayout.h>
 #import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
+#import <TLIndexPathTools/TLIndexPathItem.h>
 #import "UIColor+Hex.h"
 
 @interface ResizeCollectionViewController ()
 @property (strong, nonatomic) UICollectionViewFlowLayout *smallLayout;
 @property (strong, nonatomic) UICollectionViewFlowLayout *largeLayout;
 @property (strong, nonatomic) NSArray *colors;
+@property (strong, nonatomic) UIColor *sectionHeaderColor;
 @property (strong, nonatomic) NSArray *transitionIndexPaths;
 @end
 
@@ -34,13 +36,9 @@
     self.largeLayout.minimumInteritemSpacing = self.smallLayout.minimumInteritemSpacing;
     self.largeLayout.itemSize = CGSizeMake(336, 336);
     self.largeLayout.sectionInset = self.smallLayout.sectionInset;
+    self.largeLayout.headerReferenceSize = CGSizeMake(50, 50);
     
-    //set up data model
-    NSMutableArray *items = [[NSMutableArray alloc] init];
-    for (int i = 0; i < 200; i++) {
-        [items addObject:[NSString stringWithFormat:@"%d", i]];
-    }
-    self.indexPathController.items = items;
+    [self updateDataModel];
     
     self.colors = @[
           [UIColor colorWithHexRGB:0xBF0C43],
@@ -49,16 +47,85 @@
           [UIColor colorWithHexRGB:0x127A97],
           [UIColor colorWithHexRGB:0x452B72],
           ];
+    self.sectionHeaderColor = [UIColor colorWithWhite:139.f/255.f alpha:1];
+    
+    self.collectionView.contentInset = UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+- (void)updateDataModel
+{
+    //set up data model
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    if (self.showSectionHeaders) {
+        for (int section = 0; section < 10; section++) {
+            NSString *sectionName = [NSString stringWithFormat:@"Section %d", section];
+            for (int i = 0; i < 20; i++) {
+                NSString *itemName = [NSString stringWithFormat:@"%d-%d", section, i];
+                TLIndexPathItem *item = [[TLIndexPathItem alloc] initWithIdentifier:itemName sectionName:sectionName cellIdentifier:nil data:nil];
+                [items addObject:item];
+            }
+        }
+    } else {
+        for (int i = 0; i < 200; i++) {
+            NSString *itemName = [NSString stringWithFormat:@"%d", i];
+            TLIndexPathItem *item = [[TLIndexPathItem alloc] initWithIdentifier:itemName sectionName:nil cellIdentifier:nil data:nil];
+            [items addObject:item];
+        }
+    }
+    self.indexPathController.items = items;
+}
+
+- (void)setSectionHeaderColor:(UIColor *)sectionHeaderColor
+{
+    _sectionHeaderColor = sectionHeaderColor;
+    [self.collectionView reloadData];
+}
+
+- (void)setShowSectionHeaders:(BOOL)showSectionHeaders
+{
+    if (_showSectionHeaders != showSectionHeaders) {
+        _showSectionHeaders = showSectionHeaders;
+        [self updateDataModel];
+        UIEdgeInsets sectionInset = UIEdgeInsetsZero;
+        if (showSectionHeaders) {
+            sectionInset.top = 10;
+            sectionInset.bottom = 10;
+        }
+        self.largeLayout.sectionInset = sectionInset;
+        self.smallLayout.sectionInset = sectionInset;
+        [self.largeLayout invalidateLayout];
+        [self.smallLayout invalidateLayout];
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
-    label.text = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    label.text = [self.indexPathController.dataModel identifierAtIndexPath:indexPath];
     cell.backgroundColor = self.colors[indexPath.item % [self.colors count]];
     [self updateLabelScale:label cellSize:cell.bounds.size];
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionReusableView *view = [super collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+    if ([UICollectionElementKindSectionHeader isEqualToString:kind]) {
+        UILabel *label = (UILabel *)[view viewWithTag:1];
+        label.text = [self.indexPathController.dataModel sectionNameForSection:indexPath.section];
+        view.backgroundColor = self.sectionHeaderColor;
+        label.textColor = [UIColor whiteColor];
+    }
+    return view;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    if (self.showSectionHeaders) {
+        return CGSizeMake(50, 50);
+    }
+    return CGSizeZero;
 }
 
 - (void)updateLabelScale:(UILabel *)label cellSize:(CGSize)cellSize
@@ -101,7 +168,8 @@
 
 - (UICollectionViewTransitionLayout *)collectionView:(UICollectionView *)collectionView transitionLayoutForOldLayout:(UICollectionViewLayout *)fromLayout newLayout:(UICollectionViewLayout *)toLayout
 {
-    TLTransitionLayout *layout = [[TLTransitionLayout alloc] initWithCurrentLayout:fromLayout nextLayout:toLayout];
+    NSArray *supplementaryKinds = self.showSectionHeaders ? @[UICollectionElementKindSectionHeader] : nil;
+    TLTransitionLayout *layout = [[TLTransitionLayout alloc] initWithCurrentLayout:fromLayout nextLayout:toLayout supplementaryKinds:supplementaryKinds];
     return layout;
 }
 
