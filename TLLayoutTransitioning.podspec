@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
                       rect and point. Useful for the new `placementAnchor` option.
                     * Several bug fixes.
                     DESC
-  s.homepage     = "github.com/wtmoose/TLLayoutTransitioning"                    
+  s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
   s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.0' }
