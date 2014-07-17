@@ -55,9 +55,9 @@
             CGFloat f = 1 - t;
             CGPoint offset = CGPointMake(f * self.fromContentOffset.x + t * self.toContentOffset.x, f * self.fromContentOffset.y + t * self.toContentOffset.y);
             self.collectionView.contentOffset = offset;
-            if (self.progressChanged) {
-                self.progressChanged(transitionProgress);
-            }
+        }
+        if (self.progressChanged) {
+            self.progressChanged(transitionProgress);
         }
     }
 }
