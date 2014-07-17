@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLLayoutTransitioning"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Enhanced transitioning between UICollectionView layouts in iOS."
   s.description  = <<-DESC
                     TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass and a `UICollectionView+TLTransitioning` category that combine to solve a few problems with collection view layout transitioning:
@@ -13,29 +13,13 @@ Pod::Spec.new do |s|
 
                     Check out the demos in the Examples workspace!
                     
-                    Changes in 1.0.0
-                    * Support for supplementary views
-                    * Fine-tune `toContentOffset` even further with additional configuration options:
-                        * `placementAnchor` a relative anchor point for the placement calculation
-                        * `placementInset` an inset of the collection view frame for the placement calculation
-                        * `toSize` the expected final collection view size (allows for transitioning to a different size)
-                        * `toContentInset` the expected final content inset (allows for transitioning to a different inset)
-                    * New Visible placement option: like Minimal, but ensures content visibility
-                    * Ability to cancel the transition in place. Can be used to react smoothly to user input
-                      or screen rotation while the transition is in flight.
-                    * Linear `transitionTime` property added to `TLTransitionLayout` for fine-tuning
-                      transition of elements, such as those that need to follow a different easing curve,
-                      delayed transition start, or different transition duration
-                    * New function `TLConvertTimespace` for transitioning elements with simulated delay
-                      and duration relative to the overall transition progress
-                    * New function `TLRelativePointInRect` for calculating a relative point for a given
-                      rect and point. Useful for the new `placementAnchor` option.
-                    * Several bug fixes.
+                    Changes in 1.0.1
+                    * Invoke `progressChanged` even if `toContentOffset` is not explicitly set.
                     DESC
   s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.0' }
+  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.1' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'
