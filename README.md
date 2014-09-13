@@ -50,6 +50,16 @@ The basic usage is as follows:
 
 Note that the collection view will reset `contentOffset` after the transition is finalized, but as illustrated above, this can be negated by setting it back to `toContentOffset` in the completion block.
 
+####Canceling a Transition
+
+If you want to stop the current transition to start a new one from the current position, you need a way to stop the current transition in-place. Apple provides `finishInteractiveTransition` and `cancelInteractiveTransition` to end a transition, but neither of these stops the transition in-place. So, TLLayoutTransitioning provides such a method:
+
+```Objective-C
+[self.collectionView cancelInteractiveTransitionInPlaceWithCompletion:^(){
+    // initiate new transition in the completion block
+}];
+```
+
 ###UICollectionView+TLTransitioning Category
 
 The `UICollectionView+TLTransitioning` category provides some of useful methods for calculating for interactive transitions. In particular, the `toContentOffsetForLayout:indexPaths:placement` API calculates final content offset values to achieve Minimal, Visible, Center, Top, Left, Bottom or Right placements for one or more index paths. The expanded version of this API provides for even further fine-tuning and supports transitioning to a different collection view size and content inset:

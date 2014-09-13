@@ -71,7 +71,6 @@ static char kTLEasingFunctionKey;
     if (duration <= 0) {
         [NSException raise:@"" format:@""];//TODO
     }
-    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
     NSMutableDictionary *data = [NSMutableDictionary dictionaryWithCapacity:10];
     data[@"duration"] = @(duration);
     data[@"startTime"] = @(CACurrentMediaTime());
@@ -102,7 +101,6 @@ static char kTLEasingFunctionKey;
         if (cancelCompletion) {
             cancelCompletion();
         }
-        [[UIApplication sharedApplication] endIgnoringInteractionEvents];
     }];
     data[@"transitionLayout"] = transitionLayout;
     data[@"link"] = link;
