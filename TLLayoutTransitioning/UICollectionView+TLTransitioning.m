@@ -393,6 +393,15 @@ CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress)
     return t * toFloat + f * fromFloat;
 }
 
+UIEdgeInsets TLTransitionInset(UIEdgeInsets fromInset, UIEdgeInsets toInset, CGFloat progress)
+{
+    CGFloat top = TLTransitionFloat(fromInset.top, toInset.top, progress);
+    CGFloat left = TLTransitionFloat(fromInset.left, toInset.left, progress);
+    CGFloat bottom = TLTransitionFloat(fromInset.bottom, toInset.bottom, progress);
+    CGFloat right = TLTransitionFloat(fromInset.right, toInset.right, progress);
+    return UIEdgeInsetsMake(top, left, bottom, right);
+}
+
 CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTime)
 {
     // sanitize input

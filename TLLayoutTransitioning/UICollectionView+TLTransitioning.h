@@ -220,9 +220,14 @@ extern CGRect TLTransitionFrame(CGRect fromFrame, CGRect toFrame, CGFloat progre
 extern CGPoint TLTransitionPoint(CGPoint fromPoint, CGPoint toPoint, CGFloat progress);
 
 /**
- Interpolate between initial and final float vaoues given the transition progress
+ Interpolate between initial and final float values given the transition progress
  */
 extern CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress);
+
+/**
+ Interpolate between initial and final edge insets given the transition progress
+ */
+extern UIEdgeInsets TLTransitionInset(UIEdgeInsets fromInset, UIEdgeInsets toInset, CGFloat progress);
 
 /**
  Converts the current time into a subordinate timespace, usefull for for simulating
