@@ -220,6 +220,11 @@ extern CGRect TLTransitionFrame(CGRect fromFrame, CGRect toFrame, CGFloat progre
 extern CGPoint TLTransitionPoint(CGPoint fromPoint, CGPoint toPoint, CGFloat progress);
 
 /**
+ Interpolate between initial and final sizes given the transition progress
+ */
+extern CGSize TLTransitionSize(CGSize fromSize, CGSize toSize, CGFloat progress);
+
+/**
  Interpolate between initial and final float values given the transition progress
  */
 extern CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress);

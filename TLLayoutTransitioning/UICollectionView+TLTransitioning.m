@@ -386,6 +386,16 @@ CGPoint TLTransitionPoint(CGPoint fromPoint, CGPoint toPoint, CGFloat progress)
     return point;
 }
 
+CGSize TLTransitionSize(CGSize fromSize, CGSize toSize, CGFloat progress)
+{
+    CGFloat t = progress;
+    CGFloat f = 1 - t;
+    CGSize size;
+    size.width = t * toSize.width + f * fromSize.width;
+    size.height = t * toSize.height + f * fromSize.height;
+    return size;
+}
+
 CGFloat TLTransitionFloat(CGFloat fromFloat, CGFloat toFloat, CGFloat progress)
 {
     CGFloat t = progress;
