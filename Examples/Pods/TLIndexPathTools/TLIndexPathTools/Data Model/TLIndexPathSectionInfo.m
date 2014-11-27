@@ -35,7 +35,7 @@
 {
     if (self = [super init]) {
         _name = name;
-        indexTitle = indexTitle;
+        _indexTitle = indexTitle;
         _objects = items;
         _numberOfObjects = items.count;
     }

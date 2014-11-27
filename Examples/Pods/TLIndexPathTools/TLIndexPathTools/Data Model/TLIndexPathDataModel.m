@@ -104,7 +104,11 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     //group items by section name and remove any duplicate identifiers
     for (id item in items) {
         id identifier = [TLIndexPathDataModel identifierForItem:item identifierBlock:identifierBlock];
-        if (!identifier || [itemsByIdentifier objectForKey:identifier]) continue;
+        if ([itemsByIdentifier objectForKey:identifier]) {
+            NSLog(@"WARNING: TLIndexPathDataModel - duplicate identifier '%@'. Duplicate item ignored.", identifier);
+            continue;
+        }
+        if (!identifier) { continue; }
         NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item sectionNameBlock:sectionNameBlock];
         NSMutableArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
         if (!sectionItems) {
@@ -190,13 +194,17 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
                 //immutable. So the strategy will be to make duplicate items behave
                 //just like any other item with the exception that they cannot be
                 //looked up by identifier. TODO this needs to be tested.
-                if (identifier && ![_itemsByIdentifier objectForKey:identifier]) {
-                    [identifiedItems addObject:item];
-                    [_itemsByIdentifier setObject:item forKey:identifier];
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-                    [_identifiersByIndexPath setObject:identifier forKey:[self keyForIndexPath:indexPath]];
-                    [_indexPathsByIdentifier setObject:indexPath forKey:identifier];
-                };
+                if (identifier) {
+                    if ([_itemsByIdentifier objectForKey:identifier]) {
+                        NSLog(@"WARNING: TLIndexPathDataModel - duplicate identifier '%@'. This will cause some data model APIs to return nil.", identifier);
+                    } else {
+                        [identifiedItems addObject:item];
+                        [_itemsByIdentifier setObject:item forKey:identifier];
+                        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+                        [_identifiersByIndexPath setObject:identifier forKey:[self keyForIndexPath:indexPath]];
+                        [_indexPathsByIdentifier setObject:indexPath forKey:identifier];
+                    }
+                }
                 
                 row++;
             }
@@ -360,6 +368,9 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 {
     if ([indexPath class] == [NSIndexPath class]) {
         return indexPath;
+    }
+    if (indexPath == nil) {
+        return nil;
     }
     return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
 }

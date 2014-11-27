@@ -34,6 +34,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 @property (strong, nonatomic) TLIndexPathDataModel *oldDataModel;
 @property (nonatomic) BOOL performingBatchUpdate;
 @property (nonatomic) BOOL pendingConvertFetchedObjectsToDataModel;
+@property (strong, nonatomic) NSMutableArray *updatedItems;
 @end
 
 @implementation TLIndexPathController
@@ -202,6 +203,14 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         }
     }
     TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel];
+    if ([self.updatedItems count]) {
+        // TODO this should probably check for duplicates
+        if (updates.modifiedItems) {
+            [self.updatedItems addObjectsFromArray:updates.modifiedItems];
+        }
+        [updates performSelector:@selector(setModifiedItems:) withObject:self.updatedItems];
+        [self.updatedItems removeAllObjects];
+    }
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
         [self.delegate controller:self didUpdateDataModel:updates];
     }
@@ -284,7 +293,20 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
                                      identifierKeyPath:self.dataModel.identifierKeyPath];
 }
 
+- (NSMutableArray *)updatedItems
+{
+    if (!_updatedItems) {
+        _updatedItems = [NSMutableArray array];
+    }
+    return _updatedItems;
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.updatedItems removeAllObjects];
+}
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
@@ -293,6 +315,13 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
             self.dataModel = [self convertFetchedObjectsToDataModel];
         }
     });
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    if (type == NSFetchedResultsChangeUpdate) {
+        [self.updatedItems addObject:anObject];
+    }
 }
 
 - (NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName

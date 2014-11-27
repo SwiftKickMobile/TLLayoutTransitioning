@@ -118,7 +118,7 @@
         [self.delegate controller:self didChangeSection:section collapsed:collapsed];
     }
     if (!collapsed && self.optimizeScrollOnExpand) {
-        [self.tableView optimizeScrollPositionForSection:section options:TLTableViewScrollOptionsIncludeHeaderViews animated:YES];
+        [self.tableView optimizeScrollPositionForSection:section options:TLTableViewScrollOptionsIncludeHeaderViews topInset:0 animated:YES];
     }
     
     [self configureHeaderView:headerView forSection:section];

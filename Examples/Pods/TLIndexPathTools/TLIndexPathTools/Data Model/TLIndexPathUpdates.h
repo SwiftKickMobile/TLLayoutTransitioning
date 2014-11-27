@@ -31,18 +31,37 @@
  */
 
 @interface TLIndexPathUpdates : NSObject
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *oldDataModel;
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *updatedDataModel;
-@property (strong, nonatomic, readonly) NSArray *insertedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *deletedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *movedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *insertedItems;
-@property (strong, nonatomic, readonly) NSArray *deletedItems;
-@property (strong, nonatomic, readonly) NSArray *movedItems;
-@property (strong, nonatomic, readonly) NSArray *modifiedItems;
+
+#pragma mark - Creating updates
+
+- (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
+#pragma mark - Performing batch updates
+
 - (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
 - (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation completion:(void(^)(BOOL finished))completion;
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
-- (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
+#pragma mark - Customizing batch update behavior
+
+/*
+ If `NO`, modified items will be ignored in the `performBatchUpdates*` methods.
+ This can be useful for updating modified items with custom animation.
+ Default value is `YES`.
+ */
+@property (nonatomic) BOOL updateModifiedItems;
+
+#pragma mark - Comparing data models
+
+@property (strong, readonly, nonatomic) TLIndexPathDataModel *oldDataModel;
+@property (strong, readonly, nonatomic) TLIndexPathDataModel *updatedDataModel;
+@property (readonly, nonatomic) BOOL hasChanges;
+@property (copy, readonly, nonatomic) NSArray *insertedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *deletedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *movedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *insertedItems;
+@property (copy, readonly, nonatomic) NSArray *deletedItems;
+@property (copy, readonly, nonatomic) NSArray *movedItems;
+@property (copy, readonly, nonatomic) NSArray *modifiedItems;
 @end

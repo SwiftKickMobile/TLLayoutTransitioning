@@ -1,1 +1,0 @@
-PODS_TLINDEXPATHTOOLS_OTHER_LDFLAGS = -framework CoreData -framework Foundation -framework QuartzCore -framework UIKit

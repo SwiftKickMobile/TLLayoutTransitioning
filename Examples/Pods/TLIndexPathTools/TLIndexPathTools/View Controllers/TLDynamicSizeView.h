@@ -22,21 +22,31 @@
 //  THE SOFTWARE.
 
 /**
- Cells (and possibly their subviews) can implement this protocol
- to have `TLTableViewController` automatically calculate their dynamic size
- by calling the `sizeWithData:` method on a prototype instance of the cell.
+ Table view cells that implement this protocol will have their dynamic heights
+ calculated automatically by `TLTableViewController` in its 
+ `heightForRow:atIndexPath` implementation.
+ 
+ With Auto Layout, the protocol should only be used as a marker to tell
+ `TLTableViewController` to calculate the dynamic height. The `sizeWithData`
+ method should not be implemented. In the `TLTableViewController` subclass,
+ cell configuration should be one in `tableView:configureCell:atIndexPath:`
+ because the `heightForRow:atIndexPath` implementation needs to configure
+ a prototype instance before calculating the height. See the Dynamic Height
+ example project.
+ 
+ If Auto Layout is not being used, the `sizeWithData` method should be implemented.
  */
 
 #import <Foundation/Foundation.h>
 
 @protocol TLDynamicSizeView <NSObject>
-
+@optional
 /**
- Returns the computed size of the view for the given data.
+ Returns the computed size of the view for the given data. This method only needs
+ to be implemented when Auto Layout is not being used.
  
  @param data  data that affects the view's size
  @return the computed size of the view
  */
 - (CGSize) sizeWithData:(id)data;
-
 @end

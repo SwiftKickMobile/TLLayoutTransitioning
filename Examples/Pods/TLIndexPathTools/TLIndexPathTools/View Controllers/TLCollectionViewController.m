@@ -26,6 +26,7 @@
 
 @interface TLCollectionViewController ()
 @property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
+@property (weak, nonatomic) NSIndexPath *currentCellForItemAtIndexPath;
 @end
 
 @implementation TLCollectionViewController
@@ -60,6 +61,7 @@
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
+    _establishContainmentRelationshipWithViewControllerForCell = YES;
 }
 
 #pragma mark - Index path controller
@@ -138,13 +140,22 @@
     }
     
     if (!controller) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSIndexPath *indexPath = self.currentCellForItemAtIndexPath;
+        if (indexPath == nil) {
+            indexPath = [self.collectionView indexPathForCell:cell];
+        }
         controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
         if (controller) {
             [self setViewController:controller forKey:key];
         }
     }
 
+    return controller;
+}
+
+- (UIViewController *)collectionView:(UICollectionView *)collectionView existingViewControllerForCell:(UICollectionViewCell *)cell {
+    NSString *key = [self instanceId:cell];
+    UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
     return controller;
 }
 
@@ -172,6 +183,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.currentCellForItemAtIndexPath = indexPath;
     NSString *identifier = [self collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (!cell) {
@@ -182,6 +194,7 @@
         [self addChildViewController:controller];
     }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
+    self.currentCellForItemAtIndexPath = nil;
     return cell;
 }
 
@@ -204,7 +217,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    // Check for existing view controller instead of calling `viewControllerForCell` because sometimes this
+    // method can be called with an old index path after a `reloadData` and the wrong view controller
+    // can get returned.
+    UIViewController *controller = [self collectionView:collectionView existingViewControllerForCell:cell];
     [controller removeFromParentViewController];
 }
 
@@ -212,6 +228,7 @@
 
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
+    if (!updates.hasChanges) { return; }
     //only perform batch udpates if view is visible
     if (self.isViewLoaded && self.view.window) {
         [updates performBatchUpdatesOnCollectionView:self.collectionView];

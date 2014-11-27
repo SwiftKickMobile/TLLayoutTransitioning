@@ -28,15 +28,21 @@
 // TODO need to verify that this works with two data models having different
 // configuration properties
 
-@implementation TLIndexPathUpdates
+@interface TLIndexPathUpdates ()
+@property (copy, readwrite, nonatomic) NSArray *modifiedItems;
+@end
 
+@implementation TLIndexPathUpdates
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
 {
     if (self = [super init]) {
         
+        _hasChanges = NO;
+        
         _oldDataModel = oldDataModel;
         _updatedDataModel = updatedDataModel;
+        _updateModifiedItems = YES;
         
         NSMutableArray *insertedSectionNames = [[NSMutableArray alloc] init];
         NSMutableArray *deletedSectionNames = [[NSMutableArray alloc] init];
@@ -56,37 +62,44 @@
         
         NSOrderedSet *oldSectionNames = [NSOrderedSet orderedSetWithArray:oldDataModel.sectionNames];
         NSOrderedSet *updatedSectionNames = [NSOrderedSet orderedSetWithArray:updatedDataModel.sectionNames];
-        
-        // Deleted and moved sections        
+        NSMutableOrderedSet *workingSectionNames = [NSMutableOrderedSet orderedSetWithOrderedSet:oldSectionNames];
+
+        // Deleted sections
         for (NSString *sectionName in oldSectionNames) {
-            if ([updatedSectionNames containsObject:sectionName]) {
-                NSInteger oldSection = [oldDataModel sectionForSectionName:sectionName];
-                NSInteger updatedSection = [updatedDataModel sectionForSectionName:sectionName];
-                // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
-                if (oldSection != updatedSection) {
-                    [movedSectionNames addObject:sectionName];
-                }
-            } else {
+            if (![updatedSectionNames containsObject:sectionName]) {
                 [deletedSectionNames addObject:sectionName];
+                [workingSectionNames removeObject:sectionName];
             }
         }
-        
+
         // Inserted sections
+        NSInteger index = 0;
         for (NSString *sectionName in updatedSectionNames) {
-            if (![oldSectionNames containsObject:sectionName]) {
+            if ([oldSectionNames containsObject:sectionName]) {
+                NSInteger expectedIndex = [workingSectionNames indexOfObject:sectionName];
+                if (index != expectedIndex) {
+                    // only need to explicitly move sections that are misplaced
+                    // in the working set.
+                    [movedSectionNames addObject:sectionName];
+                    [workingSectionNames removeObject:sectionName];
+                    [workingSectionNames insertObject:sectionName atIndex:index];
+                }
+            } else {
                 [insertedSectionNames addObject:sectionName];
+                [workingSectionNames insertObject:sectionName atIndex:index];
             }
+            index++;
         }
         
         // Deleted and moved items
-        NSOrderedSet *oldItems = [NSOrderedSet orderedSetWithArray:[oldDataModel items]];        
-        for (id item in oldItems) {
+        for (id item in oldDataModel.items) {
             NSIndexPath *oldIndexPath = [oldDataModel indexPathForItem:item];
             NSString *sectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
             if ([updatedDataModel containsItem:item]) {
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
-                //can't rely on isEqual, so must use compare
-                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame) {
+                NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
+                // can't rely on isEqual, so must use compare
+                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame || ![updatedSectionName isEqualToString:sectionName]) {
                     // Don't move items in moved sections
                     if (![movedSectionNames containsObject:sectionName]) {
                         // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
@@ -109,8 +122,7 @@
         }
         
         // Inserted and modified items
-        NSOrderedSet *updatedItems = [NSOrderedSet orderedSetWithArray:[updatedDataModel items]];
-        for (id item in updatedItems) {
+        for (id item in updatedDataModel.items) {
             id oldItem = [oldDataModel currentVersionOfItem:item];
             if (oldItem) {
                 if (![oldItem isEqual:item]) {
@@ -127,6 +139,11 @@
         }
     }
     
+    if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
+        + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
+        _hasChanges = YES;
+    }
+    
     return self;
 }
 
@@ -139,6 +156,9 @@
 {
     if (!self.oldDataModel) {
         [tableView reloadData];
+        if (completion) {
+            completion(YES);
+        }
         return;
     }
 
@@ -151,13 +171,13 @@
         //duplicate animations being applied to cells. This doesn't always look
         //nice, but it is better than a crash.
         
-        if (self.modifiedItems.count) {
+        if (self.modifiedItems.count && self.updateModifiedItems) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
-                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
             }
+            [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
         }
         
         if (completion) {
@@ -186,16 +206,16 @@
         [tableView deleteSections:indexSet withRowAnimation:animation];
     }
     
-    // TODO Disable reordering sections because it may cause duplicate animations
-    // when a item is inserted, deleted, or moved in that section. Need to figure
-    // out how to avoid the duplicate animation.
-    //    if (self.movedSectionNames.count) {
-    //        for (NSString *sectionName in self.movedSectionNames) {
-    //            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
-    //            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
-    //            [tableView moveSection:oldSection toSection:updatedSection];
-    //        }
-    //    }
+//    // TODO Disable reordering sections because it may cause duplicate animations
+//    // when a item is inserted, deleted, or moved in that section. Need to figure
+//    // out how to avoid the duplicate animation.
+//    if (self.movedSectionNames.count) {
+//        for (NSString *sectionName in self.movedSectionNames) {
+//            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
+//            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
+//            [tableView moveSection:oldSection toSection:updatedSection];
+//        }
+//    }
     
     if (self.insertedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -219,7 +239,30 @@
         for (id item in self.movedItems) {
             NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
             NSIndexPath *updatedIndexPath = [self.updatedDataModel indexPathForItem:item];
-            [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            
+            NSString *oldSectionName = [self.oldDataModel sectionNameForSection:oldIndexPath.section];
+            NSString *updatedSectionName = [self.updatedDataModel sectionNameForSection:updatedIndexPath.section];
+            BOOL oldSectionDeleted = [self.deletedSectionNames containsObject:oldSectionName];
+            BOOL updatedSectionInserted = [self.insertedSectionNames containsObject:updatedSectionName];
+            // `UITableView` doesn't support moving an item out of a deleted section
+            // or moving an item into an inserted section. So we use inserts and/or deletes
+            // as a workaround. A better workaround can be employed in client code by
+            // by using empty sections to ensure all sections exist at all times, which
+            // generally results in a better looking animation. When using `TLIndexPathControlelr`,
+            // a good place to implement this workaround is in the `willUpdateDataModel`
+            // delegate method by taking the incoming data model and inserting missing sections
+            // with empty instances of `TLIndexPathSectionInfo`.
+            if (oldSectionDeleted && updatedSectionInserted) {
+                // don't need to do anything
+            } else if (oldSectionDeleted) {
+                [tableView insertRowsAtIndexPaths:@[updatedIndexPath] withRowAnimation:animation];
+            } else if (updatedSectionInserted) {
+                [tableView deleteRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:animation];
+                [tableView insertRowsAtIndexPaths:@[updatedIndexPath] withRowAnimation:animation];
+            } else {
+                [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            }
+
         }
     }
     
@@ -312,7 +355,28 @@
         for (id item in self.movedItems) {
             NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
             NSIndexPath *updatedIndexPath = [self.updatedDataModel indexPathForItem:item];
-            [collectionView moveItemAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            NSString *oldSectionName = [self.oldDataModel sectionNameForSection:oldIndexPath.section];
+            NSString *updatedSectionName = [self.updatedDataModel sectionNameForSection:updatedIndexPath.section];
+            BOOL oldSectionDeleted = [self.deletedSectionNames containsObject:oldSectionName];
+            BOOL updatedSectionInserted = [self.insertedSectionNames containsObject:updatedSectionName];
+            // `UICollectionView` doesn't support moving an item out of a deleted section
+            // or moving an item into an inserted section. So we use inserts and/or deletes
+            // as a workaround. A better workaround can be employed in client code by
+            // by using empty sections to ensure all sections exist at all times, which
+            // generally results in a better looking animation. When using `TLIndexPathControlelr`,
+            // a good place to implement this workaround is in the `willUpdateDataModel`
+            // delegate method by taking the incoming data model and inserting missing sections
+            // with empty instances of `TLIndexPathSectionInfo`.
+            if (oldSectionDeleted && updatedSectionInserted) {
+                // don't need to do anything
+            } else if (oldSectionDeleted) {
+                [collectionView insertItemsAtIndexPaths:@[updatedIndexPath]];
+            } else if (updatedSectionInserted) {
+                [collectionView deleteItemsAtIndexPaths:@[oldIndexPath]];
+                [collectionView insertItemsAtIndexPaths:@[updatedIndexPath]];
+            } else {
+                [collectionView moveItemAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            }
         }
 
     } completion:^(BOOL finished) {
@@ -321,7 +385,7 @@
         // an item is moving and reloading at the same time. The resulting animation
         // can show to versions of the cell, one version remains in the original spot
         // and fades out, while the other version slides to the new location.
-        if (self.modifiedItems.count) {
+        if (self.modifiedItems.count && self.updateModifiedItems) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
@@ -334,6 +398,11 @@
             completion(finished);
         }
     }];    
+}
+
+- (void)setModifiedItems:(NSArray *)modifiedItems
+{
+    _modifiedItems = [modifiedItems copy];
 }
 
 @end
