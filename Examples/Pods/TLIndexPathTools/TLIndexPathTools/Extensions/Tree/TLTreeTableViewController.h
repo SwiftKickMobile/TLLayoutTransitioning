@@ -39,10 +39,15 @@
 @optional
 
 /**
+ Gives the delegate an opportunity to decide if a node should be expanded or collapsed when selected.
+ */
+- (BOOL)controller:(TLTreeTableViewController *)controller shouldChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
+
+/**
  Gives the delegate an opportunity to make changes before the node is expanded.
  This can be used to lazy load child items on expand or prune child items on collapse
  with a call to `setNewVersionOfItem:collapsedChildNodeIdentifiers`.
- 
+
  If the app needs to load child nodes asynchronously, this method should be used to initiate
  the fetch and then call `setNewVersionOfItem:collapsedChildNodeIdentifiers` in the
  completion handler of the fetch.

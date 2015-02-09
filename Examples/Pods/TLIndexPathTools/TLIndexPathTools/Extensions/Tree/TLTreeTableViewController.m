@@ -116,7 +116,7 @@
         [indexPaths addObject:childIndexPath];
     }
     if ([indexPaths count] > 1) {
-        [self.tableView optimizeScrollPositionForIndexPaths:indexPaths options:0 animated:YES];
+        [self.tableView optimizeScrollPositionForIndexPaths:indexPaths options:0 topInset:0 animated:YES];
     }
 }
 
@@ -130,12 +130,18 @@
     //perform the expand/collapse logic on non-leaf nodes
     if (item.childItems) {
         
-        self.changingNode = YES;
-        
         NSMutableArray *collapsedNodeIdentifiers = [NSMutableArray arrayWithArray:self.dataModel.collapsedNodeIdentifiers];
         //`collapsed` represents the __new__ state
         BOOL collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
-        
+
+        if ([self.delegate respondsToSelector:@selector(controller:shouldChangeNode:collapsed:)]) {
+            if (![self.delegate controller:self shouldChangeNode:item collapsed:collapsed]) {
+                return;
+            }
+        }
+
+        self.changingNode = YES;
+
         if ([self.delegate respondsToSelector:@selector(controller:willChangeNode:collapsed:)]) {
             [self.delegate controller:self willChangeNode:item collapsed:collapsed];
         }

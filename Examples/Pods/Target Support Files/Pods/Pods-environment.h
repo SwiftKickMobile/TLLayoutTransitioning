@@ -16,7 +16,7 @@
 #define COCOAPODS_POD_AVAILABLE_TLIndexPathTools
 #define COCOAPODS_VERSION_MAJOR_TLIndexPathTools 0
 #define COCOAPODS_VERSION_MINOR_TLIndexPathTools 3
-#define COCOAPODS_VERSION_PATCH_TLIndexPathTools 8
+#define COCOAPODS_VERSION_PATCH_TLIndexPathTools 9
 
 // TLLayoutTransitioning
 #define COCOAPODS_POD_AVAILABLE_TLLayoutTransitioning

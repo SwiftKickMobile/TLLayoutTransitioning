@@ -143,7 +143,7 @@
     CGRect bounds = CGRectZero;
     bounds.size.width = f * fromPose.bounds.size.width + t * toPose.bounds.size.width;
     bounds.size.height = f * fromPose.bounds.size.height + t * toPose.bounds.size.height;
-    pose.frame = bounds;
+    pose.bounds = bounds;
  
     CGPoint center = CGPointZero;
     center.x = f * fromPose.center.x + t * toPose.center.x;

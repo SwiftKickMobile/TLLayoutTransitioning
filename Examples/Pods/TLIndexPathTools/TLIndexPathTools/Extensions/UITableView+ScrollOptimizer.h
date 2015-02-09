@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef NS_ENUM(NSInteger, TLTableViewScrollOptions) {
+    TLTableViewScrollOptionsNone = 0,
     /**
      Include the section headers of the given `indexPaths when in calculating the
      optimal `contentOffset`.
