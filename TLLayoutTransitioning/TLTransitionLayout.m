@@ -140,12 +140,15 @@
 
 - (void)interpolatePose:(UICollectionViewLayoutAttributes *)pose fromPose:(UICollectionViewLayoutAttributes *)fromPose toPose:(UICollectionViewLayoutAttributes *)toPose fromProgress:(CGFloat)f toProgress:(CGFloat)t
 {
-    CGRect frame = CGRectZero;
-    frame.origin.x = f * fromPose.frame.origin.x + t * toPose.frame.origin.x;
-    frame.origin.y = f * fromPose.frame.origin.y + t * toPose.frame.origin.y;
-    frame.size.width = f * fromPose.frame.size.width + t * toPose.frame.size.width;
-    frame.size.height = f * fromPose.frame.size.height + t * toPose.frame.size.height;
-    pose.frame = frame;
+    CGRect bounds = CGRectZero;
+    bounds.size.width = f * fromPose.bounds.size.width + t * toPose.bounds.size.width;
+    bounds.size.height = f * fromPose.bounds.size.height + t * toPose.bounds.size.height;
+    pose.frame = bounds;
+ 
+    CGPoint center = CGPointZero;
+    center.x = f * fromPose.center.x + t * toPose.center.x;
+    center.y = f * fromPose.center.y + t * toPose.center.y;
+    pose.center = center;
     
     pose.alpha = f * fromPose.alpha + t * toPose.alpha;
 
