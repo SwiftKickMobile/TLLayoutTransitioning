@@ -75,6 +75,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
                 self.collectionView.contentOffset = self.transitionLayout.fromContentOffset;
             }
             self.transitionLayout = nil;
+            self.pinch.enabled = YES;
         }];
         
         NSArray *visiblePoses = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:self.collectionView.bounds];
@@ -94,7 +95,7 @@ static const CGFloat kLargeLayoutScale = 2.5;
     }
     
     else {
-        
+        self.pinch.enabled = NO;
         if (self.transitionLayout.transitionProgress > 0.5) {
 //            NSLog(@"finish");
             [self.collectionView finishInteractiveTransition];
