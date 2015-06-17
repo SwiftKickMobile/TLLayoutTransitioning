@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "easing.h"
+#import <AHEasing/easing.h>
 
 typedef NS_ENUM(NSInteger, TLTransitionLayoutIndexPathPlacement) {
 
