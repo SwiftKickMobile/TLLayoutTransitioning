@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import "TLIndexPathUpdates.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Sent to the default notification center whenever a TLIndexPathController changes
  it's content for any reason. `Sender` is `self` and `userInfo` contains the
@@ -62,7 +64,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  @returns an alternative data model to use instead of `updatedDataModel` or `nil` to use `updatedDataModel`
  
  */
-- (TLIndexPathDataModel *)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel *)oldDataModel withDataModel:(TLIndexPathDataModel *)updatedDataModel;
+- (TLIndexPathDataModel *)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel * __nullable)oldDataModel withDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
 
 /**
  Notifies the reciever of batch data model changes.
@@ -193,7 +195,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  @return the index path controller with a default data model representation of the given fetch request
  
  */
-- (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name;
+- (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString * __nullable)sectionNameKeyPath identifierKeyPath:(NSString * __nullable)identifierKeyPath cacheName:(NSString * __nullable)name;
 
 #pragma mark - Configuration information
 /** @name Configuration information */
@@ -209,7 +211,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  Unlike, NSFetchedResultsController, this property is writeable. After changing
  the fetch request, `performFetch:` must be called to trigger updates.
  */
-@property (strong, nonatomic) NSFetchRequest *fetchRequest;
+@property (strong, nonatomic, nullable) NSFetchRequest *fetchRequest;
 
 /**
  The managed object context in which the fetch request is performed.
@@ -217,7 +219,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  Unlike, NSFetchedResultsController, this property is writeable. After changing
  the fetch request, `performFetch:` must be called to trigger updates.
  */
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic, nullable) NSManagedObjectContext *managedObjectContext;
 
 /**
  The name of the file used by this classe's internal NSFetchedResultsController to cache
@@ -226,7 +228,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  Unlike NSFetchedResultsController, this property is writeable. After changing
  the fetch request, `performFetch:` must be called to trigger updates.
  */
-@property (strong, nonatomic) NSString *cacheName;
+@property (strong, nonatomic, nullable) NSString *cacheName;
 
 + (void)deleteCacheWithName:(NSString *)name;
 
@@ -253,7 +255,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  such as `indetifierKeyPath`. If the new data model requires a different configuration,
  set the `dataModel` property directly.
  */
-@property (strong, nonatomic) NSArray *items;
+@property (strong, nonatomic, nullable) NSArray *items;
 
 /**
  The data model representation of the items being tracked by the controller.
@@ -263,7 +265,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  necessarily be the same as the previous data model, provided that the controller's
  delegate is prepared to handle the changes.
  */
-@property (strong, nonatomic) TLIndexPathDataModel *dataModel;
+@property (strong, nonatomic, nullable) TLIndexPathDataModel *dataModel;
 
 #pragma mark - Batch updates
 /** @name Batch updates */
@@ -282,7 +284,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  It is strickly for batch changes to this controller (which may result in batch
  updates happening to the table or collection view through the delegate method).
  */
-- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^ __nullable)(BOOL finished))completion;
 
 #pragma mark - Core Data integration
 /** @name Core Data Integration */
@@ -320,7 +322,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  Returns the underlying core data fetched objects without the application of in-memory
  filtering or sorting.
  */
-@property (strong, nonatomic, readonly) NSArray *coreDataFetchedObjects;
+@property (strong, nonatomic, readonly, nullable) NSArray *coreDataFetchedObjects;
 
 /**
  The in-memory predicate.
@@ -330,7 +332,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  `performFetch:` again after setting this property because the batch updates
  are processed immediately.
  */
-@property (strong, nonatomic) NSPredicate *inMemoryPredicate;
+@property (strong, nonatomic, nullable) NSPredicate *inMemoryPredicate;
 
 /**
  The in-memory sort descriptors.
@@ -340,6 +342,8 @@ extern NSString * kTLIndexPathUpdatesKey;
  to call `performFetch:` again after setting this property because the batch
  updates are processed immediately.
  */
-@property (strong, nonatomic) NSArray *inMemorySortDescriptors;
+@property (strong, nonatomic, nullable) NSArray *inMemorySortDescriptors;
 
 @end
+
+NS_ASSUME_NONNULL_END

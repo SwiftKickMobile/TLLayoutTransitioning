@@ -30,11 +30,17 @@
 
 @interface TLIndexPathUpdates ()
 @property (copy, readwrite, nonatomic) NSArray *modifiedItems;
+@property (readwrite, nonatomic) BOOL hasChanges;
 @end
 
 @implementation TLIndexPathUpdates
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
+{
+    return [self initWithOldDataModel:oldDataModel updatedDataModel:updatedDataModel modificationComparatorBlock:nil];
+}
+
+- (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel modificationComparatorBlock:(BOOL(^ __nullable)(id item1, id item2))modificationComparatorBlock
 {
     if (self = [super init]) {
         
@@ -125,7 +131,14 @@
         for (id item in updatedDataModel.items) {
             id oldItem = [oldDataModel currentVersionOfItem:item];
             if (oldItem) {
-                if (![oldItem isEqual:item]) {
+                BOOL modified = NO;
+                if (modificationComparatorBlock) {
+                    modified = modificationComparatorBlock(item, oldItem);
+                } else {
+                    modified = ![oldItem isEqual:item];
+                }
+                
+                if (modified) {
                     [modifiedItems addObject:item];
                 }
             } else {
@@ -137,11 +150,11 @@
                 }
             }
         }
-    }
-    
-    if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
-        + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
-        _hasChanges = YES;
+
+        if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
+            + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
+            _hasChanges = YES;
+        }
     }
     
     return self;
@@ -403,6 +416,7 @@
 - (void)setModifiedItems:(NSArray *)modifiedItems
 {
     _modifiedItems = [modifiedItems copy];
+    self.hasChanges = self.hasChanges || _modifiedItems.count != 0;
 }
 
 @end

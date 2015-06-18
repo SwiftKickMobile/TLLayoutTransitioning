@@ -24,6 +24,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  An implementation of the `NSFetchedResultsSectionInfo` protocol. `TLIndexPathDataModel`
  uses this class to organize data into sections. You can also explicitly create these
@@ -32,10 +34,12 @@
  */
 
 @interface TLIndexPathSectionInfo : NSObject <NSFetchedResultsSectionInfo>
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *indexTitle;
+@property (nonatomic, readonly, nullable) NSString *name;
+@property (nonatomic, readonly, nullable) NSString *indexTitle;
 @property (nonatomic, readonly) NSUInteger numberOfObjects;
 @property (nonatomic, readonly) NSArray *objects;
-- (instancetype)initWithItems:(NSArray *)items name:(NSString *)name;
-- (instancetype)initWithItems:(NSArray *)items name:(NSString *)name indexTitle:(NSString *)indexTitle;
+- (instancetype)initWithItems:(NSArray *)items name:(NSString * __nullable)name;
+- (instancetype)initWithItems:(NSArray *)items name:(NSString * __nullable)name indexTitle:(NSString * __nullable)indexTitle;
 @end
+
+NS_ASSUME_NONNULL_END

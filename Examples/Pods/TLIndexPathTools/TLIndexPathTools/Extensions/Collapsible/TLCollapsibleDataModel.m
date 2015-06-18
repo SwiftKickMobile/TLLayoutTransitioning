@@ -45,7 +45,7 @@
     NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:backingDataModel.numberOfSections];
     for (id<NSFetchedResultsSectionInfo>backingSectionInfo in backingDataModel.sections) {
         if ([collapsedSectionNames containsObject:backingSectionInfo.name]) {
-            TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:nil name:backingSectionInfo.name indexTitle:backingSectionInfo.indexTitle];
+            TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:@[] name:backingSectionInfo.name indexTitle:backingSectionInfo.indexTitle];
             [sectionInfos addObject:sectionInfo];
         } else {
             [sectionInfos addObject:backingSectionInfo];

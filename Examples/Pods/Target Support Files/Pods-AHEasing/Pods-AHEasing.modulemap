@@ -1,0 +1,6 @@
+framework module AHEasing {
+  umbrella header "Pods-AHEasing-umbrella.h"
+
+  export *
+  module * { export * }
+}
