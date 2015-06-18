@@ -1,4 +1,4 @@
-//
+
 //  TLTableViewController.m
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
@@ -24,6 +24,7 @@
 #import "TLTableViewController.h"
 #import "TLIndexPathItem.h"
 #import "TLDynamicSizeView.h"
+#import "TLDynamicHeightCell.h"
 
 @interface TLTableViewController ()
 @property (strong, nonatomic) NSMutableDictionary *prototypeCells;
@@ -40,6 +41,9 @@
     if (self = [super initWithCoder:aDecoder]) {
         [self initialize];
     }
+    // Temporary workaround for "Unknown class TLDynamicHeightCell in Interface Builder file."
+    // error. Still trying to figure that one out, but any reference to this class in code resolves it.
+    [TLDynamicHeightCell class];
     return self;
 }
 
@@ -59,11 +63,17 @@
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+}
+
 - (void)initialize
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
     _rowAnimationStyle = UITableViewRowAnimationFade;
+//    [TLDynamicHeightCell class];
 }
 
 #pragma mark - Index path controller
@@ -257,6 +267,11 @@
                 CGFloat separatorHeight = tableView.separatorStyle == UITableViewCellSeparatorStyleNone ? 0 : 1 / [UIScreen mainScreen].scale;
                 return systemSize.height + separatorHeight;
             }
+        } else if (CGRectIsEmpty(cell.bounds)) {
+            // Fix for adaptive storyboards. New adaptive storyboards (created in iOS8 or later),
+            // which dequeue cells with empty bounds. If we see empty bounds, then fall back
+            // (or perhaps forward) to self-sizing cells
+            return UITableViewAutomaticDimension;
         } else {
             return cell.bounds.size.height;
         }

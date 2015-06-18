@@ -1,6 +1,8 @@
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AHEasing" "${PODS_ROOT}/Headers/Public/TLIndexPathTools" "${PODS_ROOT}/Headers/Public/TLLayoutTransitioning"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AHEasing" -isystem "${PODS_ROOT}/Headers/Public/TLIndexPathTools" -isystem "${PODS_ROOT}/Headers/Public/TLLayoutTransitioning"
-OTHER_LDFLAGS = -ObjC -l"Pods-AHEasing" -l"Pods-TLIndexPathTools" -l"Pods-TLLayoutTransitioning" -framework "CoreData" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AHEasing.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/TLIndexPathTools.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/TLLayoutTransitioning.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -framework "AHEasing" -framework "TLIndexPathTools" -framework "TLLayoutTransitioning"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods
 PODS_ROOT = ${SRCROOT}/Pods

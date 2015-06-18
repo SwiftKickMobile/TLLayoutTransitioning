@@ -38,11 +38,13 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface TLIndexPathItem : NSObject
 @property (strong, nonatomic) id identifier;
-@property (strong, nonatomic) NSString *sectionName;
-@property (strong, nonatomic) NSString *cellIdentifier;
-@property (strong, nonatomic) id data;
+@property (strong, nonatomic, nullable) NSString *sectionName;
+@property (strong, nonatomic, nullable) NSString *cellIdentifier;
+@property (strong, nonatomic, nullable) id data;
 
 /**
  Returns YES if the item should be considered modified if the data is modified.
@@ -52,7 +54,7 @@
  */
 @property (nonatomic) BOOL shouldCompareData;
 
-- (id)initWithIdentifier:(id)identifier sectionName:(NSString *)sectionName cellIdentifier:(NSString *)cellIdentifier data:(id)data;
+- (id)initWithIdentifier:(id)identifier sectionName:(NSString * __nullable)sectionName cellIdentifier:(NSString * __nullable)cellIdentifier data:(id __nullable)data;
 
 /**
  Prefixes "data." to the given keyPath.
@@ -65,3 +67,5 @@
 + (NSArray *)identifiersForIndexPathItems:(NSArray *)indexPathItems;
 
 @end
+
+NS_ASSUME_NONNULL_END

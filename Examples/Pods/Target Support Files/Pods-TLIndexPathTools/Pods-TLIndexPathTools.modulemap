@@ -1,0 +1,6 @@
+framework module TLIndexPathTools {
+  umbrella header "Pods-TLIndexPathTools-umbrella.h"
+
+  export *
+  module * { export * }
+}

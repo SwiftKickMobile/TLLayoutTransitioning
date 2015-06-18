@@ -1,0 +1,6 @@
+framework module TLLayoutTransitioning {
+  umbrella header "Pods-TLLayoutTransitioning-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -63,7 +63,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
 {
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:nil sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:identifierKeyPath];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:@[] sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:identifierKeyPath];
     if (self = [self initWithDataModel:dataModel]) {
         //initialize the backing controller with nil sectionNameKeyPath because we don't require
         //items to be sorted by section, but NSFetchedResultsController does.
@@ -156,7 +156,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         self.dataModel = nil;
     }
     
-    else if (![self.items isEqualToArray:items]) {
+    else {
         id last = [items lastObject];
         TLIndexPathDataModel *dataModel;
         if ([last isKindOfClass:[TLIndexPathItem class]]) {
@@ -172,24 +172,21 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 
 - (void)setDataModel:(TLIndexPathDataModel *)dataModel
 {
-    if (![_dataModel isEqual:dataModel]) {
-        
-        //any explicitly set data model overrides pending conversion of fetched objects
-        self.pendingConvertFetchedObjectsToDataModel = NO;
-        
-        //data model may get set multiple times during batch udpates,
-        //so make sure we remember the initial old data model (which will
-        //get cleared in `performUpdates` when the batch updates complete).
-        if (!self.oldDataModel) {
-            self.oldDataModel = _dataModel;
-        }
-        
-        _dataModel = dataModel;
-        
-        //perform udpates immediately unless we're in batch update mode
-        if (!self.performingBatchUpdate) {
-            [self dequeuePendingUpdates];
-        }
+    //any explicitly set data model overrides pending conversion of fetched objects
+    self.pendingConvertFetchedObjectsToDataModel = NO;
+    
+    //data model may get set multiple times during batch udpates,
+    //so make sure we remember the initial old data model (which will
+    //get cleared in `performUpdates` when the batch updates complete).
+    if (!self.oldDataModel) {
+        self.oldDataModel = _dataModel;
+    }
+    
+    _dataModel = dataModel;
+    
+    //perform udpates immediately unless we're in batch update mode
+    if (!self.performingBatchUpdate) {
+        [self dequeuePendingUpdates];
     }
 }
 
@@ -208,7 +205,9 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         if (updates.modifiedItems) {
             [self.updatedItems addObjectsFromArray:updates.modifiedItems];
         }
+        #pragma clang diagnostic ignored "-Wundeclared-selector"
         [updates performSelector:@selector(setModifiedItems:) withObject:self.updatedItems];
+        #pragma clang diagnostic pop
         [self.updatedItems removeAllObjects];
     }
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
