@@ -60,6 +60,8 @@ If you want to stop the current transition to start a new one from the current p
 }];
 ```
 
+You can find out if a transition is currently in progress by checking the `isInteractiveTransitionInProgress` on `UICollectionView`.
+
 ###UICollectionView+TLTransitioning Category
 
 The `UICollectionView+TLTransitioning` category provides some of useful methods for calculating for interactive transitions. In particular, the `toContentOffsetForLayout:indexPaths:placement` API calculates final content offset values to achieve Minimal, Visible, Center, Top, Left, Bottom or Right placements for one or more index paths. The expanded version of this API provides for even further fine-tuning and supports transitioning to a different collection view size and content inset:
