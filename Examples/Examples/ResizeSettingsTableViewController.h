@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TLIndexPathTools/TLTableViewController.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @interface ResizeSettingsTableViewController : UITableViewController <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UISegmentedControl *toContentOffset;

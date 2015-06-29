@@ -7,9 +7,6 @@
 //
 
 #import "ResizeCollectionViewController.h"
-#import <TLLayoutTransitioning/TLTransitionLayout.h>
-#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
-#import <TLIndexPathTools/TLIndexPathItem.h>
 #import "UIColor+Hex.h"
 
 @interface ResizeCollectionViewController ()

@@ -8,10 +8,7 @@
 
 #import "ResizeSettingsTableViewController.h"
 #import "ResizeCollectionViewController.h"
-#import <TLIndexPathTools/TLIndexPathItem.h>
-#import <TLIndexPathTools/TLIndexPathSectionInfo.h>
-#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
-#import "easing.h"
+#import <AHEasing/easing.h>
 
 @interface ResizeSettingsTableViewController ()
 @property (strong, nonatomic) ResizeCollectionViewController *collectionViewController;

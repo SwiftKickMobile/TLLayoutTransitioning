@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLTransitionLayout.h"
+#import "UICollectionView+TLTransitioning.h"
 
 //! Project version number for TLLayoutTransitioning.
 FOUNDATION_EXPORT double TLLayoutTransitioningVersionNumber;

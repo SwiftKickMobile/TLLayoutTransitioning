@@ -7,8 +7,7 @@
 //
 
 #import "PinchCollectionViewController.h"
-#import <TLLayoutTransitioning/TLTransitionLayout.h>
-#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
+#import <TLLayoutTransitioning/TLLayoutTransitioning.h>
 #import "UIColor+Hex.h"
 #import <QuartzCore/QuartzCore.h>
 

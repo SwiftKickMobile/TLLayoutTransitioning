@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TLIndexPathTools/TLCollectionViewController.h>
-#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
-#import "easing.h"
+#import <TLIndexPathTools/TLIndexPathTools.h>
+#import <TLLayoutTransitioning/TLLayoutTransitioning.h>
+#import <AHEasing/easing.h>
 
 @interface ResizeCollectionViewController : TLCollectionViewController <UICollectionViewDelegateFlowLayout>
 @property (nonatomic) CGFloat duration;

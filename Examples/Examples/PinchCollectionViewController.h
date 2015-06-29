@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TLIndexPathTools/TLCollectionViewController.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @interface PinchCollectionViewController : TLCollectionViewController
 @end

@@ -7,7 +7,7 @@
 //
 
 #import "SelectorTableViewController.h"
-#import <TLIndexPathTools/TLIndexPathItem.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @implementation SelectorTableViewController
 

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLLayoutTransitioning"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "Enhanced transitioning between UICollectionView layouts in iOS."
   s.description  = <<-DESC
                     TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass and a `UICollectionView+TLTransitioning` category that combine to solve a few problems with collection view layout transitioning:
@@ -13,15 +13,14 @@ Pod::Spec.new do |s|
 
                     Check out the demos in the Examples workspace!
                     
-                    Changes in 1.0.5
-                    * Support Cocoapoda with or without !use_frameworks directive
-                    * Change project target to dynamic framework to support Carthage
-                    * Fix crash in Pinch example when pinching while transition in progress
+                    Changes in 1.0.6
+                    * Add all the necessary headers to the umbrella header file
+                    * Clean up imports on examples project
                     DESC
   s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.5' }
+  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.6' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'
