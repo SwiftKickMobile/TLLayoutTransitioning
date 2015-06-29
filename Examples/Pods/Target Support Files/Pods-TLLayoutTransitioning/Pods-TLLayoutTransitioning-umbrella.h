@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
 
+#import "TLLayoutTransitioning.h"
 #import "TLTransitionLayout.h"
 #import "UICollectionView+TLTransitioning.h"
 

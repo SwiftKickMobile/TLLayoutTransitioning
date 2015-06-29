@@ -11,7 +11,7 @@ TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass
 
 2. `UICollectionViewLayoutTransition` does not support supplementary views. `TLTransitionLayout` provides support for any supplementary view kinds specified in the initializer.
 
-3. `-[UICollectionView setCollectionViewLayout:animated:completion]` has [serious known bugs][3] in iOS7 and does not provide any animation options. TLLayoutTransitioning provides a robust alternative to this API with support for animation duration, 30+ easing curves and content offset control. This is done by using `CADisplayLink` to drive an interactive `TLTransitionLayout` as a non-interactive animation.
+3. `-[UICollectionView setCollectionViewLayout:animated:completion]` has [serious known bugs][3] in iOS7 and does not provide any animation options. TLLayoutTransitioning provides a robust alternative to this API with support for animation duration, 30+ easing curves and content offset control. This is done by using `CADisplayLink` to drive an interactive `TLTransitionLayout` as a non-interactive animation. Note that this approach may not perform as well as Core Animation with more complex cells.
 
 Check out the demos in the Examples workspace!
 
@@ -88,14 +88,33 @@ where the view controller is configured to provide an instance of `TLTransitionL
 
 ##Installation
 
-If you're not using CocoaPods, copy the following files into your project:
+###Cocoapods
+
+Add the following to your Podfile
+
+    pod 'TLLayoutTransitioning'
+
+###Carthage
+
+Add the following to your Cartfile
+
+    github "wtmoose/TLLayoutTransitioning"
+
+Note that TLLayoutTransitioning has a dependency on AHEasing, which
+does not support Carthage. As a workaround, TLLayoutTransitioning's Cartfile uses the `wtmoose/AHEasing` fork which adds Carthage support.
+
+To request Carthage support for the canonical AHEasing library, consider leaving a comment in favor of reopening the [Add dynamic frameworks support](https://github.com/warrenm/AHEasing/pull/19) pull request.
+
+###Manual
+
+If you're not using a dependency manager, check out the **noframeworks** branch and copy the following files into your project:
 
     TLTransitionLayout.h
     TLTransitionLayout.m
 	UICollectionView+TLTransitionAnimator.h    
 	UICollectionView+TLTransitionAnimator.m
 	
-As well as the following files from [AHEasing][4]:
+And copy the following files from [AHEasing][4]:
 
 	easing.h
 	easing.c

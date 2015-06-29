@@ -21,7 +21,7 @@
 		867497FA18AB3347004E0C51 /* ResizeSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */; };
 		8674982E18AC81BA004E0C51 /* Examples.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8674982D18AC81BA004E0C51 /* Examples.storyboard */; };
 		86CB5A9818AF3C07003039CC /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 86CB5A9718AF3C07003039CC /* Podfile */; };
-		AD20534E4DBDDA8E26A07BB5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E20709635E0E0AD990618822 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		D5B2569580D5C5B0E130C678 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FED88F06586D213F783EC5A9 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +50,7 @@
 		867497F918AB3347004E0C51 /* ResizeSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResizeSettingsTableViewController.m; sourceTree = "<group>"; };
 		8674982D18AC81BA004E0C51 /* Examples.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Examples.storyboard; sourceTree = "<group>"; };
 		86CB5A9718AF3C07003039CC /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E20709635E0E0AD990618822 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FED88F06586D213F783EC5A9 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 				867497B718AB2CB6004E0C51 /* CoreGraphics.framework in Frameworks */,
 				867497B918AB2CB6004E0C51 /* UIKit.framework in Frameworks */,
 				867497B518AB2CB6004E0C51 /* Foundation.framework in Frameworks */,
-				AD20534E4DBDDA8E26A07BB5 /* Pods.framework in Frameworks */,
+				D5B2569580D5C5B0E130C678 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,7 +93,7 @@
 				867497B418AB2CB6004E0C51 /* Foundation.framework */,
 				867497B618AB2CB6004E0C51 /* CoreGraphics.framework */,
 				867497B818AB2CB6004E0C51 /* UIKit.framework */,
-				E20709635E0E0AD990618822 /* Pods.framework */,
+				FED88F06586D213F783EC5A9 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -176,7 +176,7 @@
 				867497AE18AB2CB6004E0C51 /* Frameworks */,
 				867497AF18AB2CB6004E0C51 /* Resources */,
 				8F7AEB3124FF4441A5EF182C /* Copy Pods Resources */,
-				F34A5548C306069501C5F0BE /* Embed Pods Frameworks */,
+				50A2D7CAED4B3B1B31A30C56 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,7 +193,7 @@
 		867497A918AB2CB6004E0C51 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Tractable Labs";
 			};
 			buildConfigurationList = 867497AC18AB2CB6004E0C51 /* Build configuration list for PBXProject "Examples" */;
@@ -229,6 +229,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		50A2D7CAED4B3B1B31A30C56 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7707970664E04B72B186C319 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -257,21 +272,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F34A5548C306069501C5F0BE /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -309,6 +309,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -337,7 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -347,6 +348,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -369,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

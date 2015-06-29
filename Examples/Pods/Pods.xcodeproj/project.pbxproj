@@ -7,535 +7,522 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05D243086BD1409CDCA60259 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB84F48DFFA95CF25080029 /* Foundation.framework */; };
-		066174B75727D79064ED5BF5 /* TLIndexPathController.h in Headers */ = {isa = PBXBuildFile; fileRef = 65255CFE7A32A3D83914F5AC /* TLIndexPathController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0B96604514322F59F231EFDA /* TLDynamicHeightCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ADCED83380CD549C8D161E /* TLDynamicHeightCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0CAB9CA24FDE4179EC2EC9BD /* UITableViewController+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = B87E5452C92DDB5A12344F26 /* UITableViewController+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0D2D80A01380C4AE65F8BD20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2117A8AC870383FBA52EB2A0 /* UIKit.framework */; };
-		195CBB6EB077B66581E21A15 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A6C5CE12E545F7C3EA2C69 /* TLIndexPathSectionInfo.m */; };
-		1D23F2705E436A2DD4C2E098 /* TLDynamicHeightLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 54FD84F08CF22AB47E957918 /* TLDynamicHeightLabelCell.m */; };
-		1D47E6AB92BAFCE783C30E0A /* CAKeyframeAnimation+AHEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A3780D77F1622BAA011A57 /* CAKeyframeAnimation+AHEasing.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		216079E40089116BB036AB8C /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C93CEF7044B4DABD49F6B395 /* UITableViewController+ScrollOptimizer.m */; };
-		2225CF48D2803DA729D1530B /* TLTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D83580B1D6EF2E69AD78E1 /* TLTransitionLayout.m */; };
-		2315D90255100D7F40EAE47F /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BB9735A17FD20CBFFAF020 /* TLIndexPathDataModel.m */; };
-		24470C7CB8E1F0D2ACD634D8 /* TLNoResultsTableDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = DAA93735CB49EE83921C3AD8 /* TLNoResultsTableDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		29743A68FE871DAD83C7A67D /* Pods-TLLayoutTransitioning-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CFAE3D6EA723BB0001338516 /* Pods-TLLayoutTransitioning-dummy.m */; };
-		43F0944E2B8A9E62611E6C88 /* Pods-AHEasing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C984B5D0C53C417E947BE782 /* Pods-AHEasing-dummy.m */; };
-		4470196D6CE66BF137420BF2 /* TLTreeDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = FACE4114AF91F64902259DAE /* TLTreeDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4E2B9A83422E9A3BA7074049 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB84F48DFFA95CF25080029 /* Foundation.framework */; };
-		4F98E5F2B2589E12BD11D9F1 /* TLIndexPathTreeItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 250D0937619FE29A9C504926 /* TLIndexPathTreeItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		560CEC7EC358C4BE7A24322A /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 07A41E4AC145C41C54FF5BC2 /* TLIndexPathController.m */; };
-		58CC2E7703FE7067D4BDB2E3 /* TLCollapsibleTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 4898A5F1DF03E45218C6A742 /* TLCollapsibleTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5D6E0BC1435667986A9BEF7C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB84F48DFFA95CF25080029 /* Foundation.framework */; };
-		6D140D3E29422F9EDFCEAD52 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2045DF4E5E2074867A2E2002 /* TLCollectionViewController.m */; };
-		6E00F5E1A55493DF896E784A /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DD81B1FE6F2660B019BE3F /* TLTreeTableViewController.m */; };
-		70C4800A9C53CB7DFF3BE88C /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C8667DFFB8709535F42630A6 /* Pods-dummy.m */; };
-		74C88B462D6591BCE42108C7 /* TLDynamicSizeView.h in Headers */ = {isa = PBXBuildFile; fileRef = A1DDB3F93022A40169ABAE5B /* TLDynamicSizeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7A8A9F1172370E23C1CBB292 /* TLCollapsibleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1FF6346654FC679748CCD3 /* TLCollapsibleHeaderView.m */; };
-		7D84CC65972E7CCAC3E48C07 /* TLIndexPathUpdates.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ECDD60D3F203AA3769FFEA5 /* TLIndexPathUpdates.m */; };
-		8398FD7A94D2C708C21B6896 /* AHEasing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72E90074C373CACC507E2896 /* AHEasing.framework */; };
-		83ECA7D5016D443DD427B287 /* TLTreeTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = FFD7683EB7AD3BB908213B08 /* TLTreeTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8837D4A0D0571D36111C276A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2117A8AC870383FBA52EB2A0 /* UIKit.framework */; };
-		88ED3EF547D644314953EBD2 /* TLIndexPathItem.h in Headers */ = {isa = PBXBuildFile; fileRef = B6345928FEDA67A3E632464F /* TLIndexPathItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		895435536E9844785D7D8953 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F847FCBBCD9CD343784EADB /* easing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A0CE780A3F63D82536463FC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C373A9F73A3B01E21F9EE8EA /* CoreData.framework */; };
-		8BC5D978AED89BCC9883141A /* TLCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F2EC6EC6E2A59852265FD3 /* TLCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8ECA8D7FB9198121D1BD7AE7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DB84F48DFFA95CF25080029 /* Foundation.framework */; };
-		906A27AE38801E183BF9FB6D /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = 4E5AAB091F83780AA27DD562 /* easing.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		9B7507FA49C470259C38F4CB /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F87C4E33964B026E3AC4FC /* TLIndexPathItem.m */; };
-		A241B3BEC24B432188B02AFF /* Pods-TLIndexPathTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A800A9E03D9FAD6F7A9A0A /* Pods-TLIndexPathTools-dummy.m */; };
-		A403C2542DFDC18980319543 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4208120928992412A9A4C5A6 /* QuartzCore.framework */; };
-		A4A056D39FFF7A8716D34653 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4208120928992412A9A4C5A6 /* QuartzCore.framework */; };
-		A9C0BE233FF5F5A2ED723889 /* TLIndexPathSectionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3890FC40B843A8ABBB8FB4C1 /* TLIndexPathSectionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ACDFBBB4DFD2AA9C7E35DA65 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08D1E1AF894E7215752503DB /* TLTreeDataModel.m */; };
-		AD911E99A3804E609E47452C /* TLCollapsibleHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = BC1FA45C448013E6112483A4 /* TLCollapsibleHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AF4986B13DE91DDE746C63A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4208120928992412A9A4C5A6 /* QuartzCore.framework */; };
-		B0BA6BC71D8414DCDDF30180 /* TLCollapsibleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = C53AE76E9DE6D1D85C3FD2FB /* TLCollapsibleDataModel.m */; };
-		B0E66623E76D1CCA434B5943 /* TLIndexPathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 009F087DB345764B8C1DCFE7 /* TLIndexPathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4CB47ABB1C98B223794814B /* Pods-TLLayoutTransitioning-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 21C4D457FA01F41858197306 /* Pods-TLLayoutTransitioning-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BAABCC7A9E43FBE32817BE4C /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = B3E6582A55A963EA1655B6B0 /* UITableView+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BC3A6B8511D7EF6699522F06 /* TLCollapsibleDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5105F70FEC2C5EA502BD8CFD /* TLCollapsibleDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C0001F57470556692924BF50 /* TLIndexPathTreeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E994FFEE34F2D930862478 /* TLIndexPathTreeItem.m */; };
-		C9DE3E4EB526DE31DB2F7563 /* Pods-TLIndexPathTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 058FAD20E07D6FF023F12062 /* Pods-TLIndexPathTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CB30430B91A407CF305EEA28 /* CAKeyframeAnimation+AHEasing.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F734510DB7A11934A2EDB31 /* CAKeyframeAnimation+AHEasing.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CC826375F6C7EFCC24F79A27 /* TLTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DD265099C30E72987E87593A /* TLTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CDEAA32EFDA19F5991A4193B /* TLIndexPathUpdates.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B38A04678AA4893E81997D9 /* TLIndexPathUpdates.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D177B05B1FC08E6025444728 /* TLCollapsibleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23940052A4F3D2C720010F3F /* TLCollapsibleTableViewController.m */; };
-		D643A4B3A76D563C2B6D0436 /* TLNoResultsTableDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FC454055204826FF424B82A /* TLNoResultsTableDataModel.m */; };
-		D6991E1DC1A92B02D69B5406 /* TLDynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A64B90068B0D34E4E3CB52BD /* TLDynamicHeightCell.m */; };
-		D904E90C10766E9786CADAE6 /* UICollectionView+TLTransitioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 263E1A417A0CB5B39ED26EC0 /* UICollectionView+TLTransitioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DE5EE83A742703F8E10C5A31 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3481CFA358AB7E081DD4E455 /* TLTableViewController.m */; };
-		E4C3BAA00078F97F93BD18DF /* UICollectionView+TLTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = B127AB619B46C93D1301FF32 /* UICollectionView+TLTransitioning.m */; };
-		E6030827C882D4F26BFF42F5 /* TLTransitionLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A43F5E5B851F911CCA0A909 /* TLTransitionLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E766F6EE735A4D4F66841591 /* TLIndexPathDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = D27EA07830FFFD5AA1639E1F /* TLIndexPathDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		EFD24898DB0058693B273D04 /* TLDynamicHeightLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 94FD0AC0D7B4B8FE8A360387 /* TLDynamicHeightLabelCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F75D94A39ACCF32C8920C9B6 /* Pods-AHEasing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F38E946144AABDB1FCBBBAD9 /* Pods-AHEasing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FCC89E5396CE7FAFBB62842E /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3BEEF68F8B5CA44B2B34AE12 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FEA7006B9183C77BF15D6D3D /* UITableView+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C79EEFB5A91AA67FBD505C /* UITableView+ScrollOptimizer.m */; };
+		0098165485B6141A11AFC357 /* Pods-AHEasing-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 04FE40780C3D773BE65289B8 /* Pods-AHEasing-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		056DA579B492606DB5A6E979 /* TLIndexPathTreeItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 629412419C1F27613BADAA33 /* TLIndexPathTreeItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D3B4EED5AE64B8D8354DFAC /* TLIndexPathTreeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C663C1B15662F8167EC57DF /* TLIndexPathTreeItem.m */; };
+		0D3F5FBCA97BE118BFBB08C7 /* TLDynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 82A54F623EDA23E4D573A534 /* TLDynamicHeightCell.m */; };
+		0EEE91BBA31149ECF8CBEB6F /* TLTreeTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1167D60118E94940DC8D4465 /* TLTreeTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CB46A5D394CB6816520A7EC /* CAKeyframeAnimation+AHEasing.h in Headers */ = {isa = PBXBuildFile; fileRef = A9B697690BC2A639C5135D69 /* CAKeyframeAnimation+AHEasing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		20392C7E5C45705BABBA472D /* TLTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = CBDCBE90F99B5D1BFBA2395C /* TLTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		24A4E1D8D7B7D48DF918D1A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C997FFFF085A6E2483B89E1 /* QuartzCore.framework */; };
+		24E6C0F41ABC4835066D6B67 /* TLIndexPathItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 4148066B460B516B9215EBED /* TLIndexPathItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2A33E09EFBD8030F1B8D3457 /* Pods-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A570C3FB9DCAED9642C5E43 /* Pods-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		2DF3A1F9A62B737CF01D98BA /* Pods-TLIndexPathTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DCF08F10023E289A1DBE35 /* Pods-TLIndexPathTools-dummy.m */; };
+		2EB2268B71C82CBE3EA04FE1 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 47D2E72BC7EE18AB4D5B41C7 /* TLIndexPathDataModel.m */; };
+		343CF7488D51365FB17436BF /* UITableViewController+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 669A74AE3EF652AFC9EB5394 /* UITableViewController+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38F902A89B7337C695E4B9D3 /* UITableView+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 956CA48AC6F3108A3F65FB3B /* UITableView+ScrollOptimizer.m */; };
+		3C9F1DD1A9962CAF5607FBDB /* TLLayoutTransitioning.h in Headers */ = {isa = PBXBuildFile; fileRef = FFB4864863BEB6DA9C85C734 /* TLLayoutTransitioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		407867AE4A6DF1367E3B8776 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C997FFFF085A6E2483B89E1 /* QuartzCore.framework */; };
+		408283A1C6FBE6293A925B60 /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 13009B3E98AD69C9CC517BD7 /* UITableView+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4317636BD5C146733E297DC7 /* Pods-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BE68565C72F4DF5533BB41DB /* Pods-dummy.m */; };
+		46AACE4E40605380B19B8782 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ACA28A5149A974E9C2BC8C /* UIKit.framework */; };
+		50E2CBD42EC1B7F61C90F34D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26F0EFD9DF3818B08B74A3B6 /* CoreData.framework */; };
+		5141E0F2F30441BEF1BDE2CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C997FFFF085A6E2483B89E1 /* QuartzCore.framework */; };
+		514213F8264490B9FFE27C70 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E322FEED7A55785A38616DA /* Foundation.framework */; };
+		51992A18CB6FE8076C672CE2 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DA2A285F40BF7BFAD45425D3 /* TLTreeDataModel.m */; };
+		5413FD12704749FFC576635D /* TLIndexPathUpdates.m in Sources */ = {isa = PBXBuildFile; fileRef = EC966883EC325D743498212A /* TLIndexPathUpdates.m */; };
+		543B3744CAF9774DF3FDB351 /* TLIndexPathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = E431A7FEF079A6AFC4257955 /* TLIndexPathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5655687EF4C3A0CC9D1E8E0F /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59CA96ED19D154763A20CC25 /* TLTreeTableViewController.m */; };
+		5997F2D28B692CD14DBA1152 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1256082214579EED1C836E9 /* TLIndexPathSectionInfo.m */; };
+		5CCA1886322F6C1068741F81 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 72A7003A40623A050F19826A /* TLIndexPathItem.m */; };
+		60FDE4E79E49F45EA0266AC2 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AA349DD608D738AF9415428 /* TLTableViewController.m */; };
+		62E9258AC169FA8AF682FC28 /* TLCollapsibleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2D89E8D944CAAF2D0EFBB /* TLCollapsibleHeaderView.m */; };
+		67B29832FB38473DFBD63909 /* TLNoResultsTableDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F7055B7341C407078B022B1C /* TLNoResultsTableDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6E3C8D170E1B95B952C5E6A9 /* TLNoResultsTableDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = AF56AA2A07BEDBF2040CF9AC /* TLNoResultsTableDataModel.m */; };
+		70116AA27123A3AC5D716632 /* TLCollapsibleDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5479875172BCE39A6402C301 /* TLCollapsibleDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73D8817230955E0B74CE921A /* UICollectionView+TLTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E8AA1A56FB0A8E4CA42E3DB /* UICollectionView+TLTransitioning.m */; };
+		7764F8F544B21964363296AF /* Pods-TLIndexPathTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EA0FDA44ED8B982EEBFA1EB1 /* Pods-TLIndexPathTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7867D29F243A1CA058247E21 /* TLDynamicHeightCell.h in Headers */ = {isa = PBXBuildFile; fileRef = F47A64DE9978147F83346429 /* TLDynamicHeightCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7BAC6AC481807D4AB74791A8 /* Pods-TLLayoutTransitioning-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 084C1551996E9B28DDAB2898 /* Pods-TLLayoutTransitioning-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7EE08A8C2517B1000AC5860C /* TLIndexPathController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F12744A38894B5C771E3425 /* TLIndexPathController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		844C0CCF5887D6A0D404ECB6 /* TLIndexPathDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 015AFED9532437C39471AE24 /* TLIndexPathDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		887696EE535C658F9823D5E8 /* TLDynamicHeightLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = ADA3364CF012D306656873BE /* TLDynamicHeightLabelCell.m */; };
+		89AE0F920E765BDEF4B00674 /* TLCollapsibleTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0A530F9BF32CABA6F95F39 /* TLCollapsibleTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		912F4D4EC247F1E5DE19E99A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E322FEED7A55785A38616DA /* Foundation.framework */; };
+		946D97DEFE268E7BF417C12D /* TLCollapsibleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7FE31D25B79947DAA13D4C /* TLCollapsibleDataModel.m */; };
+		94700632DC41A31A97847A16 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C909F89C48729A34F684F512 /* TLCollectionViewController.m */; };
+		9807AA37854256DDBD2A74A7 /* TLCollapsibleHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = 4FCF9A9C7AC6845116D8EF57 /* TLCollapsibleHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		98A1D0FD4A53467AB996F234 /* Pods-AHEasing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F7CDB79A4F5051B52038584 /* Pods-AHEasing-dummy.m */; };
+		9C713ADCE05C6DDA7E9AFF9F /* UICollectionView+TLTransitioning.h in Headers */ = {isa = PBXBuildFile; fileRef = E46ECCD6BB1594E4835ACFB1 /* UICollectionView+TLTransitioning.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A6A3C51C417F3FAFFDD1B6B8 /* AHEasing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA977B3DFDBC800FE72C0A70 /* AHEasing.framework */; };
+		A9E1EE562ECE9BB3FDA8C5A1 /* TLDynamicSizeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 88602B2A200D6EDBEA7E0EFD /* TLDynamicSizeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AA6B2EA13B59A787D7C86C0F /* TLTreeDataModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7769AEB99C4837EE96DB62D7 /* TLTreeDataModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AF6DC776FA1A069382750789 /* easing.h in Headers */ = {isa = PBXBuildFile; fileRef = 235EBC8D901900DA9862ED78 /* easing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B478D2EE2B2E971F7D6748A9 /* TLCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 7EF7AC424810D1840CB5416F /* TLCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B68DF3D2206936947B0FC595 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E322FEED7A55785A38616DA /* Foundation.framework */; };
+		C24FDB5357E365C4F054A4E4 /* TLTransitionLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 85D5AB27BA4C853CB19BFA5A /* TLTransitionLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C3EB51AD1C780A131DA1C11D /* TLTransitionLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 0593B1D48E743ADC4F593EB9 /* TLTransitionLayout.m */; };
+		C5E91BEA991873596511FA8A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E322FEED7A55785A38616DA /* Foundation.framework */; };
+		C6CD121D7E58767A15855176 /* easing.c in Sources */ = {isa = PBXBuildFile; fileRef = BF6A1C990028D52F78579024 /* easing.c */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		D292D0B5789D018785BC9D8F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2ACA28A5149A974E9C2BC8C /* UIKit.framework */; };
+		D663AB483B0DD1BDE9FD10C5 /* TLCollapsibleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4139E03C960C39CFBF6EF3F6 /* TLCollapsibleTableViewController.m */; };
+		E1D29C059192EDCB3AC0CDB6 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = A09D9D0F9D43472F7450F88E /* UITableViewController+ScrollOptimizer.m */; };
+		E3D46F708FA97B8B494A73D8 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 46001EFAD66EA656AF18FEDE /* TLIndexPathController.m */; };
+		E651631562FDF8D83F6FA0B5 /* CAKeyframeAnimation+AHEasing.m in Sources */ = {isa = PBXBuildFile; fileRef = 76B277D3B656483786F40CE4 /* CAKeyframeAnimation+AHEasing.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		EA9ECFCC71F2770659711E3B /* TLDynamicHeightLabelCell.h in Headers */ = {isa = PBXBuildFile; fileRef = C8FFAF090871F01FD352660E /* TLDynamicHeightLabelCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F0321EE6FEF7B5B2B148DB81 /* TLIndexPathUpdates.h in Headers */ = {isa = PBXBuildFile; fileRef = E444F0A2A26C4C9CC1158955 /* TLIndexPathUpdates.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F581792771765C184A5BB5EE /* TLIndexPathSectionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = BDBFA98DCCFD97579F46BC38 /* TLIndexPathSectionInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FE02800D07733C1B53F4EFB3 /* Pods-TLLayoutTransitioning-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 46372FE2B3EE30B8B6695D2E /* Pods-TLLayoutTransitioning-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		7F0F074CB7368C9ED6521EF0 /* PBXContainerItemProxy */ = {
+		15B29A810E3B12CBD13C66A0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1F5F65CCEABC3A730DCC3590 /* Project object */;
+			containerPortal = 569E60FD3A05B01B0A73409A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 44C8FABC6FC00D4C5E6E9A6D;
+			remoteGlobalIDString = 494B1343C5CA1D79B740E536;
+			remoteInfo = "Pods-AHEasing";
+		};
+		5F1149E8A9BDF5C225A51404 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 569E60FD3A05B01B0A73409A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 494B1343C5CA1D79B740E536;
+			remoteInfo = "Pods-AHEasing";
+		};
+		7AF604F1ACA9F86322D34DB6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 569E60FD3A05B01B0A73409A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E92589F0668090CE77C5ECCB;
 			remoteInfo = "Pods-TLIndexPathTools";
 		};
-		810A0A03F0471FACE0037686 /* PBXContainerItemProxy */ = {
+		C119762065EA832CBC16E524 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1F5F65CCEABC3A730DCC3590 /* Project object */;
+			containerPortal = 569E60FD3A05B01B0A73409A /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 5A17E48002867BD225DFF7C7;
-			remoteInfo = "Pods-AHEasing";
-		};
-		CC534821B349615BD8F2595A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F5F65CCEABC3A730DCC3590 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D9B1DAE9E1C1AC32E7B68E0F;
+			remoteGlobalIDString = A1C8FDAEEA36256181B06E42;
 			remoteInfo = "Pods-TLLayoutTransitioning";
-		};
-		FDFE24048A822281622A51C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1F5F65CCEABC3A730DCC3590 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5A17E48002867BD225DFF7C7;
-			remoteInfo = "Pods-AHEasing";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		009F087DB345764B8C1DCFE7 /* TLIndexPathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathTools.h; path = TLIndexPathTools/TLIndexPathTools.h; sourceTree = "<group>"; };
-		058FAD20E07D6FF023F12062 /* Pods-TLIndexPathTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLIndexPathTools-umbrella.h"; sourceTree = "<group>"; };
-		076409462A4502A57187BB29 /* Pods-TLLayoutTransitioning.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLLayoutTransitioning.xcconfig"; sourceTree = "<group>"; };
-		07A41E4AC145C41C54FF5BC2 /* TLIndexPathController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathController.m; path = TLIndexPathTools/Controllers/TLIndexPathController.m; sourceTree = "<group>"; };
-		08D1E1AF894E7215752503DB /* TLTreeDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTreeDataModel.m; path = TLIndexPathTools/Extensions/Tree/TLTreeDataModel.m; sourceTree = "<group>"; };
-		0AB7474CE3D4439D6EE7F0DD /* Pods-AHEasing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AHEasing.xcconfig"; sourceTree = "<group>"; };
-		0B38A04678AA4893E81997D9 /* TLIndexPathUpdates.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathUpdates.h; path = "TLIndexPathTools/Data Model/TLIndexPathUpdates.h"; sourceTree = "<group>"; };
-		0CF40B2721F92EBCBE35D4FB /* Pods-AHEasing-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AHEasing-Private.xcconfig"; sourceTree = "<group>"; };
-		0E307EBF8F0920C936961B4E /* Pods-AHEasing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AHEasing-prefix.pch"; sourceTree = "<group>"; };
-		10A0E8D9A8F11F6327A2867C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		139A5DF577AFE308E60362C7 /* Pods-TLLayoutTransitioning-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLLayoutTransitioning-prefix.pch"; sourceTree = "<group>"; };
-		2045DF4E5E2074867A2E2002 /* TLCollectionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollectionViewController.m; path = "TLIndexPathTools/View Controllers/TLCollectionViewController.m"; sourceTree = "<group>"; };
-		2117A8AC870383FBA52EB2A0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		21C4D457FA01F41858197306 /* Pods-TLLayoutTransitioning-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLLayoutTransitioning-umbrella.h"; sourceTree = "<group>"; };
-		23940052A4F3D2C720010F3F /* TLCollapsibleTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleTableViewController.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleTableViewController.m; sourceTree = "<group>"; };
-		250D0937619FE29A9C504926 /* TLIndexPathTreeItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathTreeItem.h; path = TLIndexPathTools/Extensions/Tree/TLIndexPathTreeItem.h; sourceTree = "<group>"; };
-		263E1A417A0CB5B39ED26EC0 /* UICollectionView+TLTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+TLTransitioning.h"; sourceTree = "<group>"; };
-		26C229A38342B6C1EE1EE3AA /* Pods-TLLayoutTransitioning.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TLLayoutTransitioning.modulemap"; sourceTree = "<group>"; };
-		2DB84F48DFFA95CF25080029 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		323332369964949A8E9BDD15 /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
-		32BB9735A17FD20CBFFAF020 /* TLIndexPathDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathDataModel.m; path = "TLIndexPathTools/Data Model/TLIndexPathDataModel.m"; sourceTree = "<group>"; };
-		32F2EC6EC6E2A59852265FD3 /* TLCollectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollectionViewController.h; path = "TLIndexPathTools/View Controllers/TLCollectionViewController.h"; sourceTree = "<group>"; };
-		33C2636B328E7A3DF48F2386 /* Pods-TLIndexPathTools-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLIndexPathTools-Private.xcconfig"; sourceTree = "<group>"; };
-		3481CFA358AB7E081DD4E455 /* TLTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTableViewController.m; path = "TLIndexPathTools/View Controllers/TLTableViewController.m"; sourceTree = "<group>"; };
-		3890FC40B843A8ABBB8FB4C1 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathSectionInfo.h; path = "TLIndexPathTools/Data Model/TLIndexPathSectionInfo.h"; sourceTree = "<group>"; };
-		3BEEF68F8B5CA44B2B34AE12 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
-		3D266EACD9B196F54B180877 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		3E2CD5F768F729619DF60C32 /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
-		3EAA45D5E3C1911395E5D5DB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3FC454055204826FF424B82A /* TLNoResultsTableDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLNoResultsTableDataModel.m; path = "TLIndexPathTools/Extensions/No Results/TLNoResultsTableDataModel.m"; sourceTree = "<group>"; };
-		40A800A9E03D9FAD6F7A9A0A /* Pods-TLIndexPathTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TLIndexPathTools-dummy.m"; sourceTree = "<group>"; };
-		4208120928992412A9A4C5A6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		4577272BA4E9C06CECCEAB50 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4898A5F1DF03E45218C6A742 /* TLCollapsibleTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleTableViewController.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleTableViewController.h; sourceTree = "<group>"; };
-		4A43F5E5B851F911CCA0A909 /* TLTransitionLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TLTransitionLayout.h; sourceTree = "<group>"; };
-		4AAE56C07AE98755AC123346 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
-		4B15066C627A3EAFAC7A0761 /* TLIndexPathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLIndexPathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E5AAB091F83780AA27DD562 /* easing.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = easing.c; path = AHEasing/easing.c; sourceTree = "<group>"; };
-		4ECDD60D3F203AA3769FFEA5 /* TLIndexPathUpdates.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathUpdates.m; path = "TLIndexPathTools/Data Model/TLIndexPathUpdates.m"; sourceTree = "<group>"; };
-		50ADCED83380CD549C8D161E /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicHeightCell.h; path = TLIndexPathTools/Extensions/TLDynamicHeightCell.h; sourceTree = "<group>"; };
-		5105F70FEC2C5EA502BD8CFD /* TLCollapsibleDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleDataModel.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleDataModel.h; sourceTree = "<group>"; };
-		52A3780D77F1622BAA011A57 /* CAKeyframeAnimation+AHEasing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAKeyframeAnimation+AHEasing.m"; path = "AHEasing/CAKeyframeAnimation+AHEasing.m"; sourceTree = "<group>"; };
-		54FD84F08CF22AB47E957918 /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLDynamicHeightLabelCell.m; path = TLIndexPathTools/Extensions/TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
-		5FCD650C9C15FCDAEF193D19 /* Pods-TLIndexPathTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TLIndexPathTools.modulemap"; sourceTree = "<group>"; };
-		6432CC712AB5C0E54FE86EE2 /* Pods-TLIndexPathTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLIndexPathTools-prefix.pch"; sourceTree = "<group>"; };
-		65255CFE7A32A3D83914F5AC /* TLIndexPathController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathController.h; path = TLIndexPathTools/Controllers/TLIndexPathController.h; sourceTree = "<group>"; };
-		6741A9D0E380B3A6492960F0 /* TLLayoutTransitioning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLLayoutTransitioning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		68156BF335FD6F64D705D777 /* Pods-AHEasing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-AHEasing.modulemap"; sourceTree = "<group>"; };
-		6F847FCBBCD9CD343784EADB /* easing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = easing.h; path = AHEasing/easing.h; sourceTree = "<group>"; };
-		72E90074C373CACC507E2896 /* AHEasing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AHEasing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		74E994FFEE34F2D930862478 /* TLIndexPathTreeItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathTreeItem.m; path = TLIndexPathTools/Extensions/Tree/TLIndexPathTreeItem.m; sourceTree = "<group>"; };
-		7B1FF6346654FC679748CCD3 /* TLCollapsibleHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleHeaderView.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleHeaderView.m; sourceTree = "<group>"; };
-		81955BB46D93A8F77DA88385 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		86C79EEFB5A91AA67FBD505C /* UITableView+ScrollOptimizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ScrollOptimizer.m"; path = "TLIndexPathTools/Extensions/UITableView+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		94FD0AC0D7B4B8FE8A360387 /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicHeightLabelCell.h; path = TLIndexPathTools/Extensions/TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
-		9AB6E2171F6B80114A9FCA7C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
-		9F734510DB7A11934A2EDB31 /* CAKeyframeAnimation+AHEasing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAKeyframeAnimation+AHEasing.h"; path = "AHEasing/CAKeyframeAnimation+AHEasing.h"; sourceTree = "<group>"; };
-		A1D83580B1D6EF2E69AD78E1 /* TLTransitionLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TLTransitionLayout.m; sourceTree = "<group>"; };
-		A1DDB3F93022A40169ABAE5B /* TLDynamicSizeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicSizeView.h; path = "TLIndexPathTools/View Controllers/TLDynamicSizeView.h"; sourceTree = "<group>"; };
-		A3F87C4E33964B026E3AC4FC /* TLIndexPathItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathItem.m; path = "TLIndexPathTools/Data Model/TLIndexPathItem.m"; sourceTree = "<group>"; };
-		A5619F5E72B8719E628D8E3A /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
-		A64B90068B0D34E4E3CB52BD /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLDynamicHeightCell.m; path = TLIndexPathTools/Extensions/TLDynamicHeightCell.m; sourceTree = "<group>"; };
-		AED979B1742A0F563A2CE257 /* Pods-TLIndexPathTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLIndexPathTools.xcconfig"; sourceTree = "<group>"; };
-		B127AB619B46C93D1301FF32 /* UICollectionView+TLTransitioning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+TLTransitioning.m"; sourceTree = "<group>"; };
-		B3E6582A55A963EA1655B6B0 /* UITableView+ScrollOptimizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+ScrollOptimizer.h"; path = "TLIndexPathTools/Extensions/UITableView+ScrollOptimizer.h"; sourceTree = "<group>"; };
-		B6345928FEDA67A3E632464F /* TLIndexPathItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathItem.h; path = "TLIndexPathTools/Data Model/TLIndexPathItem.h"; sourceTree = "<group>"; };
-		B79805EE6FDA7B3FC5E173FE /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
-		B87E5452C92DDB5A12344F26 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewController+ScrollOptimizer.h"; path = "TLIndexPathTools/Extensions/UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
-		BC1FA45C448013E6112483A4 /* TLCollapsibleHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleHeaderView.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleHeaderView.h; sourceTree = "<group>"; };
-		BCEAA8A293A1C0F10982B6DC /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
-		BDEFAA546BAEB4869411F743 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BE393AE0CA7FA471279DAB47 /* AHEasing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AHEasing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C373A9F73A3B01E21F9EE8EA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
-		C3A6C5CE12E545F7C3EA2C69 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathSectionInfo.m; path = "TLIndexPathTools/Data Model/TLIndexPathSectionInfo.m"; sourceTree = "<group>"; };
-		C53AE76E9DE6D1D85C3FD2FB /* TLCollapsibleDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleDataModel.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleDataModel.m; sourceTree = "<group>"; };
-		C8667DFFB8709535F42630A6 /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
-		C93CEF7044B4DABD49F6B395 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewController+ScrollOptimizer.m"; path = "TLIndexPathTools/Extensions/UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		C984B5D0C53C417E947BE782 /* Pods-AHEasing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AHEasing-dummy.m"; sourceTree = "<group>"; };
-		CFAE3D6EA723BB0001338516 /* Pods-TLLayoutTransitioning-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TLLayoutTransitioning-dummy.m"; sourceTree = "<group>"; };
-		D27EA07830FFFD5AA1639E1F /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathDataModel.h; path = "TLIndexPathTools/Data Model/TLIndexPathDataModel.h"; sourceTree = "<group>"; };
-		DAA93735CB49EE83921C3AD8 /* TLNoResultsTableDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLNoResultsTableDataModel.h; path = "TLIndexPathTools/Extensions/No Results/TLNoResultsTableDataModel.h"; sourceTree = "<group>"; };
-		DD265099C30E72987E87593A /* TLTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTableViewController.h; path = "TLIndexPathTools/View Controllers/TLTableViewController.h"; sourceTree = "<group>"; };
-		E4DD81B1FE6F2660B019BE3F /* TLTreeTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTreeTableViewController.m; path = TLIndexPathTools/Extensions/Tree/TLTreeTableViewController.m; sourceTree = "<group>"; };
-		EE2AA8EF1F2FF1B0ED438777 /* Pods-TLLayoutTransitioning-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLLayoutTransitioning-Private.xcconfig"; sourceTree = "<group>"; };
-		F38E946144AABDB1FCBBBAD9 /* Pods-AHEasing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AHEasing-umbrella.h"; sourceTree = "<group>"; };
-		F3C7A3231CFA8380D938D71F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
-		FACE4114AF91F64902259DAE /* TLTreeDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTreeDataModel.h; path = TLIndexPathTools/Extensions/Tree/TLTreeDataModel.h; sourceTree = "<group>"; };
-		FFD7683EB7AD3BB908213B08 /* TLTreeTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTreeTableViewController.h; path = TLIndexPathTools/Extensions/Tree/TLTreeTableViewController.h; sourceTree = "<group>"; };
+		015AFED9532437C39471AE24 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathDataModel.h; path = "TLIndexPathTools/Data Model/TLIndexPathDataModel.h"; sourceTree = "<group>"; };
+		04FE40780C3D773BE65289B8 /* Pods-AHEasing-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AHEasing-umbrella.h"; sourceTree = "<group>"; };
+		0593B1D48E743ADC4F593EB9 /* TLTransitionLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TLTransitionLayout.m; sourceTree = "<group>"; };
+		07A7E0470473FC858C3D37D2 /* Pods-TLLayoutTransitioning-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLLayoutTransitioning-Private.xcconfig"; sourceTree = "<group>"; };
+		084C1551996E9B28DDAB2898 /* Pods-TLLayoutTransitioning-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLLayoutTransitioning-umbrella.h"; sourceTree = "<group>"; };
+		0A0A530F9BF32CABA6F95F39 /* TLCollapsibleTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleTableViewController.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleTableViewController.h; sourceTree = "<group>"; };
+		0AA349DD608D738AF9415428 /* TLTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTableViewController.m; path = "TLIndexPathTools/View Controllers/TLTableViewController.m"; sourceTree = "<group>"; };
+		110D68D7173FECFC3BB8E440 /* Pods-TLIndexPathTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLIndexPathTools.xcconfig"; sourceTree = "<group>"; };
+		1167D60118E94940DC8D4465 /* TLTreeTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTreeTableViewController.h; path = TLIndexPathTools/Extensions/Tree/TLTreeTableViewController.h; sourceTree = "<group>"; };
+		13009B3E98AD69C9CC517BD7 /* UITableView+ScrollOptimizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableView+ScrollOptimizer.h"; path = "TLIndexPathTools/Extensions/UITableView+ScrollOptimizer.h"; sourceTree = "<group>"; };
+		18DCF08F10023E289A1DBE35 /* Pods-TLIndexPathTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TLIndexPathTools-dummy.m"; sourceTree = "<group>"; };
+		1F7CDB79A4F5051B52038584 /* Pods-AHEasing-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AHEasing-dummy.m"; sourceTree = "<group>"; };
+		216148139BD34CC5EBD08F85 /* Pods-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-resources.sh"; sourceTree = "<group>"; };
+		235EBC8D901900DA9862ED78 /* easing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = easing.h; path = AHEasing/easing.h; sourceTree = "<group>"; };
+		26F0EFD9DF3818B08B74A3B6 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/CoreData.framework; sourceTree = DEVELOPER_DIR; };
+		2CECD81F5A7400AC262F3C6B /* Pods-TLIndexPathTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TLIndexPathTools.modulemap"; sourceTree = "<group>"; };
+		30C405A886EF619259435B1A /* Pods-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-frameworks.sh"; sourceTree = "<group>"; };
+		36C5DF6441456FEC408B15FD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38DAB6721C448A52E744A76A /* Pods-TLLayoutTransitioning.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLLayoutTransitioning.xcconfig"; sourceTree = "<group>"; };
+		391027DB676F01B7461773C7 /* TLLayoutTransitioning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLLayoutTransitioning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4139E03C960C39CFBF6EF3F6 /* TLCollapsibleTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleTableViewController.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleTableViewController.m; sourceTree = "<group>"; };
+		4148066B460B516B9215EBED /* TLIndexPathItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathItem.h; path = "TLIndexPathTools/Data Model/TLIndexPathItem.h"; sourceTree = "<group>"; };
+		45E875D3628ABA984517AC13 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.debug.xcconfig; sourceTree = "<group>"; };
+		46001EFAD66EA656AF18FEDE /* TLIndexPathController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathController.m; path = TLIndexPathTools/Controllers/TLIndexPathController.m; sourceTree = "<group>"; };
+		46372FE2B3EE30B8B6695D2E /* Pods-TLLayoutTransitioning-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TLLayoutTransitioning-dummy.m"; sourceTree = "<group>"; };
+		47D2E72BC7EE18AB4D5B41C7 /* TLIndexPathDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathDataModel.m; path = "TLIndexPathTools/Data Model/TLIndexPathDataModel.m"; sourceTree = "<group>"; };
+		48B76D494ADE1C227FFFD7D0 /* Pods-TLLayoutTransitioning.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TLLayoutTransitioning.modulemap"; sourceTree = "<group>"; };
+		4C663C1B15662F8167EC57DF /* TLIndexPathTreeItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathTreeItem.m; path = TLIndexPathTools/Extensions/Tree/TLIndexPathTreeItem.m; sourceTree = "<group>"; };
+		4C997FFFF085A6E2483B89E1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
+		4FCF9A9C7AC6845116D8EF57 /* TLCollapsibleHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleHeaderView.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleHeaderView.h; sourceTree = "<group>"; };
+		51689D4F17166B0ABCED1549 /* Pods-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-acknowledgements.markdown"; sourceTree = "<group>"; };
+		5389162D54D070EB0A4546E1 /* TLIndexPathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLIndexPathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5479875172BCE39A6402C301 /* TLCollapsibleDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollapsibleDataModel.h; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleDataModel.h; sourceTree = "<group>"; };
+		59CA96ED19D154763A20CC25 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTreeTableViewController.m; path = TLIndexPathTools/Extensions/Tree/TLTreeTableViewController.m; sourceTree = "<group>"; };
+		5E322FEED7A55785A38616DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		629412419C1F27613BADAA33 /* TLIndexPathTreeItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathTreeItem.h; path = TLIndexPathTools/Extensions/Tree/TLIndexPathTreeItem.h; sourceTree = "<group>"; };
+		64785BEE7EBA3B3BF352FDE2 /* Pods-AHEasing-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AHEasing-Private.xcconfig"; sourceTree = "<group>"; };
+		669A74AE3EF652AFC9EB5394 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UITableViewController+ScrollOptimizer.h"; path = "TLIndexPathTools/Extensions/UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
+		6D7FE31D25B79947DAA13D4C /* TLCollapsibleDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleDataModel.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleDataModel.m; sourceTree = "<group>"; };
+		72A7003A40623A050F19826A /* TLIndexPathItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathItem.m; path = "TLIndexPathTools/Data Model/TLIndexPathItem.m"; sourceTree = "<group>"; };
+		76B277D3B656483786F40CE4 /* CAKeyframeAnimation+AHEasing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "CAKeyframeAnimation+AHEasing.m"; path = "AHEasing/CAKeyframeAnimation+AHEasing.m"; sourceTree = "<group>"; };
+		7769AEB99C4837EE96DB62D7 /* TLTreeDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTreeDataModel.h; path = TLIndexPathTools/Extensions/Tree/TLTreeDataModel.h; sourceTree = "<group>"; };
+		785A1A9C8F16067CC89DE989 /* Pods-TLIndexPathTools-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TLIndexPathTools-Private.xcconfig"; sourceTree = "<group>"; };
+		792F4192EDFE12A0D04D9888 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7A570C3FB9DCAED9642C5E43 /* Pods-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-umbrella.h"; sourceTree = "<group>"; };
+		7EF7AC424810D1840CB5416F /* TLCollectionViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLCollectionViewController.h; path = "TLIndexPathTools/View Controllers/TLCollectionViewController.h"; sourceTree = "<group>"; };
+		7F12744A38894B5C771E3425 /* TLIndexPathController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathController.h; path = TLIndexPathTools/Controllers/TLIndexPathController.h; sourceTree = "<group>"; };
+		80EA4AA2D54CA7A0D59D08B5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		82A54F623EDA23E4D573A534 /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLDynamicHeightCell.m; path = TLIndexPathTools/Extensions/TLDynamicHeightCell.m; sourceTree = "<group>"; };
+		84CC4EC9D4D8F5D0171F4832 /* Pods-TLIndexPathTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLIndexPathTools-prefix.pch"; sourceTree = "<group>"; };
+		85D5AB27BA4C853CB19BFA5A /* TLTransitionLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TLTransitionLayout.h; sourceTree = "<group>"; };
+		87F2D89E8D944CAAF2D0EFBB /* TLCollapsibleHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollapsibleHeaderView.m; path = TLIndexPathTools/Extensions/Collapsible/TLCollapsibleHeaderView.m; sourceTree = "<group>"; };
+		88602B2A200D6EDBEA7E0EFD /* TLDynamicSizeView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicSizeView.h; path = "TLIndexPathTools/View Controllers/TLDynamicSizeView.h"; sourceTree = "<group>"; };
+		8FE523BF020BDB34F45D7A81 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		956CA48AC6F3108A3F65FB3B /* UITableView+ScrollOptimizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ScrollOptimizer.m"; path = "TLIndexPathTools/Extensions/UITableView+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		9952DC2A5036E6B33830DA29 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Pods.release.xcconfig; sourceTree = "<group>"; };
+		9E8AA1A56FB0A8E4CA42E3DB /* UICollectionView+TLTransitioning.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICollectionView+TLTransitioning.m"; sourceTree = "<group>"; };
+		9ECF5C66BCD98D26805A9E54 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A09D9D0F9D43472F7450F88E /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UITableViewController+ScrollOptimizer.m"; path = "TLIndexPathTools/Extensions/UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		A913B57018335C6630C906D2 /* Pods.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Pods.modulemap; sourceTree = "<group>"; };
+		A9B697690BC2A639C5135D69 /* CAKeyframeAnimation+AHEasing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "CAKeyframeAnimation+AHEasing.h"; path = "AHEasing/CAKeyframeAnimation+AHEasing.h"; sourceTree = "<group>"; };
+		ADA3364CF012D306656873BE /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLDynamicHeightLabelCell.m; path = TLIndexPathTools/Extensions/TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
+		AF56AA2A07BEDBF2040CF9AC /* TLNoResultsTableDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLNoResultsTableDataModel.m; path = "TLIndexPathTools/Extensions/No Results/TLNoResultsTableDataModel.m"; sourceTree = "<group>"; };
+		BA83BAB0019341C92C528268 /* AHEasing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AHEasing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC0A9FC4B99F0B934A6288DD /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-acknowledgements.plist"; sourceTree = "<group>"; };
+		BCF3A9FDB59C566D27946B60 /* Pods-AHEasing.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-AHEasing.modulemap"; sourceTree = "<group>"; };
+		BDBFA98DCCFD97579F46BC38 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathSectionInfo.h; path = "TLIndexPathTools/Data Model/TLIndexPathSectionInfo.h"; sourceTree = "<group>"; };
+		BE68565C72F4DF5533BB41DB /* Pods-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-dummy.m"; sourceTree = "<group>"; };
+		BF6A1C990028D52F78579024 /* easing.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = easing.c; path = AHEasing/easing.c; sourceTree = "<group>"; };
+		C2ACA28A5149A974E9C2BC8C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
+		C8FFAF090871F01FD352660E /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicHeightLabelCell.h; path = TLIndexPathTools/Extensions/TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
+		C909F89C48729A34F684F512 /* TLCollectionViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLCollectionViewController.m; path = "TLIndexPathTools/View Controllers/TLCollectionViewController.m"; sourceTree = "<group>"; };
+		CBDCBE90F99B5D1BFBA2395C /* TLTableViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLTableViewController.h; path = "TLIndexPathTools/View Controllers/TLTableViewController.h"; sourceTree = "<group>"; };
+		CE13ED82C5E5D389809A6753 /* Pods-TLLayoutTransitioning-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLLayoutTransitioning-prefix.pch"; sourceTree = "<group>"; };
+		D14D7049F2CF222A8E60E9FB /* Pods-AHEasing.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AHEasing.xcconfig"; sourceTree = "<group>"; };
+		DA2A285F40BF7BFAD45425D3 /* TLTreeDataModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLTreeDataModel.m; path = TLIndexPathTools/Extensions/Tree/TLTreeDataModel.m; sourceTree = "<group>"; };
+		DA977B3DFDBC800FE72C0A70 /* AHEasing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AHEasing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DACC9B7D66EE14671A8C26E3 /* Pods-AHEasing-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AHEasing-prefix.pch"; sourceTree = "<group>"; };
+		E1256082214579EED1C836E9 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathSectionInfo.m; path = "TLIndexPathTools/Data Model/TLIndexPathSectionInfo.m"; sourceTree = "<group>"; };
+		E431A7FEF079A6AFC4257955 /* TLIndexPathTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathTools.h; path = TLIndexPathTools/TLIndexPathTools.h; sourceTree = "<group>"; };
+		E444F0A2A26C4C9CC1158955 /* TLIndexPathUpdates.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLIndexPathUpdates.h; path = "TLIndexPathTools/Data Model/TLIndexPathUpdates.h"; sourceTree = "<group>"; };
+		E46ECCD6BB1594E4835ACFB1 /* UICollectionView+TLTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UICollectionView+TLTransitioning.h"; sourceTree = "<group>"; };
+		EA0FDA44ED8B982EEBFA1EB1 /* Pods-TLIndexPathTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TLIndexPathTools-umbrella.h"; sourceTree = "<group>"; };
+		EC966883EC325D743498212A /* TLIndexPathUpdates.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TLIndexPathUpdates.m; path = "TLIndexPathTools/Data Model/TLIndexPathUpdates.m"; sourceTree = "<group>"; };
+		ECC1F2A4608DA0DB2E7361F5 /* Pods-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-environment.h"; sourceTree = "<group>"; };
+		F47A64DE9978147F83346429 /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLDynamicHeightCell.h; path = TLIndexPathTools/Extensions/TLDynamicHeightCell.h; sourceTree = "<group>"; };
+		F69194D4EF254668624DA1CB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F7055B7341C407078B022B1C /* TLNoResultsTableDataModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TLNoResultsTableDataModel.h; path = "TLIndexPathTools/Extensions/No Results/TLNoResultsTableDataModel.h"; sourceTree = "<group>"; };
+		FFB4864863BEB6DA9C85C734 /* TLLayoutTransitioning.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TLLayoutTransitioning.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00AE98284C71BA997264E7A8 /* Frameworks */ = {
+		175803FC4D76F9E8629A2C20 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A0CE780A3F63D82536463FC /* CoreData.framework in Frameworks */,
-				5D6E0BC1435667986A9BEF7C /* Foundation.framework in Frameworks */,
-				A4A056D39FFF7A8716D34653 /* QuartzCore.framework in Frameworks */,
-				8837D4A0D0571D36111C276A /* UIKit.framework in Frameworks */,
+				50E2CBD42EC1B7F61C90F34D /* CoreData.framework in Frameworks */,
+				B68DF3D2206936947B0FC595 /* Foundation.framework in Frameworks */,
+				24A4E1D8D7B7D48DF918D1A9 /* QuartzCore.framework in Frameworks */,
+				46AACE4E40605380B19B8782 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		325BF3BE426AE2055F2285A9 /* Frameworks */ = {
+		8A546016CAB0A7FF32014B44 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05D243086BD1409CDCA60259 /* Foundation.framework in Frameworks */,
-				A403C2542DFDC18980319543 /* QuartzCore.framework in Frameworks */,
+				A6A3C51C417F3FAFFDD1B6B8 /* AHEasing.framework in Frameworks */,
+				912F4D4EC247F1E5DE19E99A /* Foundation.framework in Frameworks */,
+				5141E0F2F30441BEF1BDE2CF /* QuartzCore.framework in Frameworks */,
+				D292D0B5789D018785BC9D8F /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9BD3199AFACDCA8F43DF44E6 /* Frameworks */ = {
+		A01280906A13D3C3B44B3767 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8398FD7A94D2C708C21B6896 /* AHEasing.framework in Frameworks */,
-				8ECA8D7FB9198121D1BD7AE7 /* Foundation.framework in Frameworks */,
-				AF4986B13DE91DDE746C63A1 /* QuartzCore.framework in Frameworks */,
-				0D2D80A01380C4AE65F8BD20 /* UIKit.framework in Frameworks */,
+				514213F8264490B9FFE27C70 /* Foundation.framework in Frameworks */,
+				407867AE4A6DF1367E3B8776 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E118C993023F6753E15FCCB8 /* Frameworks */ = {
+		BF7A7D367FCE67D34A2B20DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E2B9A83422E9A3BA7074049 /* Foundation.framework in Frameworks */,
+				C5E91BEA991873596511FA8A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D0E1921867020024C0DBED3 /* Development Pods */ = {
+		126E5A151EE9BE5E5AF7DA29 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				358B26FEDAD353710FCC9494 /* TLLayoutTransitioning */,
+				DA977B3DFDBC800FE72C0A70 /* AHEasing.framework */,
+				92CBD97AB571444BD76884EE /* iOS */,
 			);
-			name = "Development Pods";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		11EFE1277950ECBF0F7D0026 /* AHEasing */ = {
+		190E1D7C6B47C1DD19916B20 /* TLLayoutTransitioning */ = {
 			isa = PBXGroup;
 			children = (
-				9F734510DB7A11934A2EDB31 /* CAKeyframeAnimation+AHEasing.h */,
-				52A3780D77F1622BAA011A57 /* CAKeyframeAnimation+AHEasing.m */,
-				4E5AAB091F83780AA27DD562 /* easing.c */,
-				6F847FCBBCD9CD343784EADB /* easing.h */,
-				EB9115B2C3FB40AB369CA836 /* Support Files */,
-			);
-			path = AHEasing;
-			sourceTree = "<group>";
-		};
-		201FDD899384E6F862299038 /* TLLayoutTransitioning */ = {
-			isa = PBXGroup;
-			children = (
-				4A43F5E5B851F911CCA0A909 /* TLTransitionLayout.h */,
-				A1D83580B1D6EF2E69AD78E1 /* TLTransitionLayout.m */,
-				263E1A417A0CB5B39ED26EC0 /* UICollectionView+TLTransitioning.h */,
-				B127AB619B46C93D1301FF32 /* UICollectionView+TLTransitioning.m */,
-			);
-			path = TLLayoutTransitioning;
-			sourceTree = "<group>";
-		};
-		30C7DD3E801717ABC1754DC5 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				46307C4619AE36B87AE911BC /* Pods */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		358B26FEDAD353710FCC9494 /* TLLayoutTransitioning */ = {
-			isa = PBXGroup;
-			children = (
-				BE408BC94AB136C23C780E1E /* Support Files */,
-				201FDD899384E6F862299038 /* TLLayoutTransitioning */,
+				38F85DD4BD5BDE5A754CFDBE /* Support Files */,
+				F7846920756152F85083A73B /* TLLayoutTransitioning */,
 			);
 			name = TLLayoutTransitioning;
 			path = ../..;
 			sourceTree = "<group>";
 		};
-		46307C4619AE36B87AE911BC /* Pods */ = {
+		1A392BE61BD3122497697C55 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BDEFAA546BAEB4869411F743 /* Info.plist */,
-				3E2CD5F768F729619DF60C32 /* Pods.modulemap */,
-				BCEAA8A293A1C0F10982B6DC /* Pods-acknowledgements.markdown */,
-				323332369964949A8E9BDD15 /* Pods-acknowledgements.plist */,
-				C8667DFFB8709535F42630A6 /* Pods-dummy.m */,
-				B79805EE6FDA7B3FC5E173FE /* Pods-environment.h */,
-				A5619F5E72B8719E628D8E3A /* Pods-frameworks.sh */,
-				4AAE56C07AE98755AC123346 /* Pods-resources.sh */,
-				3BEEF68F8B5CA44B2B34AE12 /* Pods-umbrella.h */,
-				9AB6E2171F6B80114A9FCA7C /* Pods.debug.xcconfig */,
-				F3C7A3231CFA8380D938D71F /* Pods.release.xcconfig */,
+				190E1D7C6B47C1DD19916B20 /* TLLayoutTransitioning */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		24388CA1F94D8D545A7067F0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36C5DF6441456FEC408B15FD /* Info.plist */,
+				A913B57018335C6630C906D2 /* Pods.modulemap */,
+				51689D4F17166B0ABCED1549 /* Pods-acknowledgements.markdown */,
+				BC0A9FC4B99F0B934A6288DD /* Pods-acknowledgements.plist */,
+				BE68565C72F4DF5533BB41DB /* Pods-dummy.m */,
+				ECC1F2A4608DA0DB2E7361F5 /* Pods-environment.h */,
+				30C405A886EF619259435B1A /* Pods-frameworks.sh */,
+				216148139BD34CC5EBD08F85 /* Pods-resources.sh */,
+				7A570C3FB9DCAED9642C5E43 /* Pods-umbrella.h */,
+				45E875D3628ABA984517AC13 /* Pods.debug.xcconfig */,
+				9952DC2A5036E6B33830DA29 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			path = "Target Support Files/Pods";
 			sourceTree = "<group>";
 		};
-		52D4AFFC59352E792CAD8972 /* Support Files */ = {
+		38F85DD4BD5BDE5A754CFDBE /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4577272BA4E9C06CECCEAB50 /* Info.plist */,
-				5FCD650C9C15FCDAEF193D19 /* Pods-TLIndexPathTools.modulemap */,
-				AED979B1742A0F563A2CE257 /* Pods-TLIndexPathTools.xcconfig */,
-				33C2636B328E7A3DF48F2386 /* Pods-TLIndexPathTools-Private.xcconfig */,
-				40A800A9E03D9FAD6F7A9A0A /* Pods-TLIndexPathTools-dummy.m */,
-				6432CC712AB5C0E54FE86EE2 /* Pods-TLIndexPathTools-prefix.pch */,
-				058FAD20E07D6FF023F12062 /* Pods-TLIndexPathTools-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Pods-TLIndexPathTools";
-			sourceTree = "<group>";
-		};
-		5508E6E8A44D58E113A7A07A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				C373A9F73A3B01E21F9EE8EA /* CoreData.framework */,
-				2DB84F48DFFA95CF25080029 /* Foundation.framework */,
-				4208120928992412A9A4C5A6 /* QuartzCore.framework */,
-				2117A8AC870383FBA52EB2A0 /* UIKit.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		6BA07E00450A591A244805A2 /* TLIndexPathTools */ = {
-			isa = PBXGroup;
-			children = (
-				5105F70FEC2C5EA502BD8CFD /* TLCollapsibleDataModel.h */,
-				C53AE76E9DE6D1D85C3FD2FB /* TLCollapsibleDataModel.m */,
-				BC1FA45C448013E6112483A4 /* TLCollapsibleHeaderView.h */,
-				7B1FF6346654FC679748CCD3 /* TLCollapsibleHeaderView.m */,
-				4898A5F1DF03E45218C6A742 /* TLCollapsibleTableViewController.h */,
-				23940052A4F3D2C720010F3F /* TLCollapsibleTableViewController.m */,
-				32F2EC6EC6E2A59852265FD3 /* TLCollectionViewController.h */,
-				2045DF4E5E2074867A2E2002 /* TLCollectionViewController.m */,
-				50ADCED83380CD549C8D161E /* TLDynamicHeightCell.h */,
-				A64B90068B0D34E4E3CB52BD /* TLDynamicHeightCell.m */,
-				94FD0AC0D7B4B8FE8A360387 /* TLDynamicHeightLabelCell.h */,
-				54FD84F08CF22AB47E957918 /* TLDynamicHeightLabelCell.m */,
-				A1DDB3F93022A40169ABAE5B /* TLDynamicSizeView.h */,
-				65255CFE7A32A3D83914F5AC /* TLIndexPathController.h */,
-				07A41E4AC145C41C54FF5BC2 /* TLIndexPathController.m */,
-				D27EA07830FFFD5AA1639E1F /* TLIndexPathDataModel.h */,
-				32BB9735A17FD20CBFFAF020 /* TLIndexPathDataModel.m */,
-				B6345928FEDA67A3E632464F /* TLIndexPathItem.h */,
-				A3F87C4E33964B026E3AC4FC /* TLIndexPathItem.m */,
-				3890FC40B843A8ABBB8FB4C1 /* TLIndexPathSectionInfo.h */,
-				C3A6C5CE12E545F7C3EA2C69 /* TLIndexPathSectionInfo.m */,
-				009F087DB345764B8C1DCFE7 /* TLIndexPathTools.h */,
-				250D0937619FE29A9C504926 /* TLIndexPathTreeItem.h */,
-				74E994FFEE34F2D930862478 /* TLIndexPathTreeItem.m */,
-				0B38A04678AA4893E81997D9 /* TLIndexPathUpdates.h */,
-				4ECDD60D3F203AA3769FFEA5 /* TLIndexPathUpdates.m */,
-				DAA93735CB49EE83921C3AD8 /* TLNoResultsTableDataModel.h */,
-				3FC454055204826FF424B82A /* TLNoResultsTableDataModel.m */,
-				DD265099C30E72987E87593A /* TLTableViewController.h */,
-				3481CFA358AB7E081DD4E455 /* TLTableViewController.m */,
-				FACE4114AF91F64902259DAE /* TLTreeDataModel.h */,
-				08D1E1AF894E7215752503DB /* TLTreeDataModel.m */,
-				FFD7683EB7AD3BB908213B08 /* TLTreeTableViewController.h */,
-				E4DD81B1FE6F2660B019BE3F /* TLTreeTableViewController.m */,
-				B3E6582A55A963EA1655B6B0 /* UITableView+ScrollOptimizer.h */,
-				86C79EEFB5A91AA67FBD505C /* UITableView+ScrollOptimizer.m */,
-				B87E5452C92DDB5A12344F26 /* UITableViewController+ScrollOptimizer.h */,
-				C93CEF7044B4DABD49F6B395 /* UITableViewController+ScrollOptimizer.m */,
-				52D4AFFC59352E792CAD8972 /* Support Files */,
-			);
-			path = TLIndexPathTools;
-			sourceTree = "<group>";
-		};
-		BE408BC94AB136C23C780E1E /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				10A0E8D9A8F11F6327A2867C /* Info.plist */,
-				26C229A38342B6C1EE1EE3AA /* Pods-TLLayoutTransitioning.modulemap */,
-				076409462A4502A57187BB29 /* Pods-TLLayoutTransitioning.xcconfig */,
-				EE2AA8EF1F2FF1B0ED438777 /* Pods-TLLayoutTransitioning-Private.xcconfig */,
-				CFAE3D6EA723BB0001338516 /* Pods-TLLayoutTransitioning-dummy.m */,
-				139A5DF577AFE308E60362C7 /* Pods-TLLayoutTransitioning-prefix.pch */,
-				21C4D457FA01F41858197306 /* Pods-TLLayoutTransitioning-umbrella.h */,
+				80EA4AA2D54CA7A0D59D08B5 /* Info.plist */,
+				48B76D494ADE1C227FFFD7D0 /* Pods-TLLayoutTransitioning.modulemap */,
+				38DAB6721C448A52E744A76A /* Pods-TLLayoutTransitioning.xcconfig */,
+				07A7E0470473FC858C3D37D2 /* Pods-TLLayoutTransitioning-Private.xcconfig */,
+				46372FE2B3EE30B8B6695D2E /* Pods-TLLayoutTransitioning-dummy.m */,
+				CE13ED82C5E5D389809A6753 /* Pods-TLLayoutTransitioning-prefix.pch */,
+				084C1551996E9B28DDAB2898 /* Pods-TLLayoutTransitioning-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "Examples/Pods/Target Support Files/Pods-TLLayoutTransitioning";
 			sourceTree = "<group>";
 		};
-		BF720358F1E53F30D5550248 /* Pods */ = {
+		4BACDCAA4D80C1CC5259ADFB /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				11EFE1277950ECBF0F7D0026 /* AHEasing */,
-				6BA07E00450A591A244805A2 /* TLIndexPathTools */,
+				24388CA1F94D8D545A7067F0 /* Pods */,
 			);
-			name = Pods;
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		D124C2C231C202DEC0BCFA0E /* Products */ = {
+		74EDF581BDF687B2B8BCBC6C /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				BE393AE0CA7FA471279DAB47 /* AHEasing.framework */,
-				81955BB46D93A8F77DA88385 /* Pods.framework */,
-				4B15066C627A3EAFAC7A0761 /* TLIndexPathTools.framework */,
-				6741A9D0E380B3A6492960F0 /* TLLayoutTransitioning.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		EB9115B2C3FB40AB369CA836 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				3EAA45D5E3C1911395E5D5DB /* Info.plist */,
-				68156BF335FD6F64D705D777 /* Pods-AHEasing.modulemap */,
-				0AB7474CE3D4439D6EE7F0DD /* Pods-AHEasing.xcconfig */,
-				0CF40B2721F92EBCBE35D4FB /* Pods-AHEasing-Private.xcconfig */,
-				C984B5D0C53C417E947BE782 /* Pods-AHEasing-dummy.m */,
-				0E307EBF8F0920C936961B4E /* Pods-AHEasing-prefix.pch */,
-				F38E946144AABDB1FCBBBAD9 /* Pods-AHEasing-umbrella.h */,
+				8FE523BF020BDB34F45D7A81 /* Info.plist */,
+				BCF3A9FDB59C566D27946B60 /* Pods-AHEasing.modulemap */,
+				D14D7049F2CF222A8E60E9FB /* Pods-AHEasing.xcconfig */,
+				64785BEE7EBA3B3BF352FDE2 /* Pods-AHEasing-Private.xcconfig */,
+				1F7CDB79A4F5051B52038584 /* Pods-AHEasing-dummy.m */,
+				DACC9B7D66EE14671A8C26E3 /* Pods-AHEasing-prefix.pch */,
+				04FE40780C3D773BE65289B8 /* Pods-AHEasing-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Pods-AHEasing";
 			sourceTree = "<group>";
 		};
-		EF499D8E585BF9BE8FC002B6 = {
+		92CBD97AB571444BD76884EE /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3D266EACD9B196F54B180877 /* Podfile */,
-				0D0E1921867020024C0DBED3 /* Development Pods */,
-				FEA674C2B864BD0C34D3FFB4 /* Frameworks */,
-				BF720358F1E53F30D5550248 /* Pods */,
-				D124C2C231C202DEC0BCFA0E /* Products */,
-				30C7DD3E801717ABC1754DC5 /* Targets Support Files */,
+				26F0EFD9DF3818B08B74A3B6 /* CoreData.framework */,
+				5E322FEED7A55785A38616DA /* Foundation.framework */,
+				4C997FFFF085A6E2483B89E1 /* QuartzCore.framework */,
+				C2ACA28A5149A974E9C2BC8C /* UIKit.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		9312DBE011FBBF626A5D9000 /* AHEasing */ = {
+			isa = PBXGroup;
+			children = (
+				A9B697690BC2A639C5135D69 /* CAKeyframeAnimation+AHEasing.h */,
+				76B277D3B656483786F40CE4 /* CAKeyframeAnimation+AHEasing.m */,
+				BF6A1C990028D52F78579024 /* easing.c */,
+				235EBC8D901900DA9862ED78 /* easing.h */,
+				74EDF581BDF687B2B8BCBC6C /* Support Files */,
+			);
+			path = AHEasing;
+			sourceTree = "<group>";
+		};
+		9C6B52CE5EC5AFBE19B4EA4C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BA83BAB0019341C92C528268 /* AHEasing.framework */,
+				9ECF5C66BCD98D26805A9E54 /* Pods.framework */,
+				5389162D54D070EB0A4546E1 /* TLIndexPathTools.framework */,
+				391027DB676F01B7461773C7 /* TLLayoutTransitioning.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B6EC121B13731195921F87D5 = {
+			isa = PBXGroup;
+			children = (
+				792F4192EDFE12A0D04D9888 /* Podfile */,
+				1A392BE61BD3122497697C55 /* Development Pods */,
+				126E5A151EE9BE5E5AF7DA29 /* Frameworks */,
+				B8E47A5D8773411E6E578366 /* Pods */,
+				9C6B52CE5EC5AFBE19B4EA4C /* Products */,
+				4BACDCAA4D80C1CC5259ADFB /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		FEA674C2B864BD0C34D3FFB4 /* Frameworks */ = {
+		B8E47A5D8773411E6E578366 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				72E90074C373CACC507E2896 /* AHEasing.framework */,
-				5508E6E8A44D58E113A7A07A /* iOS */,
+				9312DBE011FBBF626A5D9000 /* AHEasing */,
+				BE596D2EA57E44AAE407879B /* TLIndexPathTools */,
 			);
-			name = Frameworks;
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BE596D2EA57E44AAE407879B /* TLIndexPathTools */ = {
+			isa = PBXGroup;
+			children = (
+				5479875172BCE39A6402C301 /* TLCollapsibleDataModel.h */,
+				6D7FE31D25B79947DAA13D4C /* TLCollapsibleDataModel.m */,
+				4FCF9A9C7AC6845116D8EF57 /* TLCollapsibleHeaderView.h */,
+				87F2D89E8D944CAAF2D0EFBB /* TLCollapsibleHeaderView.m */,
+				0A0A530F9BF32CABA6F95F39 /* TLCollapsibleTableViewController.h */,
+				4139E03C960C39CFBF6EF3F6 /* TLCollapsibleTableViewController.m */,
+				7EF7AC424810D1840CB5416F /* TLCollectionViewController.h */,
+				C909F89C48729A34F684F512 /* TLCollectionViewController.m */,
+				F47A64DE9978147F83346429 /* TLDynamicHeightCell.h */,
+				82A54F623EDA23E4D573A534 /* TLDynamicHeightCell.m */,
+				C8FFAF090871F01FD352660E /* TLDynamicHeightLabelCell.h */,
+				ADA3364CF012D306656873BE /* TLDynamicHeightLabelCell.m */,
+				88602B2A200D6EDBEA7E0EFD /* TLDynamicSizeView.h */,
+				7F12744A38894B5C771E3425 /* TLIndexPathController.h */,
+				46001EFAD66EA656AF18FEDE /* TLIndexPathController.m */,
+				015AFED9532437C39471AE24 /* TLIndexPathDataModel.h */,
+				47D2E72BC7EE18AB4D5B41C7 /* TLIndexPathDataModel.m */,
+				4148066B460B516B9215EBED /* TLIndexPathItem.h */,
+				72A7003A40623A050F19826A /* TLIndexPathItem.m */,
+				BDBFA98DCCFD97579F46BC38 /* TLIndexPathSectionInfo.h */,
+				E1256082214579EED1C836E9 /* TLIndexPathSectionInfo.m */,
+				E431A7FEF079A6AFC4257955 /* TLIndexPathTools.h */,
+				629412419C1F27613BADAA33 /* TLIndexPathTreeItem.h */,
+				4C663C1B15662F8167EC57DF /* TLIndexPathTreeItem.m */,
+				E444F0A2A26C4C9CC1158955 /* TLIndexPathUpdates.h */,
+				EC966883EC325D743498212A /* TLIndexPathUpdates.m */,
+				F7055B7341C407078B022B1C /* TLNoResultsTableDataModel.h */,
+				AF56AA2A07BEDBF2040CF9AC /* TLNoResultsTableDataModel.m */,
+				CBDCBE90F99B5D1BFBA2395C /* TLTableViewController.h */,
+				0AA349DD608D738AF9415428 /* TLTableViewController.m */,
+				7769AEB99C4837EE96DB62D7 /* TLTreeDataModel.h */,
+				DA2A285F40BF7BFAD45425D3 /* TLTreeDataModel.m */,
+				1167D60118E94940DC8D4465 /* TLTreeTableViewController.h */,
+				59CA96ED19D154763A20CC25 /* TLTreeTableViewController.m */,
+				13009B3E98AD69C9CC517BD7 /* UITableView+ScrollOptimizer.h */,
+				956CA48AC6F3108A3F65FB3B /* UITableView+ScrollOptimizer.m */,
+				669A74AE3EF652AFC9EB5394 /* UITableViewController+ScrollOptimizer.h */,
+				A09D9D0F9D43472F7450F88E /* UITableViewController+ScrollOptimizer.m */,
+				E0FE79CFCE0336278B160351 /* Support Files */,
+			);
+			path = TLIndexPathTools;
+			sourceTree = "<group>";
+		};
+		E0FE79CFCE0336278B160351 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F69194D4EF254668624DA1CB /* Info.plist */,
+				2CECD81F5A7400AC262F3C6B /* Pods-TLIndexPathTools.modulemap */,
+				110D68D7173FECFC3BB8E440 /* Pods-TLIndexPathTools.xcconfig */,
+				785A1A9C8F16067CC89DE989 /* Pods-TLIndexPathTools-Private.xcconfig */,
+				18DCF08F10023E289A1DBE35 /* Pods-TLIndexPathTools-dummy.m */,
+				84CC4EC9D4D8F5D0171F4832 /* Pods-TLIndexPathTools-prefix.pch */,
+				EA0FDA44ED8B982EEBFA1EB1 /* Pods-TLIndexPathTools-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-TLIndexPathTools";
+			sourceTree = "<group>";
+		};
+		F7846920756152F85083A73B /* TLLayoutTransitioning */ = {
+			isa = PBXGroup;
+			children = (
+				FFB4864863BEB6DA9C85C734 /* TLLayoutTransitioning.h */,
+				85D5AB27BA4C853CB19BFA5A /* TLTransitionLayout.h */,
+				0593B1D48E743ADC4F593EB9 /* TLTransitionLayout.m */,
+				E46ECCD6BB1594E4835ACFB1 /* UICollectionView+TLTransitioning.h */,
+				9E8AA1A56FB0A8E4CA42E3DB /* UICollectionView+TLTransitioning.m */,
+			);
+			path = TLLayoutTransitioning;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0DE4EB4CBE13028D71F08520 /* Headers */ = {
+		553DE5AF4DFE7F75FC345EAE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9DE3E4EB526DE31DB2F7563 /* Pods-TLIndexPathTools-umbrella.h in Headers */,
-				BC3A6B8511D7EF6699522F06 /* TLCollapsibleDataModel.h in Headers */,
-				AD911E99A3804E609E47452C /* TLCollapsibleHeaderView.h in Headers */,
-				58CC2E7703FE7067D4BDB2E3 /* TLCollapsibleTableViewController.h in Headers */,
-				8BC5D978AED89BCC9883141A /* TLCollectionViewController.h in Headers */,
-				0B96604514322F59F231EFDA /* TLDynamicHeightCell.h in Headers */,
-				EFD24898DB0058693B273D04 /* TLDynamicHeightLabelCell.h in Headers */,
-				74C88B462D6591BCE42108C7 /* TLDynamicSizeView.h in Headers */,
-				066174B75727D79064ED5BF5 /* TLIndexPathController.h in Headers */,
-				E766F6EE735A4D4F66841591 /* TLIndexPathDataModel.h in Headers */,
-				88ED3EF547D644314953EBD2 /* TLIndexPathItem.h in Headers */,
-				A9C0BE233FF5F5A2ED723889 /* TLIndexPathSectionInfo.h in Headers */,
-				B0E66623E76D1CCA434B5943 /* TLIndexPathTools.h in Headers */,
-				4F98E5F2B2589E12BD11D9F1 /* TLIndexPathTreeItem.h in Headers */,
-				CDEAA32EFDA19F5991A4193B /* TLIndexPathUpdates.h in Headers */,
-				24470C7CB8E1F0D2ACD634D8 /* TLNoResultsTableDataModel.h in Headers */,
-				CC826375F6C7EFCC24F79A27 /* TLTableViewController.h in Headers */,
-				4470196D6CE66BF137420BF2 /* TLTreeDataModel.h in Headers */,
-				83ECA7D5016D443DD427B287 /* TLTreeTableViewController.h in Headers */,
-				BAABCC7A9E43FBE32817BE4C /* UITableView+ScrollOptimizer.h in Headers */,
-				0CAB9CA24FDE4179EC2EC9BD /* UITableViewController+ScrollOptimizer.h in Headers */,
+				7764F8F544B21964363296AF /* Pods-TLIndexPathTools-umbrella.h in Headers */,
+				70116AA27123A3AC5D716632 /* TLCollapsibleDataModel.h in Headers */,
+				9807AA37854256DDBD2A74A7 /* TLCollapsibleHeaderView.h in Headers */,
+				89AE0F920E765BDEF4B00674 /* TLCollapsibleTableViewController.h in Headers */,
+				B478D2EE2B2E971F7D6748A9 /* TLCollectionViewController.h in Headers */,
+				7867D29F243A1CA058247E21 /* TLDynamicHeightCell.h in Headers */,
+				EA9ECFCC71F2770659711E3B /* TLDynamicHeightLabelCell.h in Headers */,
+				A9E1EE562ECE9BB3FDA8C5A1 /* TLDynamicSizeView.h in Headers */,
+				7EE08A8C2517B1000AC5860C /* TLIndexPathController.h in Headers */,
+				844C0CCF5887D6A0D404ECB6 /* TLIndexPathDataModel.h in Headers */,
+				24E6C0F41ABC4835066D6B67 /* TLIndexPathItem.h in Headers */,
+				F581792771765C184A5BB5EE /* TLIndexPathSectionInfo.h in Headers */,
+				543B3744CAF9774DF3FDB351 /* TLIndexPathTools.h in Headers */,
+				056DA579B492606DB5A6E979 /* TLIndexPathTreeItem.h in Headers */,
+				F0321EE6FEF7B5B2B148DB81 /* TLIndexPathUpdates.h in Headers */,
+				67B29832FB38473DFBD63909 /* TLNoResultsTableDataModel.h in Headers */,
+				20392C7E5C45705BABBA472D /* TLTableViewController.h in Headers */,
+				AA6B2EA13B59A787D7C86C0F /* TLTreeDataModel.h in Headers */,
+				0EEE91BBA31149ECF8CBEB6F /* TLTreeTableViewController.h in Headers */,
+				408283A1C6FBE6293A925B60 /* UITableView+ScrollOptimizer.h in Headers */,
+				343CF7488D51365FB17436BF /* UITableViewController+ScrollOptimizer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		620DFFAD7A2420A47E3E889E /* Headers */ = {
+		70BBCA86F2100A33ABD2458A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB30430B91A407CF305EEA28 /* CAKeyframeAnimation+AHEasing.h in Headers */,
-				F75D94A39ACCF32C8920C9B6 /* Pods-AHEasing-umbrella.h in Headers */,
-				895435536E9844785D7D8953 /* easing.h in Headers */,
+				1CB46A5D394CB6816520A7EC /* CAKeyframeAnimation+AHEasing.h in Headers */,
+				0098165485B6141A11AFC357 /* Pods-AHEasing-umbrella.h in Headers */,
+				AF6DC776FA1A069382750789 /* easing.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		95F0DAB6D041EF4391797352 /* Headers */ = {
+		A7A39757ACB3D1B54C3C266B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4CB47ABB1C98B223794814B /* Pods-TLLayoutTransitioning-umbrella.h in Headers */,
-				E6030827C882D4F26BFF42F5 /* TLTransitionLayout.h in Headers */,
-				D904E90C10766E9786CADAE6 /* UICollectionView+TLTransitioning.h in Headers */,
+				2A33E09EFBD8030F1B8D3457 /* Pods-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CCCA57B8214B438BE8EECFCD /* Headers */ = {
+		BB3C66FD75A6EE6B4EE19D98 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCC89E5396CE7FAFBB62842E /* Pods-umbrella.h in Headers */,
+				7BAC6AC481807D4AB74791A8 /* Pods-TLLayoutTransitioning-umbrella.h in Headers */,
+				3C9F1DD1A9962CAF5607FBDB /* TLLayoutTransitioning.h in Headers */,
+				C24FDB5357E365C4F054A4E4 /* TLTransitionLayout.h in Headers */,
+				9C713ADCE05C6DDA7E9AFF9F /* UICollectionView+TLTransitioning.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		44C8FABC6FC00D4C5E6E9A6D /* Pods-TLIndexPathTools */ = {
+		494B1343C5CA1D79B740E536 /* Pods-AHEasing */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC86F1CDC00F5BA99ED2C60D /* Build configuration list for PBXNativeTarget "Pods-TLIndexPathTools" */;
+			buildConfigurationList = 9E37D6F63F01E0678DC7A649 /* Build configuration list for PBXNativeTarget "Pods-AHEasing" */;
 			buildPhases = (
-				49001AA002E94218ADF719B8 /* Sources */,
-				00AE98284C71BA997264E7A8 /* Frameworks */,
-				0DE4EB4CBE13028D71F08520 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-TLIndexPathTools";
-			productName = "Pods-TLIndexPathTools";
-			productReference = 4B15066C627A3EAFAC7A0761 /* TLIndexPathTools.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		5A17E48002867BD225DFF7C7 /* Pods-AHEasing */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4799A2F88F0E9DDC5A040CF7 /* Build configuration list for PBXNativeTarget "Pods-AHEasing" */;
-			buildPhases = (
-				73255F9C3ECE9A6C2793F8B3 /* Sources */,
-				325BF3BE426AE2055F2285A9 /* Frameworks */,
-				620DFFAD7A2420A47E3E889E /* Headers */,
+				1B537284D6EFEAAFFEE190A7 /* Sources */,
+				A01280906A13D3C3B44B3767 /* Frameworks */,
+				70BBCA86F2100A33ABD2458A /* Headers */,
 			);
 			buildRules = (
 			);
@@ -543,163 +530,180 @@
 			);
 			name = "Pods-AHEasing";
 			productName = "Pods-AHEasing";
-			productReference = BE393AE0CA7FA471279DAB47 /* AHEasing.framework */;
+			productReference = BA83BAB0019341C92C528268 /* AHEasing.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		A225EE201B7E86C35B7E246D /* Pods */ = {
+		A1C8FDAEEA36256181B06E42 /* Pods-TLLayoutTransitioning */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B61314DF4D83B8894985CE62 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildConfigurationList = 1599AE15E26102D12D7C1BD6 /* Build configuration list for PBXNativeTarget "Pods-TLLayoutTransitioning" */;
 			buildPhases = (
-				732804C351B7F474BC8DF5D5 /* Sources */,
-				E118C993023F6753E15FCCB8 /* Frameworks */,
-				CCCA57B8214B438BE8EECFCD /* Headers */,
+				81BBFED3AC048C1BDF2CBD8F /* Sources */,
+				8A546016CAB0A7FF32014B44 /* Frameworks */,
+				BB3C66FD75A6EE6B4EE19D98 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				FEA371982A9F804DA5C5E580 /* PBXTargetDependency */,
-				4D94102039B760629311F639 /* PBXTargetDependency */,
-				33AC871B70BF7733A1189FE4 /* PBXTargetDependency */,
-			);
-			name = Pods;
-			productName = Pods;
-			productReference = 81955BB46D93A8F77DA88385 /* Pods.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D9B1DAE9E1C1AC32E7B68E0F /* Pods-TLLayoutTransitioning */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F5B14D8EFCEAC51E709AF733 /* Build configuration list for PBXNativeTarget "Pods-TLLayoutTransitioning" */;
-			buildPhases = (
-				0C32E3948B38E4D2A18C80B0 /* Sources */,
-				9BD3199AFACDCA8F43DF44E6 /* Frameworks */,
-				95F0DAB6D041EF4391797352 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4CA1D6950BE2385BE994CD16 /* PBXTargetDependency */,
+				E77EA444BE6DF4EDE546083F /* PBXTargetDependency */,
 			);
 			name = "Pods-TLLayoutTransitioning";
 			productName = "Pods-TLLayoutTransitioning";
-			productReference = 6741A9D0E380B3A6492960F0 /* TLLayoutTransitioning.framework */;
+			productReference = 391027DB676F01B7461773C7 /* TLLayoutTransitioning.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E92589F0668090CE77C5ECCB /* Pods-TLIndexPathTools */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A21940C11153E26E48C8159 /* Build configuration list for PBXNativeTarget "Pods-TLIndexPathTools" */;
+			buildPhases = (
+				8B69A1AB7384C33237E4AF2C /* Sources */,
+				175803FC4D76F9E8629A2C20 /* Frameworks */,
+				553DE5AF4DFE7F75FC345EAE /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-TLIndexPathTools";
+			productName = "Pods-TLIndexPathTools";
+			productReference = 5389162D54D070EB0A4546E1 /* TLIndexPathTools.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FD5E7307915F3B743D863F37 /* Pods */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E929A976FB7D357719B96D9 /* Build configuration list for PBXNativeTarget "Pods" */;
+			buildPhases = (
+				A27999300BC8EA422198DA10 /* Sources */,
+				BF7A7D367FCE67D34A2B20DB /* Frameworks */,
+				A7A39757ACB3D1B54C3C266B /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4909729DB65889C5904C72C7 /* PBXTargetDependency */,
+				0C97888BA0581DE242215A7E /* PBXTargetDependency */,
+				BFB1A30ECDB8D3FB96F88556 /* PBXTargetDependency */,
+			);
+			name = Pods;
+			productName = Pods;
+			productReference = 9ECF5C66BCD98D26805A9E54 /* Pods.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		1F5F65CCEABC3A730DCC3590 /* Project object */ = {
+		569E60FD3A05B01B0A73409A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
 			};
-			buildConfigurationList = D95BE62E359F767793FE6871 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = BA94CC7731FA1666438E6B97 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = EF499D8E585BF9BE8FC002B6;
-			productRefGroup = D124C2C231C202DEC0BCFA0E /* Products */;
+			mainGroup = B6EC121B13731195921F87D5;
+			productRefGroup = 9C6B52CE5EC5AFBE19B4EA4C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A225EE201B7E86C35B7E246D /* Pods */,
-				5A17E48002867BD225DFF7C7 /* Pods-AHEasing */,
-				44C8FABC6FC00D4C5E6E9A6D /* Pods-TLIndexPathTools */,
-				D9B1DAE9E1C1AC32E7B68E0F /* Pods-TLLayoutTransitioning */,
+				FD5E7307915F3B743D863F37 /* Pods */,
+				494B1343C5CA1D79B740E536 /* Pods-AHEasing */,
+				E92589F0668090CE77C5ECCB /* Pods-TLIndexPathTools */,
+				A1C8FDAEEA36256181B06E42 /* Pods-TLLayoutTransitioning */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0C32E3948B38E4D2A18C80B0 /* Sources */ = {
+		1B537284D6EFEAAFFEE190A7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29743A68FE871DAD83C7A67D /* Pods-TLLayoutTransitioning-dummy.m in Sources */,
-				2225CF48D2803DA729D1530B /* TLTransitionLayout.m in Sources */,
-				E4C3BAA00078F97F93BD18DF /* UICollectionView+TLTransitioning.m in Sources */,
+				E651631562FDF8D83F6FA0B5 /* CAKeyframeAnimation+AHEasing.m in Sources */,
+				98A1D0FD4A53467AB996F234 /* Pods-AHEasing-dummy.m in Sources */,
+				C6CD121D7E58767A15855176 /* easing.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49001AA002E94218ADF719B8 /* Sources */ = {
+		81BBFED3AC048C1BDF2CBD8F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A241B3BEC24B432188B02AFF /* Pods-TLIndexPathTools-dummy.m in Sources */,
-				B0BA6BC71D8414DCDDF30180 /* TLCollapsibleDataModel.m in Sources */,
-				7A8A9F1172370E23C1CBB292 /* TLCollapsibleHeaderView.m in Sources */,
-				D177B05B1FC08E6025444728 /* TLCollapsibleTableViewController.m in Sources */,
-				6D140D3E29422F9EDFCEAD52 /* TLCollectionViewController.m in Sources */,
-				D6991E1DC1A92B02D69B5406 /* TLDynamicHeightCell.m in Sources */,
-				1D23F2705E436A2DD4C2E098 /* TLDynamicHeightLabelCell.m in Sources */,
-				560CEC7EC358C4BE7A24322A /* TLIndexPathController.m in Sources */,
-				2315D90255100D7F40EAE47F /* TLIndexPathDataModel.m in Sources */,
-				9B7507FA49C470259C38F4CB /* TLIndexPathItem.m in Sources */,
-				195CBB6EB077B66581E21A15 /* TLIndexPathSectionInfo.m in Sources */,
-				C0001F57470556692924BF50 /* TLIndexPathTreeItem.m in Sources */,
-				7D84CC65972E7CCAC3E48C07 /* TLIndexPathUpdates.m in Sources */,
-				D643A4B3A76D563C2B6D0436 /* TLNoResultsTableDataModel.m in Sources */,
-				DE5EE83A742703F8E10C5A31 /* TLTableViewController.m in Sources */,
-				ACDFBBB4DFD2AA9C7E35DA65 /* TLTreeDataModel.m in Sources */,
-				6E00F5E1A55493DF896E784A /* TLTreeTableViewController.m in Sources */,
-				FEA7006B9183C77BF15D6D3D /* UITableView+ScrollOptimizer.m in Sources */,
-				216079E40089116BB036AB8C /* UITableViewController+ScrollOptimizer.m in Sources */,
+				FE02800D07733C1B53F4EFB3 /* Pods-TLLayoutTransitioning-dummy.m in Sources */,
+				C3EB51AD1C780A131DA1C11D /* TLTransitionLayout.m in Sources */,
+				73D8817230955E0B74CE921A /* UICollectionView+TLTransitioning.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		73255F9C3ECE9A6C2793F8B3 /* Sources */ = {
+		8B69A1AB7384C33237E4AF2C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D47E6AB92BAFCE783C30E0A /* CAKeyframeAnimation+AHEasing.m in Sources */,
-				43F0944E2B8A9E62611E6C88 /* Pods-AHEasing-dummy.m in Sources */,
-				906A27AE38801E183BF9FB6D /* easing.c in Sources */,
+				2DF3A1F9A62B737CF01D98BA /* Pods-TLIndexPathTools-dummy.m in Sources */,
+				946D97DEFE268E7BF417C12D /* TLCollapsibleDataModel.m in Sources */,
+				62E9258AC169FA8AF682FC28 /* TLCollapsibleHeaderView.m in Sources */,
+				D663AB483B0DD1BDE9FD10C5 /* TLCollapsibleTableViewController.m in Sources */,
+				94700632DC41A31A97847A16 /* TLCollectionViewController.m in Sources */,
+				0D3F5FBCA97BE118BFBB08C7 /* TLDynamicHeightCell.m in Sources */,
+				887696EE535C658F9823D5E8 /* TLDynamicHeightLabelCell.m in Sources */,
+				E3D46F708FA97B8B494A73D8 /* TLIndexPathController.m in Sources */,
+				2EB2268B71C82CBE3EA04FE1 /* TLIndexPathDataModel.m in Sources */,
+				5CCA1886322F6C1068741F81 /* TLIndexPathItem.m in Sources */,
+				5997F2D28B692CD14DBA1152 /* TLIndexPathSectionInfo.m in Sources */,
+				0D3B4EED5AE64B8D8354DFAC /* TLIndexPathTreeItem.m in Sources */,
+				5413FD12704749FFC576635D /* TLIndexPathUpdates.m in Sources */,
+				6E3C8D170E1B95B952C5E6A9 /* TLNoResultsTableDataModel.m in Sources */,
+				60FDE4E79E49F45EA0266AC2 /* TLTableViewController.m in Sources */,
+				51992A18CB6FE8076C672CE2 /* TLTreeDataModel.m in Sources */,
+				5655687EF4C3A0CC9D1E8E0F /* TLTreeTableViewController.m in Sources */,
+				38F902A89B7337C695E4B9D3 /* UITableView+ScrollOptimizer.m in Sources */,
+				E1D29C059192EDCB3AC0CDB6 /* UITableViewController+ScrollOptimizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		732804C351B7F474BC8DF5D5 /* Sources */ = {
+		A27999300BC8EA422198DA10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70C4800A9C53CB7DFF3BE88C /* Pods-dummy.m in Sources */,
+				4317636BD5C146733E297DC7 /* Pods-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		33AC871B70BF7733A1189FE4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-TLLayoutTransitioning";
-			target = D9B1DAE9E1C1AC32E7B68E0F /* Pods-TLLayoutTransitioning */;
-			targetProxy = CC534821B349615BD8F2595A /* PBXContainerItemProxy */;
-		};
-		4CA1D6950BE2385BE994CD16 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-AHEasing";
-			target = 5A17E48002867BD225DFF7C7 /* Pods-AHEasing */;
-			targetProxy = FDFE24048A822281622A51C7 /* PBXContainerItemProxy */;
-		};
-		4D94102039B760629311F639 /* PBXTargetDependency */ = {
+		0C97888BA0581DE242215A7E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TLIndexPathTools";
-			target = 44C8FABC6FC00D4C5E6E9A6D /* Pods-TLIndexPathTools */;
-			targetProxy = 7F0F074CB7368C9ED6521EF0 /* PBXContainerItemProxy */;
+			target = E92589F0668090CE77C5ECCB /* Pods-TLIndexPathTools */;
+			targetProxy = 7AF604F1ACA9F86322D34DB6 /* PBXContainerItemProxy */;
 		};
-		FEA371982A9F804DA5C5E580 /* PBXTargetDependency */ = {
+		4909729DB65889C5904C72C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-AHEasing";
-			target = 5A17E48002867BD225DFF7C7 /* Pods-AHEasing */;
-			targetProxy = 810A0A03F0471FACE0037686 /* PBXContainerItemProxy */;
+			target = 494B1343C5CA1D79B740E536 /* Pods-AHEasing */;
+			targetProxy = 5F1149E8A9BDF5C225A51404 /* PBXContainerItemProxy */;
+		};
+		BFB1A30ECDB8D3FB96F88556 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TLLayoutTransitioning";
+			target = A1C8FDAEEA36256181B06E42 /* Pods-TLLayoutTransitioning */;
+			targetProxy = C119762065EA832CBC16E524 /* PBXContainerItemProxy */;
+		};
+		E77EA444BE6DF4EDE546083F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-AHEasing";
+			target = 494B1343C5CA1D79B740E536 /* Pods-AHEasing */;
+			targetProxy = 15B29A810E3B12CBD13C66A0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		08BD7348D4B3A4AE3B7FBD2D /* Debug */ = {
+		00994996F258A09B34F30288 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33C2636B328E7A3DF48F2386 /* Pods-TLIndexPathTools-Private.xcconfig */;
+			baseConfigurationReference = 785A1A9C8F16067CC89DE989 /* Pods-TLIndexPathTools-Private.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -725,37 +729,9 @@
 			};
 			name = Debug;
 		};
-		150681899F7F6DAF3DE61DBB /* Release */ = {
+		265D39EFB23B40D4AB38B330 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE2AA8EF1F2FF1B0ED438777 /* Pods-TLLayoutTransitioning-Private.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TLLayoutTransitioning;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		64B12D1E0C2A770A130CFD14 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AB6E2171F6B80114A9FCA7C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 9952DC2A5036E6B33830DA29 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -770,7 +746,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -781,9 +757,37 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
+			name = Release;
+		};
+		379F70218989E1E1D5DA89C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64785BEE7EBA3B3BF352FDE2 /* Pods-AHEasing-Private.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-AHEasing/Pods-AHEasing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-AHEasing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-AHEasing/Pods-AHEasing.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = AHEasing;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
 			name = Debug;
 		};
-		781435ECF170C920FDEE078F /* Debug */ = {
+		639960BC93D33C361BDC3C3E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -822,7 +826,63 @@
 			};
 			name = Debug;
 		};
-		7D6A2035A9777623FCF29438 /* Release */ = {
+		7177E15B364C6B20A99B8059 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07A7E0470473FC858C3D37D2 /* Pods-TLLayoutTransitioning-Private.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TLLayoutTransitioning;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A525F50BDEEDBBD3EF1B0BFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 64785BEE7EBA3B3BF352FDE2 /* Pods-AHEasing-Private.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-AHEasing/Pods-AHEasing-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-AHEasing/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-AHEasing/Pods-AHEasing.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = AHEasing;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		A5C8E3C7CA0089A0257DCC5C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -856,9 +916,37 @@
 			};
 			name = Release;
 		};
-		7EC7C130BBF86EB6A3E52D43 /* Release */ = {
+		ACF18EA22DFD887B65C269BC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33C2636B328E7A3DF48F2386 /* Pods-TLIndexPathTools-Private.xcconfig */;
+			baseConfigurationReference = 07A7E0470473FC858C3D37D2 /* Pods-TLLayoutTransitioning-Private.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TLLayoutTransitioning;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C487F7C808F78C4D09E33DD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 785A1A9C8F16067CC89DE989 /* Pods-TLIndexPathTools-Private.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -884,93 +972,9 @@
 			};
 			name = Release;
 		};
-		805F44AB4112C80C89734A62 /* Release */ = {
+		D9D94C28A08BEDC47A6617F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CF40B2721F92EBCBE35D4FB /* Pods-AHEasing-Private.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-AHEasing/Pods-AHEasing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-AHEasing/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-AHEasing/Pods-AHEasing.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = AHEasing;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		9A5F858053E7493C154C3FB6 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0CF40B2721F92EBCBE35D4FB /* Pods-AHEasing-Private.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-AHEasing/Pods-AHEasing-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-AHEasing/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-AHEasing/Pods-AHEasing.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = AHEasing;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		CF112ED995E435B3A2D1780A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE2AA8EF1F2FF1B0ED438777 /* Pods-TLLayoutTransitioning-Private.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-TLLayoutTransitioning/Pods-TLLayoutTransitioning.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TLLayoutTransitioning;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		FA84C59EDC61C0ACCFAB383C /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F3C7A3231CFA8380D938D71F /* Pods.release.xcconfig */;
+			baseConfigurationReference = 45E875D3628ABA984517AC13 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -985,7 +989,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods/Pods.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -996,57 +1000,57 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4799A2F88F0E9DDC5A040CF7 /* Build configuration list for PBXNativeTarget "Pods-AHEasing" */ = {
+		1599AE15E26102D12D7C1BD6 /* Build configuration list for PBXNativeTarget "Pods-TLLayoutTransitioning" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A5F858053E7493C154C3FB6 /* Debug */,
-				805F44AB4112C80C89734A62 /* Release */,
+				7177E15B364C6B20A99B8059 /* Debug */,
+				ACF18EA22DFD887B65C269BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B61314DF4D83B8894985CE62 /* Build configuration list for PBXNativeTarget "Pods" */ = {
+		5E929A976FB7D357719B96D9 /* Build configuration list for PBXNativeTarget "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				64B12D1E0C2A770A130CFD14 /* Debug */,
-				FA84C59EDC61C0ACCFAB383C /* Release */,
+				D9D94C28A08BEDC47A6617F3 /* Debug */,
+				265D39EFB23B40D4AB38B330 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D95BE62E359F767793FE6871 /* Build configuration list for PBXProject "Pods" */ = {
+		8A21940C11153E26E48C8159 /* Build configuration list for PBXNativeTarget "Pods-TLIndexPathTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				781435ECF170C920FDEE078F /* Debug */,
-				7D6A2035A9777623FCF29438 /* Release */,
+				00994996F258A09B34F30288 /* Debug */,
+				C487F7C808F78C4D09E33DD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F5B14D8EFCEAC51E709AF733 /* Build configuration list for PBXNativeTarget "Pods-TLLayoutTransitioning" */ = {
+		9E37D6F63F01E0678DC7A649 /* Build configuration list for PBXNativeTarget "Pods-AHEasing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				CF112ED995E435B3A2D1780A /* Debug */,
-				150681899F7F6DAF3DE61DBB /* Release */,
+				379F70218989E1E1D5DA89C9 /* Debug */,
+				A525F50BDEEDBBD3EF1B0BFC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC86F1CDC00F5BA99ED2C60D /* Build configuration list for PBXNativeTarget "Pods-TLIndexPathTools" */ = {
+		BA94CC7731FA1666438E6B97 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				08BD7348D4B3A4AE3B7FBD2D /* Debug */,
-				7EC7C130BBF86EB6A3E52D43 /* Release */,
+				639960BC93D33C361BDC3C3E /* Debug */,
+				A5C8E3C7CA0089A0257DCC5C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 1F5F65CCEABC3A730DCC3590 /* Project object */;
+	rootObject = 569E60FD3A05B01B0A73409A /* Project object */;
 }

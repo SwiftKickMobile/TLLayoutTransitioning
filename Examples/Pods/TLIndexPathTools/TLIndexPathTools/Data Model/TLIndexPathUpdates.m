@@ -37,11 +37,6 @@
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
 {
-    return [self initWithOldDataModel:oldDataModel updatedDataModel:updatedDataModel modificationComparatorBlock:nil];
-}
-
-- (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel modificationComparatorBlock:(BOOL(^ __nullable)(id item1, id item2))modificationComparatorBlock
-{
     if (self = [super init]) {
         
         _hasChanges = NO;
@@ -131,14 +126,7 @@
         for (id item in updatedDataModel.items) {
             id oldItem = [oldDataModel currentVersionOfItem:item];
             if (oldItem) {
-                BOOL modified = NO;
-                if (modificationComparatorBlock) {
-                    modified = modificationComparatorBlock(item, oldItem);
-                } else {
-                    modified = ![oldItem isEqual:item];
-                }
-                
-                if (modified) {
+                if (![oldItem isEqual:item]) {
                     [modifiedItems addObject:item];
                 }
             } else {
