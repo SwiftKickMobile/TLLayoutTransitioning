@@ -14,13 +14,14 @@ Pod::Spec.new do |s|
                     Check out the demos in the Examples workspace!
                     
                     Changes in 1.0.5
-                    * Support Cocoapoda !use_frameworks directive
-                    * Add dynamic framework target that works with Carthage
+                    * Support Cocoapoda with or without !use_frameworks directive
+                    * Change project target to dynamic framework to support Carthage
+                    * Fix crash in Pinch example when pinching while transition in progress
                     DESC
   s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.4' }
+  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.5' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'
