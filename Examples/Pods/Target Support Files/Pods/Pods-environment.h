@@ -22,5 +22,5 @@
 #define COCOAPODS_POD_AVAILABLE_TLLayoutTransitioning
 #define COCOAPODS_VERSION_MAJOR_TLLayoutTransitioning 1
 #define COCOAPODS_VERSION_MINOR_TLLayoutTransitioning 0
-#define COCOAPODS_VERSION_PATCH_TLLayoutTransitioning 5
+#define COCOAPODS_VERSION_PATCH_TLLayoutTransitioning 7
 

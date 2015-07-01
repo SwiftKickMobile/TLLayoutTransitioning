@@ -321,6 +321,7 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue,
             destinationPoint = CGPointMake(CGRectGetMaxX(placementFrame), CGRectGetMidY(placementFrame));
             break;
         default:
+            destinationPoint = CGPointZero;
             break;
     }
     
