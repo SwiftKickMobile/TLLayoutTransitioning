@@ -129,7 +129,7 @@ The Resize example combines `TLTransitionLayout` and `-[UICollectionView+TLTrans
 
 ###Pinch
 
-The Pinch example uses demonstrates a simple pinch-driven interactive transition using `TLTransitionLayout`. The destination `contentOffset` is selected such that the initial visible cells remain centered. Or if a cell is tapped, the `contentOffset` the cell is centered.
+The Pinch example demonstrates a simple pinch-driven interactive transition using `TLTransitionLayout`. The destination `contentOffset` is selected such that the initial visible cells remain centered. Or if a cell is tapped, the `contentOffset` the cell is centered.
 
 [1]:https://github.com/warrenm/AHEasing
 [2]:https://github.com/wtmoose/TLLayoutTransitioning/blob/master/Examples/Examples/ResizeCollectionViewController.m
