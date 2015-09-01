@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLLayoutTransitioning"
-  s.version      = "1.0.7"
+  s.version      = "1.0.8"
   s.summary      = "Enhanced transitioning between UICollectionView layouts in iOS."
   s.description  = <<-DESC
                     TLLayoutTransitioning provides a `TLLayoutTransition` transition layout subclass and a `UICollectionView+TLTransitioning` category that combine to solve a few problems with collection view layout transitioning:
@@ -13,13 +13,13 @@ Pod::Spec.new do |s|
 
                     Check out the demos in the Examples workspace!
                     
-                    Changes in 1.0.7
-                    * Fix clang analyzer warning
+                    Changes in 1.0.8
+                    * Fix #23 "Exception during pinch gesture handling"
                     DESC
   s.homepage     = "https://github.com/wtmoose/TLLayoutTransitioning"                    
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.7' }
+  s.source       = { :git => "https://github.com/wtmoose/TLLayoutTransitioning.git", :tag => '1.0.8' }
   s.platform     = :ios, '7.0'
   s.ios.deployment_target = '7.0'
   s.source_files = 'TLLayoutTransitioning/**/*.{h,m,c}'

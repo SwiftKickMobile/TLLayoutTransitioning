@@ -36,7 +36,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Creating updates
 
+/**
+ * Takes two versions of a data model and computes the changes, i.e. the inserts,
+ * moves, deletes and modifications.
+ *
+ * @param oldDataModel                The previous data model.
+ * @param updatedDataModel            The updated data model.
+ * @return A newly initialized TLIndexPathUpdates object.
+ * @see initWithOldDataModel:updatedDataModel:modificationComparatorBlock:
+ */
 - (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
+
+/**
+ * Takes two versions of a data model and computes the changes, i.e. the inserts,
+ * moves, deletes and modifications.
+ *
+ * @param oldDataModel                The previous data model.
+ * @param updatedDataModel            The updated data model.
+ * @param modificationComparatorBlock A block which is used to determine if an old data model object has been modified. This is passed two objects and should return `NO` if the objects are to be considered the same, or `YES` if modifications have occurred. This block can be `nil`.
+ *
+ * @return A newly initialized TLIndexPathUpdates object.
+ * @see initWithOldDataModel:updatedDataModel:
+ */
+- (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel modificationComparatorBlock:(BOOL(^ __nullable)(id item1, id item2))modificationComparatorBlock;
 
 #pragma mark - Performing batch updates
 
