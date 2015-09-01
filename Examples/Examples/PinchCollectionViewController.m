@@ -18,6 +18,7 @@
 @property (strong, nonatomic) TLTransitionLayout *transitionLayout;
 @property (strong, nonatomic) UIPinchGestureRecognizer *pinch;
 @property (nonatomic) CGFloat initialScale;
+@property (nonatomic) BOOL isLayoutInTransition;
 @end
 
 static const CGFloat kLargeLayoutScale = 2.5;
@@ -60,6 +61,10 @@ static const CGFloat kLargeLayoutScale = 2.5;
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)pinch
 {
+    if (self.isLayoutInTransition) {
+        return;
+    }
+    
     if (pinch.state == UIGestureRecognizerStateBegan && !self.transitionLayout) {
         
         // remember initial scale factor for progress calculation
@@ -67,14 +72,17 @@ static const CGFloat kLargeLayoutScale = 2.5;
         
         UICollectionViewLayout *toLayout = self.smallLayout == self.collectionView.collectionViewLayout ? self.largeLayout : self.smallLayout;
         
+//        NSLog(@"will begin transition; pinch: %@", pinch);
         self.transitionLayout = (TLTransitionLayout *)[self.collectionView startInteractiveTransitionToCollectionViewLayout:toLayout completion:^(BOOL completed, BOOL finish) {
             if (finish) {
+//                NSLog(@"did finish");
                 self.collectionView.contentOffset = self.transitionLayout.toContentOffset;
             } else {
+//                NSLog(@"did cancel");
                 self.collectionView.contentOffset = self.transitionLayout.fromContentOffset;
             }
             self.transitionLayout = nil;
-            self.pinch.enabled = YES;
+            self.isLayoutInTransition = NO;
         }];
         
         NSArray *visiblePoses = [self.collectionView.collectionViewLayout layoutAttributesForElementsInRect:self.collectionView.bounds];
@@ -93,16 +101,15 @@ static const CGFloat kLargeLayoutScale = 2.5;
         
     }
     
-    else {
-        self.pinch.enabled = NO;
+    else if ((pinch.state == UIGestureRecognizerStateEnded || pinch.state == UIGestureRecognizerStateCancelled) && self.transitionLayout) {
+        self.isLayoutInTransition = YES;
         if (self.transitionLayout.transitionProgress > 0.5) {
-//            NSLog(@"finish");
+//            NSLog(@"will finish; pinch: %@", pinch);
             [self.collectionView finishInteractiveTransition];
         } else {
-//            NSLog(@"cancel");
+//            NSLog(@"will cancel; pinch: %@", pinch);
             [self.collectionView cancelInteractiveTransition];
         }
-        
     }
 }
 
