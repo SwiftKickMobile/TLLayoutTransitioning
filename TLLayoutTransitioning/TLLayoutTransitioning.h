@@ -14,7 +14,7 @@ FOUNDATION_EXPORT double TLLayoutTransitioningVersionNumber;
 //! Project version string for TLLayoutTransitioning.
 FOUNDATION_EXPORT const unsigned char TLLayoutTransitioningVersionString[];
 
-<TLLayoutTransitioning/TLTransitionLayout.h>
-<TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
+#import <TLLayoutTransitioning/TLTransitionLayout.h>
+#import <TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 
 
