@@ -1,5 +1,5 @@
 //
-//  UICollectionView+TransitionLayoutAnimator.h
+//  UICollectionView+TLTransitioning.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //

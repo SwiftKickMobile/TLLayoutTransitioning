@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TLTransitionLayout.h"
-#import "UICollectionView+TLTransitioning.h"
 
 //! Project version number for TLLayoutTransitioning.
 FOUNDATION_EXPORT double TLLayoutTransitioningVersionNumber;
@@ -16,6 +14,7 @@ FOUNDATION_EXPORT double TLLayoutTransitioningVersionNumber;
 //! Project version string for TLLayoutTransitioning.
 FOUNDATION_EXPORT const unsigned char TLLayoutTransitioningVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <TLLayoutTransitioning/PublicHeader.h>
+<TLLayoutTransitioning/TLTransitionLayout.h>
+<TLLayoutTransitioning/UICollectionView+TLTransitioning.h>
 
 
