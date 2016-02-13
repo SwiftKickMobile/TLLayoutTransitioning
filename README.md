@@ -88,7 +88,7 @@ where the view controller is configured to provide an instance of `TLTransitionL
 
 ##Installation
 
-###Cocoapods
+###CocoaPods
 
 Add the following to your Podfile
 
