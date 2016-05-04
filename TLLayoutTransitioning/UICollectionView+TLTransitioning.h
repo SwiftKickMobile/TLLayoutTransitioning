@@ -209,6 +209,8 @@ CGFloat transitionProgress(CGFloat initialValue, CGFloat currentValue, CGFloat f
                              toSize:(CGSize)toSize
                      toContentInset:(UIEdgeInsets)toContentInset __deprecated;
 
+@end
+
 /**
  Interpolate between initial and final frames given the transition progress
  */
@@ -259,4 +261,3 @@ extern CGFloat TLConvertTimespace(CGFloat time, CGFloat startTime, CGFloat endTi
  */
 extern CGPoint TLRelativePointInRect(CGPoint point, CGRect rect);
 
-@end
